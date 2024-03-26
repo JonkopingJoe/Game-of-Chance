@@ -24,8 +24,10 @@ Gameplay:
 - Based on the player's choices, update the luck score accordingly
 - Store the outcomes of each event for end-of-day reporting
 
-Event Structure:
+Events:
 -
+- How many per day
+- How many in the 'pool'
 - Description of the event
 - Whether it's interactive or not
 - Possible choices and their outcomes
@@ -50,6 +52,11 @@ Additional Features to think about:
 -
 - Luck boosters: might temporarily boost chance of positive outcome
 - add any ideas to make the game more interesting
+
+More things to think about:
+-
+- GUI
+- Error handling
 
 Game Example 
 -
