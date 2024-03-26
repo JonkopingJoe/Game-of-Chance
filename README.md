@@ -2,6 +2,9 @@
 
 Game: LUCKOMETER (name for now)
 
+'no matter how sensible your choice sounds, there's always a twist'
+name idea: twist of fate? lol
+
 - Base structure
   1. 1 player game
   2. Point system (luck points)
