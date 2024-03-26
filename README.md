@@ -13,9 +13,8 @@ Game Initialisation:
 - Display an introduction message explaining the game mechanics and rules.
 - Initialize the player's luck score to 0.
 
-Gameplay Loop:
+Gameplay:
 -
-
 - Start the day by triggering events in a loop until the day ends
 - Each event should be randomly selected from a pool of possible scenarios
 - Display each event to the player and provide interactive choices if applicable
@@ -43,6 +42,11 @@ Once the day ends, present a summary to the player:
 - Display the outcomes of each event encountered during the day.
 - Show the total luck score achieved.
 - Provide a message based on the luck score range.
+
+Additional Features to think about:
+-
+- Luck boosters: might temporarily boost chance of positive outcome
+- add any ideas to make the game more interesting
 
 Game Example 
 -
