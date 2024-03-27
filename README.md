@@ -3,7 +3,7 @@
 Game: LUCKOMETER (name for now)
 
 'no matter how sensible your choice sounds, there's always a twist'
-name idea: twist of fate? lol
+name idea: twist of fate? lol // Twistopia //
 
 - Base structure
   1. 1 player game
@@ -42,6 +42,7 @@ Point System:
 - 30 <= Luck score <= 50: "Not too shabby. Keep it up!"
 
 End of Day Report:
+<!-- Player ends the day, potentially. The player is presented an output "you have done all activities needed today, wanna end your day? -->
 -
 Once the day ends, present a summary to the player:
 - Display the outcomes of each event encountered during the day.
@@ -60,9 +61,10 @@ More things to think about:
 
 Game Example 
 -
-**Day starts** (Luck score: 0) 
+**Day starts** (Game starts --> Luck score: 0) 
 
 _Random event 1: You walk out the door and you see a slippery sidewalk! What do you do? [interactive, immediate outcome]_
+<!-- Player does not see the outcome of each choice while choosing, the outcome is a reward/ punishment and is random -->
 
 - Choice A: Just walk on lightly!
   - Outcome 1: phew good thing you wore crocs today! (luck+5)
@@ -79,3 +81,14 @@ _Random event 2: Want to buy Stocks from Company A? [interactive, no immediate o
 
 _Random announcement: Stocks A went up/down!_ ((doesnt not have to come immediately after))
 - Outcome based on player's choice
+
+
+<!-- Since it is a game about a day, I am thinking of slotting a food session -->
+
+_Random event 3: Yum Yum! You earned yourself a treat in Hotel Twistinolvenia. Choose a table, each table has a luck magic and great food?_
+ <!-- Interactive, Immediate outcome: Every outcome is rewarded just because eating is good in this game -->
+- [A] Corner Table
+  - Outcome: Your treat is Ghoulash! Your luck magic is 5 (luck +5)
+
+- [B] Round Table
+  - Outcome: Your treat is Eye Scream! Your luck magic is 1, please scream (luck +1)
