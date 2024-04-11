@@ -97,7 +97,7 @@ class GameState:
     def instructions(self):
         self.screen.fill((255, 255, 0))
         instruction = """This is how to play the game:
-        
+
         1.Imagine that you are starting your day,
         2.You get to choose what you'd rather do
         3.Each choice shall lead to the next
@@ -132,6 +132,7 @@ class GameState:
     def quit(self):
         pygame.quit()
 
+# Test window to view what to correct
 if __name__ == "__main__":
     game = GameState()
     game.main_menu()
