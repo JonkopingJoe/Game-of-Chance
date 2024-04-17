@@ -167,7 +167,7 @@ class Game():
                 if self.last_change > 0:
                     self.screen.blit(pygame.transform.scale(self.images["backdoor_unlucky"], (400,400)), (200, 160))
                     self.render_text = self.font.render("Backdoor Lucky! More Points!", True, "BLACK")
-                    self.display_button(self.buttons['general']['continue'], 300, 325)
+                    self.display_button(self.buttons['general']['continue'], 300, 325) 
                 else:
                     self.screen.blit(pygame.transform.scale(self.images["backdoor_tripped"], (400,400)), (200, 160))
                     self.render_text = self.font.render("Backdoor tripped! Luck Deducted", True, "BLACK")
