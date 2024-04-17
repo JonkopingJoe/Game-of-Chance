@@ -106,7 +106,7 @@ class Game():
 
             if self.state == 'menu':
                 self.screen.blit(self.images["theme"], (0, 0))
-                self.render_text = self.font.render("Welcome to LUCKOMETER. Try to Earn as Much Luck as you can!", True, "BLACK")
+                self.render_text = self.font.render("Welcome to LUCKOMETER. Try to Earn as Much Luck as you can!!", True, "BLACK")
                 self.text_rect = self.render_text.get_rect()
                 self.text_rect.center = (self.screen.get_width() // 2, 50)
                 self.screen.blit(self.render_text, self.text_rect)
@@ -125,11 +125,11 @@ class Game():
             elif self.state == 'front_door':
                 if self.last_change > 0:
                     self.screen.blit(self.images["front_door_lucky"], (0, 0))
-                    self.render_text = self.font.render("Cat is away! Luck Points Increased", True, "BLACK")
+                    self.render_text = self.font.render("Cat is away! Luck Points Increased!", True, "BLACK")
                     self.display_button(self.buttons['general']['continue'], 300, 325)
                 else:
                     self.screen.blit(self.images["front_door_unlucky"], (0, 0))
-                    self.render_text = self.font.render("Cat is here! Luck Points Deducted", True, "BLACK")
+                    self.render_text = self.font.render("Cat is here! Luck Points Deducted!", True, "BLACK")
                     self.display_button(self.buttons['general']['continue'], 300, 325)
             
             elif self.state == 'back_door':
@@ -139,7 +139,7 @@ class Game():
                     self.display_button(self.buttons['general']['continue'], 300, 325)
                 else:
                     self.screen.blit(self.images["backdoor_tripped"], (0, 0))
-                    self.render_text = self.font.render("Backdoor, you tripped! Luck Points Deducted", True, "BLACK")
+                    self.render_text = self.font.render("Backdoor, you tripped! Luck Points Deducted!", True, "BLACK")
                     self.display_button(self.buttons['general']['continue'], 300, 325)
 
             elif self.state == "ending":
