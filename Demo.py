@@ -59,7 +59,8 @@ class Game():
 
         self.buttons = {
             "general": {"continue": Button("Continue", (255, 255, 255), (0, 128, 255), 50, 200),
-                        "quit": Button("Quit", (255, 255, 255), (0, 128, 255), 50, 200)},
+                        "quit": Button("Quit", (255, 255, 255), (0, 128, 255), 50, 200),
+                        "back" : Button("Back", (255, 255, 255), (0, 128, 255), 50, 200)},
             "menu": {"start_game": Button("Start Game", (255, 255, 255), (0, 128, 255), 50, 200),
                     "quit_game": Button("Quit Game", (255, 255, 255), (0, 128, 255), 50, 200)},
             "senario_door": {"front_door": Button("1. The Front Door!", (255, 255, 255), (0, 128, 255), 50, 200),
@@ -77,7 +78,7 @@ class Game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            elif event.type == pygame.K_ESCAPE:
+            elif event.type == pygame.KEYDOWN and event.key ==pygame.K_ESCAPE:
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:  # Left click
                 if self.state == 'menu':
@@ -102,8 +103,8 @@ class Game():
                         sys.exit()
                     
 
-    def display_button(self, button, x: int, y: int) -> None:
-        button.rect.topleft = (x, y)
+    def display_button(self, button, position_x: int, position_y: int) -> None:
+        button.rect.topleft = (position_x, position_y)
         self.screen.blit(button.surface, button.rect.topleft)
 
     def run(self):
