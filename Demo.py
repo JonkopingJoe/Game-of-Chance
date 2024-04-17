@@ -140,8 +140,8 @@ class Game():
                 self.text_rect = self.render_text.get_rect()
                 self.text_rect.center = (self.screen.get_width() // 2, 50)
                 self.screen.blit(self.render_text, self.text_rect)
-                self.display_button(self.buttons['menu']['start_game'], 300, 275)
-                self.display_button(self.buttons['menu']['quit_game'], 300, 325)
+                self.display_button(self.buttons['menu']['start_game'], 515, 275)
+                self.display_button(self.buttons['menu']['quit_game'], 515, 375)
                 self.luck = 100
             
             elif self.state == 'senario_door':
@@ -150,28 +150,28 @@ class Game():
                 self.text_rect = self.render_text.get_rect()
                 self.text_rect.center = (self.screen.get_width() // 2, 50)
                 self.screen.blit(self.render_text, (300, 200))
-                self.display_button(self.buttons['senario_door']['front_door'], 300, 275)
-                self.display_button(self.buttons['senario_door']['back_door'], 300, 325)
+                self.display_button(self.buttons['senario_door']['front_door'], 515, 275)
+                self.display_button(self.buttons['senario_door']['back_door'], 515, 375)
             
             elif self.state == 'front_door':
                 if self.last_change > 0:
                     self.screen.blit(pygame.transform.scale(self.images["front_door_lucky"], (400,400)), (200, 160))
                     self.render_text = self.font.render("Cat is away! Luck Points Increased!", True, "BLACK")
-                    self.display_button(self.buttons['general']['continue'], 700, 600)
+                    self.display_button(self.buttons['general']['continue'], 300, 325)
                 else:
                     self.screen.blit(pygame.transform.scale(self.images["front_door_unlucky"], (400,400)), (200, 160))
                     self.render_text = self.font.render("Cat is here! Luck Points Deducted", True, "BLACK")
-                    self.display_button(self.buttons['general']['continue'], 700, 600)
+                    self.display_button(self.buttons['general']['continue'], 300, 325)
             
             elif self.state == 'back_door':
                 if self.last_change > 0:
                     self.screen.blit(pygame.transform.scale(self.images["backdoor_unlucky"], (400,400)), (200, 160))
                     self.render_text = self.font.render("Backdoor Lucky! More Points!", True, "BLACK")
-                    self.display_button(self.buttons['general']['continue'], 700, 600)
+                    self.display_button(self.buttons['general']['continue'], 300, 325)
                 else:
                     self.screen.blit(pygame.transform.scale(self.images["backdoor_tripped"], (400,400)), (200, 160))
                     self.render_text = self.font.render("Backdoor tripped! Luck Deducted", True, "BLACK")
-                    self.display_button(self.buttons['general']['continue'], 700, 600)
+                    self.display_button(self.buttons['general']['continue'], 300, 325)
 
             elif self.state == "ending":
                 self.render_text = self.font.render(f"Let's call this a day, your final lucky point is {self.luck}.", True, "BLACK")
