@@ -44,19 +44,19 @@ class Game():
         self.images = {"theme": pygame.image.load("images/theme.png"), # 1792*1024
                         "front_door_lucky": pygame.image.load("images/front_door.jpg"), # 1024*1024
                         "front_door_unlucky": pygame.image.load("images/front_door_cat.jpg"), # 1024*1024
-                        "backdoor.jpg" : pygame.image.load("images/backdoor.jpg"), 
+                        "backdoor.jpg" : pygame.image.load("images/back_door.jpg"), 
                         "backdoor _tripped" : pygame.image.load("images/backdoor_tripped.jpg"),
                         "catchtrain.jpg" : pygame.image.load("images/catchtrain.jpg"),
                         "catchtrain_spill.jpg" : pygame.image.load("images/catchtrain_spill.jpg"),
                         "crocs.jpg" : pygame.image.load("images/crocs.jpg"),
-                        "jumpover.png" : pygame.image.load("images.jumpover.png"),
+                        "jumpover.png" : pygame.image.load("images/jumpover.png"),
                         "jumpover_drenched.jpg" : pygame.image.load("images/jumpover_drenched.jpg"),
                         "waittrain_late.jpg" : pygame.image.load("images/waittrain_late.jpg"),
                         "waittrain_spill.jpg" : pygame.image.load("images/waittrain_spill.jpg"),
-                        "walkthrough.jpg" : pygame.image.load("images/walkthough.jpg")
+                        "walkthrough.jpg" : pygame.image.load("images/walkthrough.jpg")
 
                         }
-        
+
         self.buttons = {
             "general": {"continue": Button("Continue", (255, 255, 255), (0, 128, 255), 50, 200),
                         "quit": Button("Quit", (255, 255, 255), (0, 128, 255), 50, 200)},
