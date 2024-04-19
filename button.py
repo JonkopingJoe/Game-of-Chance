@@ -5,12 +5,18 @@ class Button(pygame.sprite.Sprite):
     ):
         super().__init__()
 
-        # Default font
-        button_font = pygame.font.Font(None, 36)
+        self.image = pygame.Surface((width, height))
+        self.image.fill(bg_color)
+        self.rect = self.image.get_rect()
+
+        # default font
+        button_font = pygame.font.SysFont("monospace", 20)
 
         # Render text and align
         self.render_text = button_font.render(text, True, text_color, bg_color)
         self.text_rect = self.render_text.get_rect()
+
+        self.image.blit(self.render_text, self.text_rect)
 
     def is_clicked(self, event) -> bool:
         return (
