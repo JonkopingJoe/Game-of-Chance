@@ -1,5 +1,8 @@
 import random
 
+# You could only read the function get_game_scenarios for efficiency!!!!!!!!
+# Please import the classes ListNode and LinkedList and functions get_game_scenarios to use them!!
+
 class ListNode:
     # Constructor to initialize the node object
     def __init__(self, value, next=None):
@@ -13,16 +16,22 @@ class ListNode:
         Returns:
         None
         '''
-        self.value = value
-        # Initialize next as null
-        self.next = next
+        try:
+            self.value = value
+            # Initialize next as null
+            self.next = next
+        except Exception as e:
+            print("An error occured while creating a node, please check the input values!", e)
 
 class LinkedList:
     def __init__(self):
         '''
         Initialize the head of the linked list
         '''
-        self.head = None
+        try:
+            self.head = None
+        except Exception as e:
+            print("An error occured. No parameter needed!",e)
 
     def append(self, value):
         '''
@@ -34,18 +43,17 @@ class LinkedList:
         Returns:
         None
         '''
-        new_node = ListNode(value)
-        if not self.head:
-            self.head = new_node
-            return
-        last_node = self.head
-        while last_node.next:
-            last_node = last_node.next
-        last_node.next = new_node
-
-    # def insert_at_beginning(self, value):
-    #     new_node = ListNode(value, self.head)
-    #     self.head = new_node
+        try:
+            new_node = ListNode(value)
+            if not self.head:
+                self.head = new_node
+                return
+            last_node = self.head
+            while last_node.next:
+                last_node = last_node.next
+            last_node.next = new_node
+        except Exception as e:
+            print("An error occured while appending a node, please check the input values!", e)
 
     def to_list(self):
         '''
@@ -57,15 +65,15 @@ class LinkedList:
         Returns:
         -elements: A list of the elements in the linked list
         '''
-        elements = []
-        current = self.head
-        while current:
-            elements.append(current.value)
-            current = current.next
-        return elements
-
-    # def __repr__(self):
-    #     return "->".join(str(item) for item in self.to_list())
+        try:
+            elements = []
+            current = self.head
+            while current:
+                elements.append(current.value)
+                current = current.next
+            return elements
+        except Exception as e:
+            print("An error occured while converting the linked list to a list, please check the input values!", e)
 
 def get_game_scenarios(instances_list):
     '''
@@ -77,11 +85,14 @@ def get_game_scenarios(instances_list):
     Returns:
     -linked_list: A linked list of the game scenarios
     '''
-    random.shuffle(instances_list)
-    linked_list = LinkedList()
-    for instance in instances_list:
-        linked_list.append(instance)
-    return linked_list
+    try:
+        random.shuffle(instances_list)
+        linked_list = LinkedList()
+        for instance in instances_list:
+            linked_list.append(instance)
+        return linked_list
+    except Exception as e:
+        print("List needed to be passed, please check input.", e)
 
 # Test
 print(get_game_scenarios(["scenario1", "scenario2", "scenario3", 'scenario4']).to_list())
