@@ -5,6 +5,9 @@ from button import Button
 from structlinks import LinkedList
 
 
+BLACK = (0, 0, 0) 
+WHITE = (255, 255, 255)
+
 class Game:
     def __init__(self):
         pygame.init()
@@ -47,8 +50,10 @@ class Game:
         return None
 
     def display_image(self, image_path: str, x: int, y: int) -> None:
-        self.screen.blit(image_path, (x, y))
+        img = pygame.image.load(image_path).convert()
+        self.screen.blit(img, (x, y))
         return None
+
 
     def initialize_game_scenarios_list(self) -> list:
         scenarios_list = []
@@ -56,6 +61,9 @@ class Game:
         # scenario one
         train_watting = Scenario("./waittrain_late_small.jpg")
         train_watting.set_cases(
+
+            "random_caption"
+
             # First
             "wait for the train",
             "you catched the train",
