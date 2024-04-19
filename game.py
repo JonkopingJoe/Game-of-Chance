@@ -119,14 +119,13 @@ class Game:
     def show_end_screen(self):
         screen = pygame.image.load('images/theme.png').convert()
         self.screen.blit(screen, (0, 0))
-        restart_button = Button('PLAY AGAIN', (167, 66, 132), (221, 229, 13))
-        menu_button = Button('MENU', (167, 66, 132), (221, 229, 13))
+        self.display_text(f'Your Luck Score is {self.luck_score}. What a day!', (0, 0, 0), (255, 255, 255), 0, 0)
+        play_again = Button('PLAY AGAIN', (167, 66, 132), (221, 229, 13))
         quit_button = Button('QUIT', (167, 66, 132), (221, 229, 13))
-        quit_button.rect.topleft = ((600 - quit_button.width)/2, 176)
-        restart_button.rect.topleft = ((600 - restart_button.width)/2, 230)
-        menu_button.rect.topleft = ((600 - menu_button.width)/2, 300)
-        self.screen.blit(restart_button.image, restart_button.rect)
-        self.screen.blit(menu_button.image, menu_button.rect)
+        play_again.rect.topleft = ((600 - play_again.width)/2, 176)
+        quit_button.rect.topleft = ((600 - quit_button.width)/2, 300)
+        
+        self.screen.blit(play_again.image, play_again.rect)
         self.screen.blit(quit_button.image, quit_button.rect)
 
     def get_text_rect(self, text, x, y) -> tuple:
