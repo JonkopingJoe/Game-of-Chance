@@ -33,10 +33,10 @@ class Game:
 
         return None
     def display_scenario(self, scenario: Scenario) -> None: 
-        button1 = Button(scenario.cases["choice1"], "BLACK", "WHITE")
-        button2 = Button(scenario.cases["choice2"], "BLACK", "WHITE")
+        button1 = Button(scenario.cases["choice1"], BLACK, WHITE)
+        button2 = Button(scenario.cases["choice2"], BLACK, WHITE)
 
-        self.display_text(scenario.caption, "BLACK", "WHITE", 100, 100)
+        self.display_text(scenario.caption, BLACK, WHITE, 100, 100)
         self.display_image(scenario.picture_path, 25, 137)
         self.display_button(button1, 100, 125)
         self.display_button(button2, 100, 135)
@@ -132,9 +132,9 @@ class Game:
         play_again.rect.topleft = ((600 - play_again.width)/2, 176)
         quit_button.rect.topleft = ((600 - quit_button.width)/2, 240)
 
-        
         self.screen.blit(play_again.image, play_again.rect)
         self.screen.blit(quit_button.image, quit_button.rect)
+    
 
     def get_text_rect(self, text, x, y) -> tuple:
         rendered_text = self.font.render(text, True, (255, 255, 255))
