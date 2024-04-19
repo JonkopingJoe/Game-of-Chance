@@ -130,13 +130,10 @@ class Game:
         screen = pygame.image.load('Graphics/end_screen.png').convert()
         self.screen.blit(screen, (0, 0))
         self.display_text(f'Your Luck Score is {self.luck_score}. What a day!', (0, 0, 0,), (255, 255, 255), 120, 100, font_size=20)
-        play_again = Button('PLAY AGAIN', (167, 66, 132), (221, 229, 13))
-        quit_button = Button('QUIT', (167, 66, 132), (221, 229, 13))
-        play_again.rect.topleft = ((600 - play_again.width)/2, 176)
-        quit_button.rect.topleft = ((600 - quit_button.width)/2, 240)
-
-        self.screen.blit(play_again.image, play_again.rect)
-        self.screen.blit(quit_button.image, quit_button.rect)
+        self.create_button('play_again', 'PLAY AGAIN', (167, 66, 132), (221, 229, 13), 176)
+        self.create_button('quit', 'QUIT', (167, 66, 132), (221, 229, 13), 225)
+        self.screen.blit(self.buttons['play_again'].image, self.buttons['play_again'].rect)
+        self.screen.blit(self.buttons['quit'].image, self.buttons['quit'].rect)
     
 
     def get_text_rect(self, text, x, y) -> tuple:
@@ -152,7 +149,7 @@ class Game:
         # We may create an independent classes of game_state, and call them here
         while True:
             self.screen.fill((0, 0, 0))
-            self.display_start_screen()
+            self.show_end_screen()
             self.handle_events()
 
             pygame.display.flip()
