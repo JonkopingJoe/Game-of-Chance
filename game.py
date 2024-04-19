@@ -90,16 +90,6 @@ class Game:
 
         return scenario_flow_linkedList
 
-    # Todo: fix this funciton
-    # def make_button(x: int, y: int, width: int, height: int) -> pygame.Rect:
-    #
-    #     # Create a surface for the button
-    #     button_surface = pygame.Surface((width, height))
-    #
-    #     # Create a pygame.Rect object that represents the button's boundaries
-    #     button_rect = pygame.Rect(x, y, width, height)  # Adjust the position as needed
-    #
-    #     return (button_surface,)
 
     def main_menu(self) -> None:
         self.display_image("pictures/game_background.png")
@@ -144,8 +134,6 @@ class Game:
 
     def run(self):
 
-        # !!!Could make it a independent class
-        # We may create an independent classes of game_state, and call them here
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
