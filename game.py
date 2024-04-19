@@ -5,6 +5,10 @@ from button import Button
 from structlinks import LinkedList
 
 
+BLACK = (0, 0, 0) 
+WHITE = (255, 255, 255)
+FONT_SIZE = 12
+
 class Game:
     def __init__(self):
         pygame.init()
@@ -12,20 +16,31 @@ class Game:
         self.state = "menu"
         self.screen = pygame.display.set_mode((600, 400))
         self.clock = pygame.time.Clock()
-        self.font = pygame.font.SysFont("monospace", 12)
+        self.font = pygame.font.SysFont("monospace", FONT_SIZE)
         self.luck_score = 100
         self.scenarios_list = self.initialize_game_scenarios_list()
 
     # Displaying Seciton
+    def display_text(self, text: str, text_color: tuple, bg_color: tuple, x: int, y: int, font_size=FONT_SIZE) -> None: 
+        displaying_font = self.font
 
-    def get_text_rect(self, text, x, y) -> tuple:
-        rendered_text = self.font.render(text, True, (255, 255, 255))
-        text_rect = rendered_text.get_rect(center=(x, y))
-        return rendered_text, text_rect
+        if font_size != FONT_SIZE: 
+            displaying_font = pygame.font.SysFont("monospace", font_size)
 
-    def display_surface(self, surface: pygame.Surface, x: int, y: int) -> None:
-        self.screen.blit(surface, (x, y))
+
+        render_text = displaying_font.render(text, True, text_color, bg_color)
+        self.screen.blit(render_text, (x, y))
+
         return None
+    def display_scenario(self, scenario: Scenario) -> None: 
+        button1 = Button(scenario.cases["choice1"], "BLACK", "WHITE")
+        button2 = Button(scenario.cases["choice2"], "BLACK", "WHITE")
+
+        self.display_text(scenario.caption, "BLACK", "WHITE", 100, 100)
+        self.display_image(scenario.picture_path, 25, 137)
+        self.display_button(button1, 100, 125)
+        self.display_button(button2, 100, 135)
+        
 
     def display_button(self, button: Button, x: int, y: int) -> None:
         button.text_rect.center = (x, y)
@@ -34,8 +49,10 @@ class Game:
         return None
 
     def display_image(self, image_path: str, x: int, y: int) -> None:
-        self.screen.blit(image_path, (x, y))
+        img = pygame.image.load(image_path).convert()
+        self.screen.blit(img, (x, y))
         return None
+
 
     def initialize_game_scenarios_list(self) -> list:
         scenarios_list = []
@@ -43,6 +60,9 @@ class Game:
         # scenario one
         train_watting = Scenario("./waittrain_late_small.jpg")
         train_watting.set_cases(
+
+            "random_caption"
+
             # First
             "wait for the train",
             "you catched the train",
@@ -51,6 +71,7 @@ class Game:
             "skip the train and book an uber",
             "you skipped the train and the uber is too expensive",
             "the uber is cheaper",
+            "one extra"
         )
 
         # appending scenario
@@ -89,7 +110,7 @@ class Game:
         # return the change in luck
         return randint(-10, 10)
 
-    def disp_start_screen(self):
+    def display_start_screen(self):
         title_screen = pygame.image.load('Graphics/title_screen.png').convert()
         self.screen.blit(title_screen, (0, 0))
         start_button = Button('START', (167, 66, 132), (221, 229, 13))
@@ -102,63 +123,45 @@ class Game:
         self.screen.blit(continue_button.image, continue_button.rect)
         self.screen.blit(quit_button.image, quit_button.rect)
 
+    def show_end_screen(self):
+        screen = pygame.image.load('images/theme.png').convert()
+        self.screen.blit(screen, (0, 0))
+        self.display_text(f'Your Luck Score is {self.luck_score}. What a day!', (0, 0, 0), (255, 255, 255), 180, 90)
+        play_again = Button('PLAY AGAIN', (167, 66, 132), (221, 229, 13))
+        quit_button = Button('QUIT', (167, 66, 132), (221, 229, 13))
+        play_again.rect.topleft = ((600 - play_again.width)/2, 176)
+        quit_button.rect.topleft = ((600 - quit_button.width)/2, 240)
+
+        
+        self.screen.blit(play_again.image, play_again.rect)
+        self.screen.blit(quit_button.image, quit_button.rect)
+
+    def get_text_rect(self, text, x, y) -> tuple:
+        rendered_text = self.font.render(text, True, (255, 255, 255))
+        text_rect = rendered_text.get_rect(center=(x, y))
+        return rendered_text, text_rect
+
+
+
     def run(self):
+
         # !!!Could make it a independent class
         # We may create an independent classes of game_state, and call them here
         while True:
-            self.screen.fill((0, 0, 0))
-            #self.handle_events()
-            self.disp_start_screen()
-
-            # Integrate following block into class menu = GameState('menu')
-            # if self.state == "menu":
-            #     self.display_background(self.city)  # May be integrated with show_menu
-            #     self.show_menu()
-            # # Integrate following block into class game = GameState('game')
-            # elif self.state == "game":
-            #     self.display_background(
-            #         self.pond_background
-            #     )  # May be integrated with a new Event class
-            #     self.display_luck()
-            #     self.create_game_options()
-            # # Integrate following block into class event = GameState('event')
-            # elif self.state == "event_end":
-            #     # self.screen.fill((0, 0, 0))
-            #     change_text = f"Your lucky point changed {self.last_change:+d}."
-            #     self.display_text(
-            #         change_text,
-            #         self.screen.get_width() / 2,
-            #         self.screen.get_height() / 2 - 50,
-            #     )
-            #     prompt_text = "Press SPACE to continue."
-            #     self.display_text(
-            #         prompt_text,
-            #         self.screen.get_width() / 2,
-            #         self.screen.get_height() / 2 + 50,
-            #     )
-            # # Integrate following block into class end = GameState('end')
-            # elif self.state == "end":
-            #     # self.screen.fill((0, 0, 0))
-            #     final_text = (
-            #         f"Let's call this a day, your final lucky point is {self.luck}."
-            #     )
-            #     self.display_text(
-            #         final_text,
-            #         self.screen.get_width() / 2,
-            #         self.screen.get_height() / 2 - 50,
-            #     )
-            #     prompt_text = "Press SPACE to return to the main menu."
-            #     self.display_text(
-            #         prompt_text,
-            #         self.screen.get_width() / 2,
-            #         self.screen.get_height() / 2 + 50,
-            #     )
-
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
-            #
+
+            self.screen.fill((0, 0, 0))
+
+
+
+
+
+    
+
+
             pygame.display.flip()
             self.clock.tick(60)
 

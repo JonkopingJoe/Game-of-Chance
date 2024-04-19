@@ -5,6 +5,7 @@ class Scenario:
 
     def set_cases(
         self,
+        caption: str,
         choice1: str,
         pos_outcome1: str,
         neg_outcome1: str,
@@ -13,6 +14,8 @@ class Scenario:
         neg_outcome2: str,
     ) -> None:
         "Must be two cases"
+
+        self.caption = caption
 
         # Case 1
         self.cases["choice1"] = choice1
