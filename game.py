@@ -7,6 +7,7 @@ from structlinks import LinkedList
 
 BLACK = (0, 0, 0) 
 WHITE = (255, 255, 255)
+FONT_SIZE = 12
 
 class Game:
     def __init__(self):
@@ -15,13 +16,19 @@ class Game:
         self.state = "menu"
         self.screen = pygame.display.set_mode((600, 400))
         self.clock = pygame.time.Clock()
-        self.font = pygame.font.SysFont("monospace", 12)
+        self.font = pygame.font.SysFont("monospace", FONT_SIZE)
         self.luck_score = 100
         self.scenarios_list = self.initialize_game_scenarios_list()
 
     # Displaying Seciton
-    def display_text(self, text: str, text_color: tuple, bg_color: tuple, x: int, y: int) -> None: 
-        render_text = self.font.render(text, True, text_color, bg_color)
+    def display_text(self, text: str, text_color: tuple, bg_color: tuple, x: int, y: int, font_size=FONT_SIZE) -> None: 
+        displaying_font = self.font
+
+        if font_size != FONT_SIZE: 
+            displaying_font = pygame.font.SysFont("monospace", font_size)
+
+
+        render_text = displaying_font.render(text, True, text_color, bg_color)
         self.screen.blit(render_text, (x, y))
 
         return None
@@ -132,19 +139,25 @@ class Game:
         rendered_text = self.font.render(text, True, (255, 255, 255))
         text_rect = rendered_text.get_rect(center=(x, y))
         return rendered_text, text_rect
+
+
+
     def run(self):
 
         # !!!Could make it a independent class
         # We may create an independent classes of game_state, and call them here
         while True:
-
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
 
             self.screen.fill((0, 0, 0))
-            self.show_end_screen()
+
+
+
+
+
     
 
 
