@@ -131,6 +131,7 @@ class Game:
         quit_button = Button('QUIT', (167, 66, 132), (221, 229, 13))
         play_again.rect.topleft = ((600 - play_again.width)/2, 176)
         quit_button.rect.topleft = ((600 - quit_button.width)/2, 240)
+
         
         self.screen.blit(play_again.image, play_again.rect)
         self.screen.blit(quit_button.image, quit_button.rect)
