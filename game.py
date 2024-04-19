@@ -100,6 +100,13 @@ class Game:
         # return the change in luck
         return randint(-10, 10)
 
+    def handle_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT or self.buttons['quit'].is_clicked():
+                pygame.quit()
+                exit()
+         ## neen will do later
+
     def create_button(self, name: str, text, text_color, bg_color, y, x='centre'):
         button = Button(text, text_color, bg_color)
         if x == 'centre':
@@ -146,12 +153,7 @@ class Game:
         while True:
             self.screen.fill((0, 0, 0))
             self.display_start_screen()
-
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT or self.buttons['quit'].is_clicked():
-                    pygame.quit()
-                    exit()
-
+            self.handle_events()
 
             pygame.display.flip()
             self.clock.tick(60)
