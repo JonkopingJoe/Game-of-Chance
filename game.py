@@ -17,7 +17,20 @@ class Game:
         self.scenarios_list = self.initialize_game_scenarios_list()
 
     # Displaying Seciton
+    def display_text(self, text: str, text_color: tuple, bg_color: tuple, x: int, y: int) -> None: 
+        render_text = self.font.render(text, True, text_color, bg_color)
+        self.screen.blit(render_text, (x, y))
 
+        return None
+    def display_scenario(self, scenario: Scenario) -> None: 
+        button1 = Button(scenario.cases["choice1"], BLACK, WHITE)
+        button2 = Button(scenario.cases["choice2"], BLACK, WHITE)
+
+        self.display_text(scenario.caption, BLACK, WHITE, 100, 100)
+        self.display_image(scenario.picture_path, 25, 137)
+        self.display_button(button1, 100, 125)
+        self.display_button(button2, 100, 135)
+        
     def get_text_rect(self, text, x, y) -> tuple:
         rendered_text = self.font.render(text, True, (255, 255, 255))
         text_rect = rendered_text.get_rect(center=(x, y))
@@ -102,13 +115,14 @@ class Game:
         self.screen.blit(continue_button.image, continue_button.rect)
         self.screen.blit(quit_button.image, quit_button.rect)
 
-    def run(self):
+
         # !!!Could make it a independent class
         # We may create an independent classes of game_state, and call them here
         while True:
             self.screen.fill((0, 0, 0))
             #self.handle_events()
             self.disp_start_screen()
+            self.show_end_screen()
 
             # Integrate following block into class menu = GameState('menu')
             # if self.state == "menu":
