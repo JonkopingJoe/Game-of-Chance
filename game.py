@@ -34,14 +34,6 @@ class Game:
         self.display_button(button1, 100, 125)
         self.display_button(button2, 100, 135)
         
-    def get_text_rect(self, text, x, y) -> tuple:
-        rendered_text = self.font.render(text, True, (255, 255, 255))
-        text_rect = rendered_text.get_rect(center=(x, y))
-        return rendered_text, text_rect
-
-    def display_surface(self, surface: pygame.Surface, x: int, y: int) -> None:
-        self.screen.blit(surface, (x, y))
-        return None
 
     def display_button(self, button: Button, x: int, y: int) -> None:
         button.text_rect.center = (x, y)
