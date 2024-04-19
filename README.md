@@ -92,3 +92,7 @@ _Random event 3: Yum Yum! You earned yourself a treat in Hotel Twistinolvenia. C
 
 - [B] Round Table
   - Outcome: Your treat is Eye Scream! Your luck magic is 1, please scream (luck +1)
+
+# Open Source Licence Declaration
+
+This project uses Pygame, which is a set of Python modules designed for writing video games. Pygame is licensed under the GNU Lesser General Public License (LGPL). For more details on the license, see: https://www.pygame.org/docs/license.html
