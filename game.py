@@ -23,10 +23,10 @@ class Game:
 
         return None
     def display_scenario(self, scenario: Scenario) -> None: 
-        button1 = Button(scenario.cases["choice1"], BLACK, WHITE)
-        button2 = Button(scenario.cases["choice2"], BLACK, WHITE)
+        button1 = Button(scenario.cases["choice1"], "BLACK", "WHITE")
+        button2 = Button(scenario.cases["choice2"], "BLACK", "WHITE")
 
-        self.display_text(scenario.caption, BLACK, WHITE, 100, 100)
+        self.display_text(scenario.caption, "BLACK", "WHITE", 100, 100)
         self.display_image(scenario.picture_path, 25, 137)
         self.display_button(button1, 100, 125)
         self.display_button(button2, 100, 135)
@@ -115,6 +115,24 @@ class Game:
         self.screen.blit(continue_button.image, continue_button.rect)
         self.screen.blit(quit_button.image, quit_button.rect)
 
+    def show_end_screen(self):
+        screen = pygame.image.load('images/theme.png').convert()
+        self.screen.blit(screen, (0, 0))
+        quit_button = Button('QUIT', (167, 66, 132), (221, 229, 13))
+        restart_button = Button('PLAY AGAIN', (167, 66, 132), (221, 229, 13))
+        menu_button = Button('MENU', (167, 66, 132), (221, 229, 13))
+        quit_button.rect.topleft = ((600 - quit_button.width)/2, 176)
+        restart_button.rect.topleft = ((600 - restart_button.width)/2, 230)
+        menu_button.rect.topleft = ((600 - menu_button.width)/2, 300)
+        self.screen.blit(quit_button.image, quit_button.rect)
+        self.screen.blit(restart_button.image, restart_button.rect)
+        self.screen.blit(menu_button.image, menu_button.rect)
+
+    def get_text_rect(self, text, x, y) -> tuple:
+        rendered_text = self.font.render(text, True, (255, 255, 255))
+        text_rect = rendered_text.get_rect(center=(x, y))
+        return rendered_text, text_rect
+    def run(self):
 
         # !!!Could make it a independent class
         # We may create an independent classes of game_state, and call them here
