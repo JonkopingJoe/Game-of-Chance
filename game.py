@@ -71,15 +71,15 @@ class Game:
         return scenario_flow_linkedList
 
     # Todo: fix this funciton
-    def make_button(x: int, y: int, width: int, height: int) -> pygame.Rect:
-
-        # Create a surface for the button
-        button_surface = pygame.Surface((width, height))
-
-        # Create a pygame.Rect object that represents the button's boundaries
-        button_rect = pygame.Rect(x, y, width, height)  # Adjust the position as needed
-
-        return (button_surface,)
+    # def make_button(x: int, y: int, width: int, height: int) -> pygame.Rect:
+    #
+    #     # Create a surface for the button
+    #     button_surface = pygame.Surface((width, height))
+    #
+    #     # Create a pygame.Rect object that represents the button's boundaries
+    #     button_rect = pygame.Rect(x, y, width, height)  # Adjust the position as needed
+    #
+    #     return (button_surface,)
 
     def main_menu(self) -> None:
         self.display_image("pictures/game_background.png")
@@ -88,6 +88,17 @@ class Game:
     def random_luck_diff(self) -> int:
         # return the change in luck
         return randint(-10, 10)
+
+    def disp_start_screen(self):
+        title_screen = pygame.image.load('Graphics/title_screen.png').convert()
+        self.screen.blit(title_screen, (0, 0))
+        start_button = Button('START', (167, 66, 132), (221, 229, 13), 132, 40)
+        start_button.rect.topleft = (243, 176)
+        continue_button = Button('CONTINUE', (167, 66, 132), (221, 229, 13), 188, 40)
+        quit_button = Button('QUIT', (167, 66, 132), (221, 229, 13), 136, 40)
+        continue_button.rect.topleft = (206, 225)
+        quit_button.rect.topleft = (232, 281)
+        self.screen.blit(start_button.image, start_button.rect, (243, 176))
 
     def run(self):
         # !!!Could make it a independent class
