@@ -64,6 +64,7 @@ class Game:
             "skip the train and book an uber",
             "you skipped the train and the uber is too expensive",
             "the uber is cheaper",
+            "one extra"
         )
 
         # appending scenario
@@ -102,7 +103,7 @@ class Game:
         # return the change in luck
         return randint(-10, 10)
 
-    def disp_start_screen(self):
+    def display_start_screen(self):
         title_screen = pygame.image.load('Graphics/title_screen.png').convert()
         self.screen.blit(title_screen, (0, 0))
         start_button = Button('START', (167, 66, 132), (221, 229, 13))
@@ -137,60 +138,17 @@ class Game:
         # !!!Could make it a independent class
         # We may create an independent classes of game_state, and call them here
         while True:
-            self.screen.fill((0, 0, 0))
-            #self.handle_events()
-            self.disp_start_screen()
-            self.show_end_screen()
-
-            # Integrate following block into class menu = GameState('menu')
-            # if self.state == "menu":
-            #     self.display_background(self.city)  # May be integrated with show_menu
-            #     self.show_menu()
-            # # Integrate following block into class game = GameState('game')
-            # elif self.state == "game":
-            #     self.display_background(
-            #         self.pond_background
-            #     )  # May be integrated with a new Event class
-            #     self.display_luck()
-            #     self.create_game_options()
-            # # Integrate following block into class event = GameState('event')
-            # elif self.state == "event_end":
-            #     # self.screen.fill((0, 0, 0))
-            #     change_text = f"Your lucky point changed {self.last_change:+d}."
-            #     self.display_text(
-            #         change_text,
-            #         self.screen.get_width() / 2,
-            #         self.screen.get_height() / 2 - 50,
-            #     )
-            #     prompt_text = "Press SPACE to continue."
-            #     self.display_text(
-            #         prompt_text,
-            #         self.screen.get_width() / 2,
-            #         self.screen.get_height() / 2 + 50,
-            #     )
-            # # Integrate following block into class end = GameState('end')
-            # elif self.state == "end":
-            #     # self.screen.fill((0, 0, 0))
-            #     final_text = (
-            #         f"Let's call this a day, your final lucky point is {self.luck}."
-            #     )
-            #     self.display_text(
-            #         final_text,
-            #         self.screen.get_width() / 2,
-            #         self.screen.get_height() / 2 - 50,
-            #     )
-            #     prompt_text = "Press SPACE to return to the main menu."
-            #     self.display_text(
-            #         prompt_text,
-            #         self.screen.get_width() / 2,
-            #         self.screen.get_height() / 2 + 50,
-            #     )
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
-            #
+
+            self.screen.fill((0, 0, 0))
+            self.show_end_screen()
+    
+
+
             pygame.display.flip()
             self.clock.tick(60)
 
