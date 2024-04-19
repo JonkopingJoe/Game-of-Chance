@@ -10,7 +10,7 @@ class Game:
         pygame.init()
         pygame.display.set_caption("LUCKOMETER")
         self.state = "menu"
-        self.screen = pygame.display.set_mode((720, 520))
+        self.screen = pygame.display.set_mode((600, 400))
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("monospace", 12)
         self.luck_score = 100
@@ -92,64 +92,75 @@ class Game:
     def disp_start_screen(self):
         title_screen = pygame.image.load('Graphics/title_screen.png').convert()
         self.screen.blit(title_screen, (0, 0))
-        start_button = Button('START', (167, 66, 132), (221, 229, 13), 132, 40)
-        start_button.rect.topleft = (243, 176)
-        continue_button = Button('CONTINUE', (167, 66, 132), (221, 229, 13), 188, 40)
-        quit_button = Button('QUIT', (167, 66, 132), (221, 229, 13), 136, 40)
-        continue_button.rect.topleft = (206, 225)
-        quit_button.rect.topleft = (232, 281)
-        self.screen.blit(start_button.image, start_button.rect, (243, 176))
+        start_button = Button('START', (167, 66, 132), (221, 229, 13))
+        continue_button = Button('CONTINUE', (167, 66, 132), (221, 229, 13))
+        quit_button = Button('QUIT', (167, 66, 132), (221, 229, 13))
+        start_button.rect.topleft = ((600-start_button.width)/2, 176)
+        continue_button.rect.topleft = ((600-continue_button.width)/2, 225)
+        quit_button.rect.topleft = ((600-quit_button.width)/2, 274)
+        self.screen.blit(start_button.image, start_button.rect)
+        self.screen.blit(continue_button.image, continue_button.rect)
+        self.screen.blit(quit_button.image, quit_button.rect)
 
     def run(self):
         # !!!Could make it a independent class
         # We may create an independent classes of game_state, and call them here
         while True:
             self.screen.fill((0, 0, 0))
-            self.handle_events()
+            #self.handle_events()
+            self.disp_start_screen()
 
             # Integrate following block into class menu = GameState('menu')
-            if self.state == "menu":
-                self.display_background(self.city)  # May be integrated with show_menu
-                self.show_menu()
-            # Integrate following block into class game = GameState('game')
-            elif self.state == "game":
-                self.display_background(
-                    self.pond_background
-                )  # May be integrated with a new Event class
-                self.display_luck()
-                self.create_game_options()
-            # Integrate following block into class event = GameState('event')
-            elif self.state == "event_end":
-                # self.screen.fill((0, 0, 0))
-                change_text = f"Your lucky point changed {self.last_change:+d}."
-                self.display_text(
-                    change_text,
-                    self.screen.get_width() / 2,
-                    self.screen.get_height() / 2 - 50,
-                )
-                prompt_text = "Press SPACE to continue."
-                self.display_text(
-                    prompt_text,
-                    self.screen.get_width() / 2,
-                    self.screen.get_height() / 2 + 50,
-                )
-            # Integrate following block into class end = GameState('end')
-            elif self.state == "end":
-                # self.screen.fill((0, 0, 0))
-                final_text = (
-                    f"Let's call this a day, your final lucky point is {self.luck}."
-                )
-                self.display_text(
-                    final_text,
-                    self.screen.get_width() / 2,
-                    self.screen.get_height() / 2 - 50,
-                )
-                prompt_text = "Press SPACE to return to the main menu."
-                self.display_text(
-                    prompt_text,
-                    self.screen.get_width() / 2,
-                    self.screen.get_height() / 2 + 50,
-                )
+            # if self.state == "menu":
+            #     self.display_background(self.city)  # May be integrated with show_menu
+            #     self.show_menu()
+            # # Integrate following block into class game = GameState('game')
+            # elif self.state == "game":
+            #     self.display_background(
+            #         self.pond_background
+            #     )  # May be integrated with a new Event class
+            #     self.display_luck()
+            #     self.create_game_options()
+            # # Integrate following block into class event = GameState('event')
+            # elif self.state == "event_end":
+            #     # self.screen.fill((0, 0, 0))
+            #     change_text = f"Your lucky point changed {self.last_change:+d}."
+            #     self.display_text(
+            #         change_text,
+            #         self.screen.get_width() / 2,
+            #         self.screen.get_height() / 2 - 50,
+            #     )
+            #     prompt_text = "Press SPACE to continue."
+            #     self.display_text(
+            #         prompt_text,
+            #         self.screen.get_width() / 2,
+            #         self.screen.get_height() / 2 + 50,
+            #     )
+            # # Integrate following block into class end = GameState('end')
+            # elif self.state == "end":
+            #     # self.screen.fill((0, 0, 0))
+            #     final_text = (
+            #         f"Let's call this a day, your final lucky point is {self.luck}."
+            #     )
+            #     self.display_text(
+            #         final_text,
+            #         self.screen.get_width() / 2,
+            #         self.screen.get_height() / 2 - 50,
+            #     )
+            #     prompt_text = "Press SPACE to return to the main menu."
+            #     self.display_text(
+            #         prompt_text,
+            #         self.screen.get_width() / 2,
+            #         self.screen.get_height() / 2 + 50,
+            #     )
 
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    exit()
+            #
             pygame.display.flip()
             self.clock.tick(60)
+
+game = Game()
+game.run()
