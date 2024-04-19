@@ -2,8 +2,7 @@ import pygame
 from random import randint, choice
 from scenario import Scenario
 from button import Button
-from structlinks import LinkedList
-
+from linked_list import LinkedList, ListNode, get_game_scenarios
 
 BLACK = (0, 0, 0) 
 WHITE = (255, 255, 255)
