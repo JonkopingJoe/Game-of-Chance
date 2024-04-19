@@ -20,16 +20,25 @@ class Button(pygame.sprite.Sprite):
         self.image.fill(bg_color)
         self.rect = self.image.get_rect()  # This defines the button's rectangle
 
-        # Calculate text position to center it
+        # Calculate text position to center it on the rectangle
         self.text_rect = self.render_text.get_rect(center=self.rect.center)
 
         # Blit the text onto the button's image
         self.image.blit(self.render_text, self.text_rect)
 
-    def is_clicked(self, event) -> bool:
-        return (
-            event.type == pygame.MOUSEBUTTONDOWN
-            and event.button == 1
-            and self.text_rect.collidepoint(event.pos)
-        )
+        # mouse is not clicked
+        self.clicked = False
+
+    def is_clicked(self):
+        action = False
+        mouse_pos = pygame.mouse.get_pos()
+
+        if self.rect.collidepoint(mouse_pos):
+            if pygame.mouse.get_pressed()[0] == 1 and not self.clicked:
+                self.clicked = True
+                action = True
+        if pygame.mouse.get_pressed()[0] == 0:
+            self.clicked = False
+
+        return action
 
