@@ -95,4 +95,4 @@ _Random event 3: Yum Yum! You earned yourself a treat in Hotel Twistinolvenia. C
 
 # Open Source Licence Declaration
 
-This project uses Pygame, which is a set of Python modules designed for writing video games. Pygame is licensed under the GNU Lesser General Public License (LGPL). For more details on the license, see: https://www.pygame.org/docs/license.html
+This project uses Pygame, which is a set of Python modules designed for writing video games. Pygame is licensed under the GNU Lesser General Public License (LGPL). For more details on the license, see: https://www.pygame.org/wiki/about and https://www.gnu.org/licenses/lgpl-3.0.html.
