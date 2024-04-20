@@ -20,6 +20,7 @@ class Game:
         self.luck_score = 100
         self.scenarios_list = self.initialize_game_scenarios_list()
         self.buttons = {}
+        self.initialise_buttons()
 
     # Displaying Seciton
     def display_text(self, text: str, text_color: tuple, bg_color: tuple, x: int, y: int, font_size=FONT_SIZE) -> None: 
@@ -112,33 +113,39 @@ class Game:
             #     exit()
          ## neen will do later
 
-    def create_button(self, name: str, text, text_color, bg_color, y, x='centre'):
+    def create_button(self, name: str, text, text_color, bg_color):
         button = Button(text, text_color, bg_color)
-        if x == 'centre':
-            button.rect.topleft = ((600 - button.width)/2, y)
-        else:
-            button.rect.topleft = (x, y)
         self.buttons[name] = button
 
+    def draw_button(self, name, y, x='centre'):
+        if x == 'centre':
+            self.buttons[name].rect.topleft = ((600 - self.buttons[name].width)/2, y)
+        else:
+            self.buttons[name].rect.topleft = (x, y)
+        self.screen.blit(self.buttons[name].image, (self.buttons[name].rect.x, self.buttons[name].rect.y))
+
+    def initialise_buttons(self):
+        self.create_button('start', 'START', (167, 66, 132), (221, 229, 13))
+        self.create_button('continue', 'CONTINUE', (167, 66, 132), (221, 229, 13))
+        self.create_button('quit', 'QUIT', (167, 66, 132), (221, 229, 13))
+        self.create_button('play_again', 'PLAY AGAIN', (167, 66, 132), (221, 229, 13))
 
     def display_start_screen(self):
         title_screen = pygame.image.load('Graphics/title_screen.png').convert()
         self.screen.blit(title_screen, (0, 0))
-        self.create_button('start', 'START', (167, 66, 132), (221, 229, 13), 176)
-        self.create_button('continue', 'CONTINUE', (167, 66, 132), (221, 229, 13), 225)
-        self.create_button('quit', 'QUIT', (167, 66, 132), (221, 229, 13), 274)
-        self.screen.blit(self.buttons['start'].image, self.buttons['start'].rect)
-        self.screen.blit(self.buttons['continue'].image, self.buttons['continue'].rect)
-        self.screen.blit(self.buttons['quit'].image, self.buttons['quit'].rect)
+
+        self.draw_button('start', 176)
+        self.draw_button('continue', 225)
+        self.draw_button('quit', 274)
+
 
     def show_end_screen(self):
         screen = pygame.image.load('Graphics/end_screen.png').convert()
         self.screen.blit(screen, (0, 0))
         self.display_text(f'Your Luck Score is {self.luck_score}. What a day!', (0, 0, 0,), (255, 255, 255), 120, 100, font_size=20)
-        self.create_button('play_again', 'PLAY AGAIN', (167, 66, 132), (221, 229, 13), 176)
-        self.create_button('quit', 'QUIT', (167, 66, 132), (221, 229, 13), 225)
-        self.screen.blit(self.buttons['play_again'].image, self.buttons['play_again'].rect)
-        self.screen.blit(self.buttons['quit'].image, self.buttons['quit'].rect)
+
+        self.draw_button('play_again', 176)
+        self.draw_button('quit', 225)
     
 
     def get_text_rect(self, text, x, y) -> tuple:
@@ -149,12 +156,12 @@ class Game:
 
 
     def run(self):
-
+        self.screen.fill((0, 0, 0))
+        self.display_start_screen()
         # !!!Could make it a independent class
         # We may create an independent classes of game_state, and call them here
         while True:
-            self.screen.fill((0, 0, 0))
-            self.display_start_screen()
+
             self.handle_events()
 
             pygame.display.flip()
