@@ -34,6 +34,11 @@ class Game:
         self.screen.blit(render_text, (x, y))
 
         return None
+    def get_text_rect(self, text, x, y) -> tuple:
+        rendered_text = self.font.render(text, True, (255, 255, 255))
+        text_rect = rendered_text.get_rect(center=(x, y))
+        return rendered_text, text_rect
+    
     def display_scenario(self, scenario: Scenario) -> None: 
         button1 = Button(scenario.cases["choice1"], BLACK, WHITE)
         button2 = Button(scenario.cases["choice2"], BLACK, WHITE)
@@ -104,10 +109,18 @@ class Game:
 
     def handle_events(self):
         quit_condition = lambda event: event.type == pygame.QUIT or self.buttons['quit'].is_clicked()
+        click_targets = {
+            'play_again': self.display_start_screen,
+            # 'continue' : self.scenarios_list[1]
+            }
         for event in pygame.event.get():
             if quit_condition(event):
                 pygame.quit()
                 sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                for button, action in click_targets.items():
+                    if self.buttons[button].is_clicked():
+                        action()
             # if event.type == pygame.QUIT or self.buttons['quit'].is_clicked():
             #     pygame.quit()
             #     exit()
@@ -147,13 +160,6 @@ class Game:
         self.draw_button('play_again', 176)
         self.draw_button('quit', 225)
     
-
-    def get_text_rect(self, text, x, y) -> tuple:
-        rendered_text = self.font.render(text, True, (255, 255, 255))
-        text_rect = rendered_text.get_rect(center=(x, y))
-        return rendered_text, text_rect
-
-
 
     def run(self):
         self.screen.fill((0, 0, 0))
