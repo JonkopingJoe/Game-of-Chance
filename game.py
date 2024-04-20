@@ -1,4 +1,5 @@
 import pygame
+import sys
 from random import randint, choice
 from scenario import Scenario
 from button import Button
@@ -101,10 +102,14 @@ class Game:
         return randint(-10, 10)
 
     def handle_events(self):
+        quit_condition = lambda event: event.type == pygame.QUIT or self.buttons['quit'].is_clicked()
         for event in pygame.event.get():
-            if event.type == pygame.QUIT or self.buttons['quit'].is_clicked():
+            if quit_condition(event):
                 pygame.quit()
-                exit()
+                sys.exit()
+            # if event.type == pygame.QUIT or self.buttons['quit'].is_clicked():
+            #     pygame.quit()
+            #     exit()
          ## neen will do later
 
     def create_button(self, name: str, text, text_color, bg_color, y, x='centre'):
@@ -149,7 +154,7 @@ class Game:
         # We may create an independent classes of game_state, and call them here
         while True:
             self.screen.fill((0, 0, 0))
-            self.show_end_screen()
+            self.display_start_screen()
             self.handle_events()
 
             pygame.display.flip()
