@@ -173,7 +173,7 @@ class Game:
         self.current_screen = 'end'
         screen = pygame.image.load('Graphics/end_screen.png').convert()
         self.screen.blit(screen, (0, 0))
-        self.display_text(f'Your Luck Score is {self.luck_score}. What a day!', (0, 0, 0,), (255, 255, 255), 100, 100, font_size=20)
+        self.display_text(f'Your Final Luck Score is {self.luck_score}. What a day!', (0, 0, 0,), (255, 255, 255), 88, 100, font_size=20)
         self.draw_button('play_again', 176)
         self.draw_button('quit', 225)
 
@@ -188,8 +188,7 @@ class Game:
         self.screen.fill((0, 0, 0))
         self.current_screen = 'start'
         self.display_start_screen()
-        # !!!Could make it a independent class
-        # We may create an independent classes of game_state, and call them here
+
         while True:
 
             self.handle_events()
