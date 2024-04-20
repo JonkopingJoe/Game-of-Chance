@@ -1,5 +1,6 @@
 import pygame
 from random import randint, choice
+import random
 from scenario import Scenario
 from button import Button
 from linked_list import LinkedList, ListNode, get_game_scenarios
@@ -7,6 +8,97 @@ from linked_list import LinkedList, ListNode, get_game_scenarios
 BLACK = (0, 0, 0) 
 WHITE = (255, 255, 255)
 FONT_SIZE = 12
+
+class ListNode:
+    # Constructor to initialize the node object
+    def __init__(self, value, next=None):
+        '''
+        Assign data to a node. In our project it will be the game scenario
+
+        Args: 
+        -value: The value of the node
+        -next: The next node in the linked list
+
+        Returns:
+        None
+        '''
+        try:
+            self.value = value
+            # Initialize next as null
+            self.next = next
+        except Exception as e:
+            print("An error occured while creating a node, please check the input values!", e)
+
+class LinkedList:
+    def __init__(self):
+        '''
+        Initialize the head of the linked list
+        '''
+        try:
+            self.head = None
+        except Exception as e:
+            print("An error occured. No parameter needed!",e)
+
+    def append(self, value):
+        '''
+        Create a new node and append it at the end of the linked list
+
+        Args:
+        -value: The value of the node to be appended, here it will be the game scenario
+
+        Returns:
+        None
+        '''
+        try:
+            new_node = ListNode(value)
+            if not self.head:
+                self.head = new_node
+                return
+            last_node = self.head
+            while last_node.next:
+                last_node = last_node.next
+            last_node.next = new_node
+        except Exception as e:
+            print("An error occured while appending a node, please check the input values!", e)
+
+    def to_list(self):
+        '''
+        Convert the linked list to a list
+
+        Args:
+        None
+
+        Returns:
+        -elements: A list of the elements in the linked list
+        '''
+        try:
+            elements = []
+            current = self.head
+            while current:
+                elements.append(current.value)
+                current = current.next
+            return elements
+        except Exception as e:
+            print("An error occured while converting the linked list to a list, please check the input values!", e)
+
+def get_game_scenarios(instances_list):
+    '''
+    Create a linked list of the game scenarios
+
+    Args:
+    -instances: A list of the game scenarios
+
+    Returns:
+    -linked_list: A linked list of the game scenarios
+    '''
+    try:
+        random.shuffle(instances_list)
+        linked_list = LinkedList()
+        for instance in instances_list:
+            linked_list.append(instance)
+        return linked_list
+    except Exception as e:
+        print("List needed to be passed, please check input.", e)
 
 class Game:
     def __init__(self):
@@ -17,7 +109,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("monospace", FONT_SIZE)
         self.luck_score = 100
-        self.scenarios_list = self.initialize_game_scenarios_list()
+        self.scenarios_Linked_list = None
         self.buttons = {}
         self.initialise_buttons()
         self.current_screen = ''
@@ -55,12 +147,16 @@ class Game:
         return None
 
 
-    def initialize_game_scenarios_list(self) -> list:
-        scenarios_list = []
+    def initialize_game_scenarios_list(self) -> LinkedList:
+        '''
+        This method initializes the game scenarios linked list and returns it.
+        Each scenario will be a node in a linked list.
+        You can traverse the list by calling node.next.
+        '''
 
         # scenario one
-        train_watting = Scenario("./waittrain_late_small.jpg")
-        train_watting.set_cases(
+        scenario1 = Scenario("./waittrain_late_small.jpg")
+        scenario1.set_cases(
 
             "random_caption"
 
@@ -75,23 +171,48 @@ class Game:
             "one extra"
         )
 
-        # appending scenario
+        # scenario two
+        scenario2 = Scenario("./waittrain_late_small.jpg")
+        scenario2.set_cases(
+            "random_caption",
+            "wait for the train",
+            "you catched the train",
+            "the train was tirmminated",
+            "skip the train and book an uber",
+            "you skipped the train and the uber is too expensive",
+            "the uber is cheaper",
+            "one extra"
+        )
 
-        return scenarios_list
+        # scenario three
+        scenario3 = Scenario("./waittrain_late_small.jpg")
+        scenario3.set_cases(
+            "random_caption",
+            "wait for the train",
+            "you catched the train",
+            "the train was tirmminated",
+            "skip the train and book an uber",
+            "you skipped the train and the uber is too expensive",
+            "the uber is cheaper",
+            "one extra"
+        )
 
-    def get_scenarios_flow(self) -> LinkedList:
-        scenario_flow_linkedList = LinkedList()
+        # scenario four
+        scenario4 = Scenario("./waittrain_late_small.jpg")
+        scenario4.set_cases(
+            "random_caption",
+            "wait for the train",
+            "you catched the train",
+            "the train was tirmminated",
+            "skip the train and book an uber",
+            "you skipped the train and the uber is too expensive",
+            "the uber is cheaper",
+            "one extra"
+        )
 
-        while (
-            len(scenario_flow_linkedList) < 4
-        ):  # The full game loop is made of four scenarios.
-            random_scenario = choice(self.scenarios_list())
+        self.scenarios_Linked_list = get_game_scenarios([scenario1, scenario2, scenario3, scenario4])
 
-            if random_scenario not in scenario_flow_linkedList:
-                scenario_flow_linkedList.append(random_scenario)
-
-        return scenario_flow_linkedList
-
+        return self.scenarios_Linked_list
 
     def main_menu(self) -> None:
         self.display_image("pictures/game_background.png")
