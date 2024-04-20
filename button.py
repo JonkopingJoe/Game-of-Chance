@@ -1,12 +1,11 @@
 import pygame
 class Button(pygame.sprite.Sprite):
     def __init__(
-        self, text: str, text_color: tuple, bg_color: tuple
+        self, text: str, text_color: tuple, bg_color: tuple, font, size
     ):
         super().__init__()
 
-        # default font
-        button_font = pygame.font.SysFont("monospace", 20)
+        button_font = pygame.font.SysFont(font, size)
 
         self.render_text = button_font.render(text, True, text_color)
         text_width, text_height = self.render_text.get_size()
@@ -34,10 +33,10 @@ class Button(pygame.sprite.Sprite):
         mouse_pos = pygame.mouse.get_pos()
 
         if self.rect.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0] == 1 and not self.clicked:
+            if pygame.mouse.get_pressed()[0] and not self.clicked:
                 self.clicked = True
                 action = True
-        if pygame.mouse.get_pressed()[0] == 0:
+        if not pygame.mouse.get_pressed()[0]:
             self.clicked = False
 
         return action

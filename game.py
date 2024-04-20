@@ -1,5 +1,4 @@
 import pygame
-import sys
 from random import randint, choice
 from scenario import Scenario
 from button import Button
@@ -21,7 +20,7 @@ class Game:
         self.scenarios_list = self.initialize_game_scenarios_list()
         self.buttons = {}
         self.initialise_buttons()
-
+        self.current_screen = ''
     # Displaying Seciton
     def display_text(self, text: str, text_color: tuple, bg_color: tuple, x: int, y: int, font_size=FONT_SIZE) -> None: 
         displaying_font = self.font
@@ -34,11 +33,6 @@ class Game:
         self.screen.blit(render_text, (x, y))
 
         return None
-    def get_text_rect(self, text, x, y) -> tuple:
-        rendered_text = self.font.render(text, True, (255, 255, 255))
-        text_rect = rendered_text.get_rect(center=(x, y))
-        return rendered_text, text_rect
-    
     def display_scenario(self, scenario: Scenario) -> None: 
         button1 = Button(scenario.cases["choice1"], BLACK, WHITE)
         button2 = Button(scenario.cases["choice2"], BLACK, WHITE)
@@ -108,26 +102,41 @@ class Game:
         return randint(-10, 10)
 
     def handle_events(self):
-        quit_condition = lambda event: event.type == pygame.QUIT or self.buttons['quit'].is_clicked()
-        click_targets = {
-            'play_again': self.display_start_screen,
-            # 'continue' : self.scenarios_list[1]
-            }
         for event in pygame.event.get():
-            if quit_condition(event):
+            if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                for button, action in click_targets.items():
-                    if self.buttons[button].is_clicked():
-                        action()
-            # if event.type == pygame.QUIT or self.buttons['quit'].is_clicked():
-            #     pygame.quit()
-            #     exit()
-         ## neen will do later
+                exit()
 
-    def create_button(self, name: str, text, text_color, bg_color):
-        button = Button(text, text_color, bg_color)
+            if self.current_screen == 'start':
+                if self.buttons['start'].is_clicked():
+                    print('START')
+                    self.display_instructions_screen()
+
+                if self.buttons['resume'].is_clicked():
+                    print('RESUME')
+
+                if self.buttons['quit'].is_clicked():
+                    pygame.quit()
+                    exit()
+
+            if self.current_screen == 'menu':
+                if self.buttons['menu'].is_clicked():
+                    self.display_start_screen()
+
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                    self.display_end_screen()
+
+            if self.current_screen == 'end':
+                if self.buttons['play_again'].is_clicked():
+                    print('PLAY AGAIN')
+                    self.display_start_screen()
+
+                if self.buttons['quit'].is_clicked():
+                    pygame.quit()
+                    exit()
+
+    def create_button(self, name: str, text, text_color=(167, 66, 132), bg_color=(221, 229, 13), font='monospace', size=20):
+        button = Button(text, text_color, bg_color, font, size)
         self.buttons[name] = button
 
     def draw_button(self, name, y, x='centre'):
@@ -138,38 +147,52 @@ class Game:
         self.screen.blit(self.buttons[name].image, (self.buttons[name].rect.x, self.buttons[name].rect.y))
 
     def initialise_buttons(self):
-        self.create_button('start', 'START', (167, 66, 132), (221, 229, 13))
-        self.create_button('continue', 'CONTINUE', (167, 66, 132), (221, 229, 13))
-        self.create_button('quit', 'QUIT', (167, 66, 132), (221, 229, 13))
-        self.create_button('play_again', 'PLAY AGAIN', (167, 66, 132), (221, 229, 13))
+        self.create_button('start', 'START')
+        self.create_button('resume', 'RESUME')
+        self.create_button('quit', 'QUIT')
+        self.create_button('play_again', 'PLAY AGAIN')
+        self.create_button('menu', 'MENU', size=15)
 
     def display_start_screen(self):
-        title_screen = pygame.image.load('Graphics/title_screen.png').convert()
-        self.screen.blit(title_screen, (0, 0))
-
+        print('start display')
+        self.current_screen = 'start'
+        screen = pygame.image.load('Graphics/title_screen.png').convert()
+        self.screen.blit(screen, (0, 0))
         self.draw_button('start', 176)
-        self.draw_button('continue', 225)
+        self.draw_button('resume', 225)
         self.draw_button('quit', 274)
 
+    def display_instructions_screen(self):
+        self.current_screen = 'menu'
+        screen = pygame.image.load('Graphics/instructions.png').convert()
+        self.screen.blit(screen, (0, 0))
+        self.draw_button('menu', 10, 530)
 
-    def show_end_screen(self):
+    def display_end_screen(self):
+        print('end display')
+        self.current_screen = 'end'
         screen = pygame.image.load('Graphics/end_screen.png').convert()
         self.screen.blit(screen, (0, 0))
-        self.display_text(f'Your Luck Score is {self.luck_score}. What a day!', (0, 0, 0,), (255, 255, 255), 120, 100, font_size=20)
-
+        self.display_text(f'Your Luck Score is {self.luck_score}. What a day!', (0, 0, 0,), (255, 255, 255), 100, 100, font_size=20)
         self.draw_button('play_again', 176)
         self.draw_button('quit', 225)
-    
+
+    def get_text_rect(self, text, x, y) -> tuple:
+        rendered_text = self.font.render(text, True, (255, 255, 255))
+        text_rect = rendered_text.get_rect(center=(x, y))
+        return rendered_text, text_rect
+
+
 
     def run(self):
         self.screen.fill((0, 0, 0))
+        self.current_screen = 'start'
         self.display_start_screen()
         # !!!Could make it a independent class
         # We may create an independent classes of game_state, and call them here
         while True:
 
             self.handle_events()
-
             pygame.display.flip()
             self.clock.tick(60)
 
