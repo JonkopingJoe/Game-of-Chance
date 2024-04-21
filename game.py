@@ -293,14 +293,14 @@ class Game:
         screen_width, screen_height = self.screen.get_size()
 
         # Defining the instructions text
-        text = 'The game starts at home and you want to go out, you will have a choice allthrough.\nEach time, your luck score will either go up or down depending on your choice.\nYour aim is to have the highest luck at the end of the game. Have a Go!'
+        instruction = 'The game starts at home and you want to go out, you will have a choice allthrough.\nEach time, your luck score will either go up or down depending on your choice.\nYour aim is to have the highest luck at the end of the game. Have a Go!'
 
         # Then rendering each line of the paragraph separately using list comprehension
-        font = pygame.font.SysFont('Comic Sans' or None, 15)
-        lines = text.split('\n')
+        font = pygame.font.SysFont('Comic Sans' or None, 15) # None for default font if Comic Sans is not found in the system
+        lines = instruction.split('\n')
         line_surfaces = [font.render(line, True, (0, 0, 0), (255, 255, 0)) for line in lines]
 
-        # Calculating the x and y coordinates to center the text on the screen with padding
+        # Calculating the x and y coordinates to center the instruction on the screen with padding
         x = (screen_width - max(line_surface.get_width() for line_surface in line_surfaces)) / 2 + 9 
         y = (screen_height - sum(line_surface.get_height() for line_surface in line_surfaces)) / 2  
 
