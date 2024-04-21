@@ -140,6 +140,9 @@ class Game:
         self.initialise_buttons()
         self.current_screen = ''
         self.logfile = open('luckometer.log', 'w')  # Event Logging File
+        self.main_music = pygame.mixer.Sound(os.path.join("./audio", "intro.wav"))
+        self.end_music = pygame.mixer.Sound(os.path.join("./audio", "not-really-lost.wav"))
+
 
     # Displaying Section
     def display_text(self,
@@ -319,6 +322,11 @@ class Game:
             if self.current_screen == 'instruction':
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                     self.log_event('SPACEBAR PRESSED')
+
+                    # Add Music Accompanyment
+                    pygame.mixer.Sound.set_volume(self.main_music, 0.3)
+                    self.main_music.play(loops=6)
+                    self.log_event("Intro Music Playing")
                     if self.scenarios_Linked_list and self.scenarios_Linked_list.head:
                         self.current_state = self.scenarios_Linked_list.head
                         self.display_scenario(self.current_state.value)
@@ -373,11 +381,20 @@ class Game:
                     self.display_outcome(2)
                 if self.buttons['continue'].is_clicked():
                     self.log_event('CONTINUE CLICKED')
+
+                    #Second Music Accompanyment
+                    self.main_music.stop()
+                    self.log_event("Intro Music Stopping")
+                    pygame.mixer.Sound.set_volume(self.end_music, 0.3)
+                    self.end_music.play()
+                    self.log_event("End Music Playing")
                     self.display_end_screen()
 
             if self.current_screen == 'end':
                 if self.buttons['play_again'].is_clicked():
                     self.log_event('PLAY AGAIN BUTTON CLICKED')
+                    self.end_music.stop()
+                    self.log_event("End Music Stopping")
                     self.luck_score = randint(-20, 20)
                     self.current_state = None
                     self.display_start_screen()
