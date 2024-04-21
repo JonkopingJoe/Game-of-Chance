@@ -300,6 +300,7 @@ class Game:
         self.draw_button('start', 176)
         self.draw_button('resume', 225)
         self.draw_button('quit', 274)
+
         self.log_event('START SCREEN DISPLAYED')
         self.current_screen = 'start'
 
@@ -343,6 +344,7 @@ class Game:
         self.display_text(f'Your Final Luck Score is {self.luck_score}. What a day!', (0, 0, 0,), (255, 255, 255), 88, 100, font_size=20)
         self.draw_button('play_again', 176)
         self.draw_button('quit', 225)
+
         self.log_event('END SCREEN DISPLAYED')
         self.current_screen = 'end'
 
