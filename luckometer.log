@@ -1,22 +1,24 @@
-0.716s: START SCREEN DISPLAYED
-2.183s: START BUTTON CLICKED
-2.208s: INSTRUCTIONS SCREEN DISPLAYED
-2.424s: SPACEBAR PRESSED
-2.438s: scenario1 displayed
-2.88s: s1_choice1 CLICKED
-2.88s: negative outcome displayed
-4.013s: CONTINUE CLICKED
-4.032s: scenario2 displayed
-4.894s: s2_choice2 CLICKED
-4.894s: negative outcome displayed
-5.586s: CONTINUE CLICKED
-5.602s: scenario3 displayed
-6.231s: s3_choice1 CLICKED
-6.231s: negative outcome displayed
-6.992s: CONTINUE CLICKED
-7.009s: scenario4 displayed
-7.621s: s4_choice2 CLICKED
-7.621s: positive outcome displayed
-8.654s: CONTINUE CLICKED
-8.678s: END SCREEN DISPLAYED
-17.393s: QUIT CLICKED
+0.707s: START SCREEN DISPLAYED
+1.314s: START BUTTON CLICKED
+1.342s: INSTRUCTIONS SCREEN DISPLAYED
+1.867s: SPACEBAR PRESSED
+1.882s: scenario1 displayed
+2.388s: s1_choice1 CLICKED
+2.388s: negative outcome displayed
+3.624s: CONTINUE CLICKED
+3.644s: scenario2 displayed
+4.659s: s2_choice2 CLICKED
+4.659s: positive outcome displayed
+5.568s: CONTINUE CLICKED
+5.584s: scenario3 displayed
+6.331s: s3_choice2 CLICKED
+6.331s: positive outcome displayed
+7.512s: CONTINUE CLICKED
+7.53s: scenario4 displayed
+8.317s: HOME BUTTON CLICKED
+8.335s: START SCREEN DISPLAYED
+9.297s: START BUTTON CLICKED
+9.318s: INSTRUCTIONS SCREEN DISPLAYED
+10.221s: SPACEBAR PRESSED
+10.237s: scenario1 displayed
+15.052s: QUIT CLICKED

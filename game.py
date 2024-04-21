@@ -130,14 +130,14 @@ class Game:
         self.screen = pygame.display.set_mode((600, 400))
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("monospace", FONT_SIZE)
-        self.luck_score = randint(-20, 20)
+        self.luck_score = randint(0, 20)
         self.scenarios_Linked_list = None
         self.current_state = None
         self.initialize_game_scenarios_list()
         self.buttons = {}
         self.initialise_buttons()
         self.current_screen = ''
-        self.log = open('luckometer.log', 'w') # Event Logging File
+        self.logfile = open('luckometer.log', 'w') # Event Logging File
 
     # Displaying Section
     def display_text(self,
@@ -178,6 +178,7 @@ class Game:
         self.display_image(scenario.picture_path, 25, 137)
         self.draw_button(f's{scenario.scene_num}_choice1', 186, 320)
         self.draw_button(f's{scenario.scene_num}_choice2', 246, 320)
+        self.draw_button('home', 10, 530)
 
         self.log_event(f'{scenario} displayed')
         self.current_screen = f'{scenario}'
@@ -266,7 +267,7 @@ class Game:
         """Logs events and the timestamp when they occur."""
         timestamp = pygame.time.get_ticks()  # Gets the number of milliseconds since pygame.init() was called
         log_message = f'{timestamp/1000}s: {event}\n'
-        self.log.write(log_message)
+        self.logfile.write(log_message)
         print(log_message)
 
     def handle_events(self):
@@ -274,14 +275,14 @@ class Game:
             if event.type == pygame.QUIT:
                 self.log_event('QUIT CLICKED')
                 pygame.quit()
-                self.log.close()
+                self.logfile.close()
                 exit()
 
             if self.current_screen in ('start', 'end'):
                 if self.buttons['quit'].is_clicked():
                     self.log_event('QUIT BUTTON CLICKED')
                     pygame.quit()
-                    self.log.close()
+                    self.logfile.close()
                     exit()
 
             if self.current_screen == 'start':
@@ -291,17 +292,27 @@ class Game:
 
                 if self.buttons['resume'].is_clicked():
                     self.log_event('RESUME BUTTON CLICKED')
+                    try:
+                        self.display_scenario(self.current_state.value)
 
-            if self.current_screen == 'instruction':
-                if self.buttons['menu'].is_clicked():
-                    self.log_event('MENU BUTTON CLICKED')
+                    except AttributeError:
+                        self.display_text('You have not started the game.\npress SPACE and click start.', BLACK, WHITE, size=17)
+                        self.log_event('Error message shown')
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                    self.log_event('SPACEBAR PRESSED')
                     self.display_start_screen()
 
+            if self.current_screen == 'instruction':
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                     self.log_event('SPACEBAR PRESSED')
                     if self.scenarios_Linked_list and self.scenarios_Linked_list.head:
                         self.current_state = self.scenarios_Linked_list.head
                         self.display_scenario(self.current_state.value)
+
+            if 'scenario' in self.current_screen or self.current_screen == 'instruction':
+                if self.buttons['home'].is_clicked():
+                    self.log_event('HOME BUTTON CLICKED')
+                    self.display_start_screen()
 
             if self.current_screen == 'scenario1':
                 if self.buttons['s1_choice1'].is_clicked():
@@ -354,6 +365,7 @@ class Game:
                 if self.buttons['play_again'].is_clicked():
                     self.log_event('PLAY AGAIN BUTTON CLICKED')
                     self.luck_score = randint(-20, 20)
+                    self.current_state = None
                     self.display_start_screen()
 
     def create_button(
@@ -380,7 +392,7 @@ class Game:
         self.create_button('resume', 'RESUME')
         self.create_button('quit', 'QUIT')
         self.create_button('play_again', 'PLAY AGAIN')
-        self.create_button('menu', 'MENU', size=15)
+        self.create_button('home', 'HOME', size=15)
         self.create_button('continue', 'CONTINUE')
 
     def display_start_screen(self):
@@ -396,7 +408,7 @@ class Game:
     def display_instructions_screen(self):
         screen = pygame.image.load('Graphics/instructions.png').convert()
         self.screen.blit(screen, (0, 0))
-        self.draw_button('menu', 10, 530)
+        self.draw_button('home', 10, 530)
 
         # Defining the instructions text
         instruction = '''
@@ -405,7 +417,7 @@ class Game:
         and each decision you make will have an effect.
         Remember, this is a game of luck, so no matter how sound
         your choice may seem, there is always a twist. 
-        Your aim is to have the highest luck at the end of the game. 
+        Your aim is to have over 50 luck at the end of the game. 
         Good Luck!
         '''
 
