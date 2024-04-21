@@ -1,5 +1,6 @@
 from random import randint
 
+
 class Scenario:
     def __init__(self, scene_num, picture_path: str):
         self.picture_path = picture_path
@@ -36,7 +37,7 @@ class Scenario:
         return None
 
     def __str__(self):
-        output_string = f'scenario{self.scene_num}'
+        output_string = f"scenario{self.scene_num}"
         # picture_path: {self.picture_path},
         # \nChoice1: {self.cases["choice1"]}, postive outcome: {self.cases["pos_outcome1"]}, negitive outcome: {self.cases["neg_outcome1"]},
         # \nChoice2: {self.cases["choice2"]}, postive outcome: {self.cases["pos_outcome2"]}, negitive outcome: {self.cases["neg_outcome2"]}"""
