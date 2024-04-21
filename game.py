@@ -1,6 +1,5 @@
 import pygame
 from random import randint, choice
-import random
 from scenario import Scenario
 from button import Button
 from sys import exit
@@ -82,6 +81,24 @@ class LinkedList:
         except Exception as e:
             print("An error occurred while converting the linked list to a list, please check the input values!", e)
 
+    def traverse(self):
+        '''
+        Traverse the linked list to test the code
+
+        Args:
+        None
+
+        Returns:
+        None
+        '''
+        try:
+            current = self.head
+            while current:
+                print(current.value)
+                current = current.next
+        except Exception as e:
+            print("An error occured while traversing the linked list, please check the input values!", e)
+
 
 def get_game_scenarios(instances_list):
     """
@@ -94,7 +111,6 @@ def get_game_scenarios(instances_list):
     -linked_list: A linked list of the game scenarios
     """
     try:
-        random.shuffle(instances_list)
         linked_list = LinkedList()
         for instance in instances_list:
             linked_list.append(instance)
