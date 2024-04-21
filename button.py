@@ -1,7 +1,31 @@
 import pygame
+
+"""
+    This is a clickable button class for Pygame.
+
+    Parameters:
+    text (str): The text to display on the button.
+    text_color (tuple): The color of the text.
+    bg_color (tuple): The background color of the button.
+    font (str, optional): The font to use. Defaults to "monospace".
+    size (int, optional): The font size. Defaults to 15.
+
+    Attributes:
+    width (int): The width of the button.
+    height (int): The height of the button.
+    image (pygame.Surface): The button's image.
+    rect (pygame.Rect): The button's rectangle.
+    text_rect (pygame.Rect): The text's rectangle.
+    clicked (bool): Whether the button is currently clicked.
+
+    Methods:
+    is_clicked() -> bool: Returns True if the button is clicked, False otherwise.
+"""
+
+
 class Button(pygame.sprite.Sprite):
     def __init__(
-        self, text: str, text_color: tuple, bg_color: tuple, font='monospace', size=15
+        self, text: str, text_color: tuple, bg_color: tuple, font="monospace", size=15
     ):
         super().__init__()
 
@@ -28,11 +52,15 @@ class Button(pygame.sprite.Sprite):
         # mouse is not clicked
         self.clicked = False
 
-    def is_clicked(self):  # method for an instance of the button class to detect a click
+    def is_clicked(
+        self,
+    ):  # method for an instance of the button class to detect a click
         action = False
         mouse_pos = pygame.mouse.get_pos()
 
-        if self.rect.collidepoint(mouse_pos):  # Check if the mouse cursor is over the button's rectangle (self.rect)
+        if self.rect.collidepoint(
+            mouse_pos
+        ):  # Check if the mouse cursor is over the button's rectangle (self.rect)
 
             # check if the left mouse has been clicked that ensure that prolonged clicking will have no effect
             if pygame.mouse.get_pressed()[0] and not self.clicked:
@@ -42,4 +70,3 @@ class Button(pygame.sprite.Sprite):
             self.clicked = False
 
         return action
-
