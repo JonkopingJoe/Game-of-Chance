@@ -4,6 +4,7 @@ import random
 from scenario import Scenario
 from button import Button
 from linked_list import LinkedList, ListNode, get_game_scenarios
+from sys import exit
 
 BLACK = (0, 0, 0) 
 WHITE = (255, 255, 255)
@@ -125,6 +126,7 @@ class Game:
         self.screen.blit(render_text, (x, y))
 
         return None
+
     def display_scenario(self, scenario: Scenario) -> None: 
         button1 = Button(scenario.cases["choice1"], BLACK, WHITE)
         button2 = Button(scenario.cases["choice2"], BLACK, WHITE)
@@ -133,7 +135,6 @@ class Game:
         self.display_image(scenario.picture_path, 25, 137)
         self.display_button(button1, 100, 125)
         self.display_button(button2, 100, 135)
-        
 
     def display_button(self, button: Button, x: int, y: int) -> None:
         button.text_rect.center = (x, y)
@@ -145,7 +146,6 @@ class Game:
         img = pygame.image.load(image_path).convert()
         self.screen.blit(img, (x, y))
         return None
-
 
     def initialize_game_scenarios_list(self) -> LinkedList:
         '''
@@ -293,20 +293,20 @@ class Game:
         screen_width, screen_height = self.screen.get_size()
 
         # Defining the instructions text
-        instruction = 'The game starts at home and you want to go out, you will have a choice allthrough.\nEach time, your luck score will either go up or down depending on your choice.\nYour aim is to have the highest luck at the end of the game. Have a Go!'
+        instruction = 'The game starts at home, and the day begins.\nYou start off with a randomised luck score,\nand each decision you make will have an effect.\nRemember, this is a game of luck,\nso no matter how sound your choice may seem,\nthere is always a twist. Your aim is to have the\nhighest luck at the end of the game. Good Luck!'
 
         # Then rendering each line of the paragraph separately using list comprehension
-        font = pygame.font.SysFont('Comic Sans' or None, 15) # None for default font if Comic Sans is not found in the system
+        font = pygame.font.SysFont('monospace' or None, 15) # None for default font if Comic Sans is not found in the system
         lines = instruction.split('\n')
-        line_surfaces = [font.render(line, True, (0, 0, 0), (255, 255, 0)) for line in lines]
+        line_surfaces = [font.render(line, False, 'black', 'white') for line in lines]
 
         # Calculating the x and y coordinates to center the instruction on the screen with padding
-        x = (screen_width - max(line_surface.get_width() for line_surface in line_surfaces)) / 2 + 9 
-        y = (screen_height - sum(line_surface.get_height() for line_surface in line_surfaces)) / 2  
+        x = (screen_width - max(line_surface.get_width() for line_surface in line_surfaces)) / 2 + 9
+        y = (screen_height - sum(line_surface.get_height() for line_surface in line_surfaces)) / 2
 
         # Finally blitting each line to the screen
         for i, line_surface in enumerate(line_surfaces):
-            self.screen.blit(line_surface, (x, y + i * (line_surface.get_height() + 20)))
+            self.screen.blit(line_surface, (x, y + i * (line_surface.get_height()+10)))
 
     def display_end_screen(self):
         print('end display')
@@ -334,6 +334,7 @@ class Game:
             self.handle_events()
             pygame.display.flip()
             self.clock.tick(60)
+
 
 game = Game()
 game.run()
