@@ -1,0 +1,86 @@
+0.751s: START SCREEN DISPLAYED
+1.63s: START BUTTON CLICKED
+1.655s: INSTRUCTIONS SCREEN DISPLAYED
+2.495s: SPACEBAR PRESSED
+2.511s: scenario1 displayed
+4.743s: s1_choice1 CLICKED
+4.752s: outcome displayed
+10.496s: CONTINUE CLICKED
+10.515s: scenario2 displayed
+11.957s: s2_choice2 CLICKED
+11.966s: outcome displayed
+16.435s: CONTINUE CLICKED
+16.444s: scenario3 displayed
+17.726s: s3_choice1 CLICKED
+17.734s: outcome displayed
+22.369s: CONTINUE CLICKED
+22.388s: scenario4 displayed
+25.619s: s4_choice2 CLICKED
+25.627s: outcome displayed
+33.229s: CONTINUE CLICKED
+33.252s: END SCREEN DISPLAYED
+39.912s: PLAY AGAIN BUTTON CLICKED
+39.929s: START SCREEN DISPLAYED
+40.888s: START BUTTON CLICKED
+40.911s: INSTRUCTIONS SCREEN DISPLAYED
+41.583s: SPACEBAR PRESSED
+41.597s: scenario1 displayed
+45.545s: s1_choice1 CLICKED
+45.555s: outcome displayed
+47.386s: CONTINUE CLICKED
+47.404s: scenario2 displayed
+48.238s: s2_choice1 CLICKED
+48.246s: outcome displayed
+49.551s: CONTINUE CLICKED
+49.565s: scenario3 displayed
+50.13s: s3_choice1 CLICKED
+50.137s: outcome displayed
+50.923s: CONTINUE CLICKED
+50.94s: scenario4 displayed
+51.534s: s4_choice1 CLICKED
+51.542s: outcome displayed
+52.357s: CONTINUE CLICKED
+52.377s: END SCREEN DISPLAYED
+53.055s: PLAY AGAIN BUTTON CLICKED
+53.072s: START SCREEN DISPLAYED
+53.46s: START BUTTON CLICKED
+53.482s: INSTRUCTIONS SCREEN DISPLAYED
+53.995s: SPACEBAR PRESSED
+54.014s: scenario1 displayed
+54.457s: s1_choice1 CLICKED
+54.465s: outcome displayed
+55.353s: CONTINUE CLICKED
+55.37s: scenario2 displayed
+55.948s: s2_choice1 CLICKED
+55.957s: outcome displayed
+56.942s: CONTINUE CLICKED
+56.957s: scenario3 displayed
+57.615s: s3_choice2 CLICKED
+57.624s: outcome displayed
+58.524s: CONTINUE CLICKED
+58.541s: scenario4 displayed
+59.777s: s4_choice1 CLICKED
+59.785s: outcome displayed
+61.037s: CONTINUE CLICKED
+61.055s: END SCREEN DISPLAYED
+61.765s: PLAY AGAIN BUTTON CLICKED
+61.783s: START SCREEN DISPLAYED
+62.326s: START BUTTON CLICKED
+62.349s: INSTRUCTIONS SCREEN DISPLAYED
+62.994s: SPACEBAR PRESSED
+63.013s: scenario1 displayed
+63.777s: s1_choice1 CLICKED
+63.786s: outcome displayed
+67.36s: CONTINUE CLICKED
+67.378s: scenario2 displayed
+69.454s: s2_choice1 CLICKED
+69.463s: outcome displayed
+71.635s: CONTINUE CLICKED
+71.65s: scenario3 displayed
+76.355s: s3_choice1 CLICKED
+76.361s: outcome displayed
+79.146s: CONTINUE CLICKED
+79.163s: scenario4 displayed
+80.126s: s4_choice1 CLICKED
+80.135s: outcome displayed
+83.22s: QUIT CLICKED
