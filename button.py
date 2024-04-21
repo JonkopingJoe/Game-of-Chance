@@ -28,11 +28,13 @@ class Button(pygame.sprite.Sprite):
         # mouse is not clicked
         self.clicked = False
 
-    def is_clicked(self):
+    def is_clicked(self):  # method for an instance of the button class to detect a click
         action = False
         mouse_pos = pygame.mouse.get_pos()
 
-        if self.rect.collidepoint(mouse_pos):
+        if self.rect.collidepoint(mouse_pos):  # Check if the mouse cursor is over the button's rectangle (self.rect)
+
+            # check if the left mouse has been clicked that ensure that prolonged clicking will have no effect
             if pygame.mouse.get_pressed()[0] and not self.clicked:
                 self.clicked = True
                 action = True

@@ -114,6 +114,8 @@ class Game:
         self.buttons = {}
         self.initialise_buttons()
         self.current_screen = ''
+        self.log = open('luckometer_log.txt', 'w')
+
     # Displaying Seciton
     def display_text(self, text: str, text_color: tuple, bg_color: tuple, x: int, y: int, font_size=FONT_SIZE) -> None: 
         displaying_font = self.font
@@ -223,38 +225,43 @@ class Game:
         return randint(-10, 10)
 
     def handle_events(self):
+        log_events = lambda x: self.log.write(f'{x}\n')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                log_events('QUIT CLICKED')
                 pygame.quit()
+                self.log.close()
                 exit()
+
+            if self.current_screen == 'start' or 'end':
+                if self.buttons['quit'].is_clicked():
+                    log_events('QUIT CLICKED')
+                    pygame.quit()
+                    self.log.close()
+                    exit()
 
             if self.current_screen == 'start':
                 if self.buttons['start'].is_clicked():
-                    print('START')
+                    log_events('START CLICKED')
                     self.display_instructions_screen()
 
                 if self.buttons['resume'].is_clicked():
-                    print('RESUME')
-
-                if self.buttons['quit'].is_clicked():
-                    pygame.quit()
-                    exit()
+                    log_events('RESUME CLICKED')
 
             if self.current_screen == 'menu':
                 if self.buttons['menu'].is_clicked():
+                    log_events('MENU CLICKED')
                     self.display_start_screen()
 
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                    log_events('INSTRUCTIONS PASSED')
                     self.display_end_screen()
 
             if self.current_screen == 'end':
                 if self.buttons['play_again'].is_clicked():
-                    print('PLAY AGAIN')
+                    log_events('PLAY AGAIN CLICKED')
                     self.display_start_screen()
 
-                if self.buttons['quit'].is_clicked():
-                    pygame.quit()
-                    exit()
 
     def create_button(self, name: str, text, text_color=(167, 66, 132), bg_color=(221, 229, 13), font='monospace', size=20):
         button = Button(text, text_color, bg_color, font, size)
@@ -310,7 +317,7 @@ class Game:
             self.screen.blit(line_surface, (x, y + i * (line_surface.get_height()+10)))
 
     def display_end_screen(self):
-        print('end display')
+
         self.current_screen = 'end'
         screen = pygame.image.load('Graphics/end_screen.png').convert()
         self.screen.blit(screen, (0, 0))
