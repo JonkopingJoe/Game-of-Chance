@@ -285,6 +285,7 @@ class Game:
 
     def display_instructions_screen(self):
         self.current_screen = 'menu'
+        print('menu display')
         screen = pygame.image.load('Graphics/instructions.png').convert()
         self.screen.blit(screen, (0, 0))
         self.draw_button('menu', 10, 530)
@@ -293,16 +294,16 @@ class Game:
         screen_width, screen_height = self.screen.get_size()
 
         # Defining the instructions text
-        instruction = 'The game starts at home, and the day begins.\nYou start off with a randomised luck score,\nand each decision you make will have an effect.\nRemember, this is a game of luck,\nso no matter how sound your choice may seem,\nthere is always a twist. Your aim is to have the\nhighest luck at the end of the game. Good Luck!'
+        instruction = 'The game starts at home, and the day begins. You start off with\na randomised luck score, and each decision you make will have an effect.\nRemember, this is a game of luck, so no matter how sound\nyour choice may seem, there is always a twist. Your aim is to have the\nhighest luck at the end of the game. Good Luck!'
 
         # Then rendering each line of the paragraph separately using list comprehension
-        font = pygame.font.SysFont('monospace' or None, 15) # None for default font if Comic Sans is not found in the system
+        font = pygame.font.SysFont('comic sans' or None, 17) # None for default font if Comic Sans is not found in the system
         lines = instruction.split('\n')
-        line_surfaces = [font.render(line, False, 'black', 'white') for line in lines]
+        line_surfaces = [font.render(line, False, 'white') for line in lines]
 
         # Calculating the x and y coordinates to center the instruction on the screen with padding
         x = (screen_width - max(line_surface.get_width() for line_surface in line_surfaces)) / 2 + 9
-        y = (screen_height - sum(line_surface.get_height() for line_surface in line_surfaces)) / 2
+        y = (screen_height - sum(line_surface.get_height() for line_surface in line_surfaces)) / 2 - 9
 
         # Finally blitting each line to the screen
         for i, line_surface in enumerate(line_surfaces):
