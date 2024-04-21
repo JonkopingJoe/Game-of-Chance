@@ -28,7 +28,7 @@ class ListNode:
             # Initialize next as null
             self.next = next
         except Exception as e:
-            print("An error occured while creating a node, please check the input values!", e)
+            print("An error occurred while creating a node, please check the input values!", e)
 
 class LinkedList:
     def __init__(self):
@@ -38,7 +38,7 @@ class LinkedList:
         try:
             self.head = None
         except Exception as e:
-            print("An error occured. No parameter needed!",e)
+            print("An error occurred. No parameter needed!",e)
 
     def append(self, value):
         """
@@ -60,7 +60,7 @@ class LinkedList:
                 last_node = last_node.next
             last_node.next = new_node
         except Exception as e:
-            print("An error occured while appending a node, please check the input values!", e)
+            print("An error occurred while appending a node, please check the input values!", e)
 
     def to_list(self):
         """
@@ -80,7 +80,7 @@ class LinkedList:
                 current = current.next
             return elements
         except Exception as e:
-            print("An error occured while converting the linked list to a list, please check the input values!", e)
+            print("An error occurred while converting the linked list to a list, please check the input values!", e)
 
 
 def get_game_scenarios(instances_list):
@@ -227,7 +227,7 @@ class Game:
     def log_event(self, event):
         """Logs events and the timestamp when they occur."""
         timestamp = pygame.time.get_ticks()  # Gets the number of milliseconds since pygame.init() was called
-        log_message = f'{timestamp/1000} ms: {event}\n'
+        log_message = f'{timestamp/1000}s: {event}\n'
         self.log.write(log_message)
         print(log_message)
 
