@@ -1,8 +1,11 @@
+from random import randint
+
 class Scenario:
     def __init__(self, scene_num, picture_path: str):
         self.picture_path = picture_path
         self.cases = {}
         self.scene_num = scene_num
+        self.luck_diff = randint(1, 20)
 
     def set_cases(
         self,

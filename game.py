@@ -130,7 +130,7 @@ class Game:
         self.screen = pygame.display.set_mode((600, 400))
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("monospace", FONT_SIZE)
-        self.luck_score = 100
+        self.luck_score = randint(-20, 20)
         self.scenarios_Linked_list = None
         self.current_state = None
         self.initialize_game_scenarios_list()
@@ -151,11 +151,12 @@ class Game:
     ) -> None:
         font = pygame.font.SysFont(font, size)
         lines = text.split('\n')
-        line_surfaces = [font.render(line, False, text_color, bg_color) for line in lines]
+        line_surfaces = [font.render(line, True, text_color, bg_color) for line in lines]
 
-        if x == 'centre' and y == 'centre':
+        if x == 'centre':
             # Calculating the x and y coordinates to center the instruction on the screen with padding
             x = (screen_width - max(line_surface.get_width() for line_surface in line_surfaces)) / 2
+        if y == 'centre':
             y = (screen_height - sum(line_surface.get_height() for line_surface in line_surfaces)) / 2
 
         # Finally blitting each line to the screen
@@ -169,13 +170,14 @@ class Game:
         # button2 = Button(scenario.cases["choice2"], (167, 66, 132), WHITE)
         # self.display_button(button1, 400, 300)
         # self.display_button(button2, 400, 325)
-        self.create_button('s1_choice1', scenario.cases['choice1'])
-        self.create_button('s1_choice2', scenario.cases['choice2'])
+        self.create_button(f's{scenario.scene_num}_choice1', scenario.cases['choice1'])
+        self.create_button(f's{scenario.scene_num}_choice2', scenario.cases['choice2'])
         self.screen.fill('white')
+        self.display_text(f'Luck Score: {self.luck_score}', BLACK, x=10, y=10, size=12)
         self.display_text(scenario.caption, BLACK, x=45, y=30, size=20)
         self.display_image(scenario.picture_path, 25, 137)
-        self.draw_button('s1_choice1', 186, 320)
-        self.draw_button('s1_choice2', 246, 320)
+        self.draw_button(f's{scenario.scene_num}_choice1', 186, 320)
+        self.draw_button(f's{scenario.scene_num}_choice2', 246, 320)
 
         self.log_event(f'{scenario} displayed')
         self.current_screen = f'{scenario}'
@@ -207,48 +209,50 @@ class Game:
 
             # First
             "The Front Door",
-            "Yay! That stray cat that always gouges\nyour eyes out is nowhere in sight!\n\nLuck +5",
-            "OW! That cat is here today, you just got scratched ;(\n\nLuck -5",
+            f"Yay! That stray cat that always gouges\nyour eyes out is nowhere in sight!\n\nLuck +{scenario1.luck_diff}",
+            f"OW! That cat is here today, you just got scratched ;(\n\nLuck -{scenario1.luck_diff}",
             # Second
             "The Back Door",
-            "Phew, narrowly escaped that nosy neighbour!\n\nLuck +5",
-            "Oh no, you tripped over that bucket of\nwater you left out last night!\n\nLuck -5"
+            f"Phew, narrowly escaped that nosy neighbour!\n\nLuck +{scenario1.luck_diff}",
+            f"Oh no, you tripped over that bucket of\nwater you left out last night!\n\nLuck -{scenario1.luck_diff}"
         )
 
         # scenario two
-        scenario2 = Scenario(2, "./waittrain_late_small.jpg")
+        scenario2 = Scenario(2, "Graphics/puddle_fail.png")
         scenario2.set_cases(
-            "random_caption",
-            "wait for the train",
-            "you catched the train",
-            "the train was tirmminated",
-            "skip the train and book an uber",
-            "you skipped the train and the uber is too expensive",
-            "the uber is cheaper",
+            '''While on your way to the train station,
+            you see a big puddle on the road, what do you do?''',
+            "Jump over it",
+            f"Way to go!\nThose long jumps during physical education coming in clutch!\n\nLuck +{scenario2.luck_diff}",
+            f"Leg days? 404 not found.\nwhat made you think you could do it?\n\nluck -{scenario2.luck_diff}",
+            "Walk gently",
+            f"Phew! You made it, slowly but surely.\n\nLuck +{scenario2.luck_diff}",
+            f"Nuh uh those converse wont hold,\nyour feet are taking a bath.\n\nLuck -{scenario2.luck_diff}"
         )
 
         # scenario three
-        scenario3 = Scenario(3, "./waittrain_late_small.jpg")
+        scenario3 = Scenario(3, "Graphics/phone_notif.png")
         scenario3.set_cases(
-            "random_caption",
-            "wait for the train",
-            "you catched the train",
-            "the train was tirmminated",
-            "skip the train and book an uber",
-            "you skipped the train and the uber is too expensive",
-            "the uber is cheaper",
+            "Ding! Would you like to buy the lottery?",
+            "Yes!",
+            f"Oh my! You won some money!\n\nLuck +{scenario3.luck_diff}",
+            f"Uh oh, that was a scam website :o\n\nLuck -{scenario3.luck_diff}",
+            "Nah",
+            f"Good job for not getting scammed, you won a prize!\n\nLuck +{scenario3.luck_diff}",
+            f"You missed they giveaway they were doing\nfor everyone who bought lottery :(\n\nLuck -{scenario3.luck_diff}"
         )
 
         # scenario four
-        scenario4 = Scenario(4, "./waittrain_late_small.jpg")
+        scenario4 = Scenario(4, "Graphics/wait_for_train.png")
         scenario4.set_cases(
-            "random_caption",
-            "wait for the train",
-            "you catched the train",
-            "the train was tirmminated",
-            "skip the train and book an uber",
-            "you skipped the train and the uber is too expensive",
-            "the uber is cheaper",
+            '''At the train station,
+            you just bought coffee, oh no! that train is here!''',
+            "Wait for next train",
+            f"The next train came early!\nYou enjoyed your coffee and got to work on time.\n\nLuck +{scenario4.luck_diff}",
+            f"the train was terminated :|\n\nLuck -{scenario4.luck_diff}",
+            "RUN!!",
+            f"You caught the train! Off to work we go!\n\nLuck +{scenario4.luck_diff}",
+            f"You caught the train, but at what cost...\nYou are now drenched in coffee.\n\nLuck -{scenario4.luck_diff}"
         )
 
         self.scenarios_Linked_list = get_game_scenarios([scenario1, scenario2, scenario3, scenario4])
@@ -257,11 +261,6 @@ class Game:
 
     def main_menu(self) -> None:
         self.display_image("pictures/game_background.png")
-
-    # Luck Changing function
-    def random_luck_diff(self) -> int:
-        # return the change in luck
-        return randint(-10, 10)
 
     def log_event(self, event):
         """Logs events and the timestamp when they occur."""
@@ -299,23 +298,62 @@ class Game:
                     self.display_start_screen()
 
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                    self.log_event('SPACEBAR BUTTON PRESSED')
+                    self.log_event('SPACEBAR PRESSED')
                     if self.scenarios_Linked_list and self.scenarios_Linked_list.head:
-                        self.current_state = self.scenarios_Linked_list.head.value
-                        self.display_scenario(self.current_state)
+                        self.current_state = self.scenarios_Linked_list.head
+                        self.display_scenario(self.current_state.value)
 
             if self.current_screen == 'scenario1':
                 if self.buttons['s1_choice1'].is_clicked():
+                    self.log_event('s1_choice1 CLICKED')
                     self.display_outcome(1)
                 if self.buttons['s1_choice2'].is_clicked():
+                    self.log_event('s1_choice2 CLICKED')
                     self.display_outcome(2)
                 if self.buttons['continue'].is_clicked():
-                    self.current_state = self.scenarios_Linked_list.head.next.value
-                    self.display_scenario(self.current_state)
+                    self.log_event('CONTINUE CLICKED')
+                    self.current_state = self.current_state.next
+                    self.display_scenario(self.current_state.value)
+
+            if self.current_screen == 'scenario2':
+                if self.buttons['s2_choice1'].is_clicked():
+                    self.log_event('s2_choice1 CLICKED')
+                    self.display_outcome(1)
+                if self.buttons['s2_choice2'].is_clicked():
+                    self.log_event('s2_choice2 CLICKED')
+                    self.display_outcome(2)
+                if self.buttons['continue'].is_clicked():
+                    self.log_event('CONTINUE CLICKED')
+                    self.current_state = self.current_state.next
+                    self.display_scenario(self.current_state.value)
+
+            if self.current_screen == 'scenario3':
+                if self.buttons['s3_choice1'].is_clicked():
+                    self.log_event('s3_choice1 CLICKED')
+                    self.display_outcome(1)
+                if self.buttons['s3_choice2'].is_clicked():
+                    self.log_event('s3_choice2 CLICKED')
+                    self.display_outcome(2)
+                if self.buttons['continue'].is_clicked():
+                    self.log_event('CONTINUE CLICKED')
+                    self.current_state = self.current_state.next
+                    self.display_scenario(self.current_state.value)
+
+            if self.current_screen == 'scenario4':
+                if self.buttons['s4_choice1'].is_clicked():
+                    self.log_event('s4_choice1 CLICKED')
+                    self.display_outcome(1)
+                if self.buttons['s4_choice2'].is_clicked():
+                    self.log_event('s4_choice2 CLICKED')
+                    self.display_outcome(2)
+                if self.buttons['continue'].is_clicked():
+                    self.log_event('CONTINUE CLICKED')
+                    self.display_end_screen()
 
             if self.current_screen == 'end':
                 if self.buttons['play_again'].is_clicked():
                     self.log_event('PLAY AGAIN BUTTON CLICKED')
+                    self.luck_score = randint(-20, 20)
                     self.display_start_screen()
 
     def create_button(
@@ -376,17 +414,44 @@ class Game:
         self.current_screen = 'instruction'
 
     def display_outcome(self, choice_num):
-        outcomes = [self.scenarios_Linked_list.head.value.cases[f'pos_outcome{choice_num}'],
-                    self.scenarios_Linked_list.head.value.cases[f'neg_outcome{choice_num}']]
+        def get_key(search_value):
+            for key, value in self.current_state.value.cases.items():
+                if value == search_value:
+                    return key
+            return None
+
+        outcomes = [self.current_state.value.cases[f'pos_outcome{choice_num}'],
+                    self.current_state.value.cases[f'neg_outcome{choice_num}']]
         outcome = choice(outcomes)
+
+        if 'pos' in get_key(outcome):
+            self.luck_score += self.current_state.value.luck_diff
+            self.log_event('positive outcome displayed')
+        if 'neg' in get_key(outcome):
+            self.luck_score -= self.current_state.value.luck_diff
+            self.log_event('negative outcome displayed')
+
         self.screen.fill(WHITE)
+        self.display_text(f'Luck Score: {self.luck_score}', BLACK, x=10, y=10, size=12)
         self.display_text(outcome, BLACK, size=20)
         self.draw_button('continue', 340, 448)
 
     def display_end_screen(self):
         screen = pygame.image.load('Graphics/end_screen.png').convert()
         self.screen.blit(screen, (0, 0))
-        self.display_text(f'Your Final Luck Score is {self.luck_score}. What a day!', (0, 0, 0,), (255, 255, 255), 88, 100, font_size=20)
+
+        if self.luck_score > 50:
+            self.display_text(f'''Your Final Luck Score is {self.luck_score}. 
+It's your lucky day!''', (0, 0, 0,), (255, 255, 255), y=100, size=20)
+
+        if 20 < self.luck_score < 50:
+            self.display_text(f'''Your Final Luck Score is {self.luck_score}. 
+It's just like any other day.''', (0, 0, 0,), (255, 255, 255), y=100, size=20)
+
+        if self.luck_score < 20:
+            self.display_text(f'''Your Final Luck Score is {self.luck_score}.
+Uh oh, a black cat may be around the corner!''', (0, 0, 0,), (255, 255, 255), y=100, size=20)
+
         self.draw_button('play_again', 176)
         self.draw_button('quit', 225)
 

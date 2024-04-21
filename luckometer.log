@@ -1,0 +1,22 @@
+0.716s: START SCREEN DISPLAYED
+2.183s: START BUTTON CLICKED
+2.208s: INSTRUCTIONS SCREEN DISPLAYED
+2.424s: SPACEBAR PRESSED
+2.438s: scenario1 displayed
+2.88s: s1_choice1 CLICKED
+2.88s: negative outcome displayed
+4.013s: CONTINUE CLICKED
+4.032s: scenario2 displayed
+4.894s: s2_choice2 CLICKED
+4.894s: negative outcome displayed
+5.586s: CONTINUE CLICKED
+5.602s: scenario3 displayed
+6.231s: s3_choice1 CLICKED
+6.231s: negative outcome displayed
+6.992s: CONTINUE CLICKED
+7.009s: scenario4 displayed
+7.621s: s4_choice2 CLICKED
+7.621s: positive outcome displayed
+8.654s: CONTINUE CLICKED
+8.678s: END SCREEN DISPLAYED
+17.393s: QUIT CLICKED
