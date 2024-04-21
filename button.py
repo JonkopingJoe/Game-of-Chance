@@ -1,7 +1,7 @@
 import pygame
 class Button(pygame.sprite.Sprite):
     def __init__(
-        self, text: str, text_color: tuple, bg_color: tuple, font, size
+        self, text: str, text_color: tuple, bg_color: tuple, font='monospace', size=15
     ):
         super().__init__()
 

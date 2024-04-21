@@ -7,6 +7,8 @@ from sys import exit
 BLACK = (0, 0, 0) 
 WHITE = (255, 255, 255)
 FONT_SIZE = 12
+screen_width = 600
+screen_height = 400
 
 
 class ListNode:
@@ -29,6 +31,7 @@ class ListNode:
         except Exception as e:
             print("An error occurred while creating a node, please check the input values!", e)
 
+
 class LinkedList:
     def __init__(self):
         """
@@ -37,7 +40,7 @@ class LinkedList:
         try:
             self.head = None
         except Exception as e:
-            print("An error occurred. No parameter needed!",e)
+            print("An error occurred. No parameter needed!", e)
 
     def append(self, value):
         """
@@ -82,7 +85,7 @@ class LinkedList:
             print("An error occurred while converting the linked list to a list, please check the input values!", e)
 
     def traverse(self):
-        '''
+        """
         Traverse the linked list to test the code
 
         Args:
@@ -90,14 +93,14 @@ class LinkedList:
 
         Returns:
         None
-        '''
+        """
         try:
             current = self.head
             while current:
                 print(current.value)
                 current = current.next
         except Exception as e:
-            print("An error occured while traversing the linked list, please check the input values!", e)
+            print("An error occurred while traversing the linked list, please check the input values!", e)
 
 
 def get_game_scenarios(instances_list):
@@ -129,31 +132,44 @@ class Game:
         self.font = pygame.font.SysFont("monospace", FONT_SIZE)
         self.luck_score = 100
         self.scenarios_Linked_list = None
+        self.initialize_game_scenarios_list()
         self.buttons = {}
         self.initialise_buttons()
         self.current_screen = ''
         self.log = open('luckometer_log.txt', 'w')
 
     # Displaying Section
-    def display_text(self, text: str, text_color: tuple, bg_color: tuple, x: int, y: int, font_size=FONT_SIZE) -> None: 
-        displaying_font = self.font
+    def display_text(self, text: str, text_color: tuple, bg_color=None, x='centre', y='centre', font='comic sans', size=FONT_SIZE) -> None:
+        font = pygame.font.SysFont(font, size)
+        lines = text.split('\n')
+        line_surfaces = [font.render(line, False, text_color, bg_color) for line in lines]
 
-        if font_size != FONT_SIZE: 
-            displaying_font = pygame.font.SysFont("monospace", font_size)
+        if x == 'centre' and y == 'centre':
+            # Calculating the x and y coordinates to center the instruction on the screen with padding
+            x = (screen_width - max(line_surface.get_width() for line_surface in line_surfaces)) / 2
+            y = (screen_height - sum(line_surface.get_height() for line_surface in line_surfaces)) / 2
 
-        render_text = displaying_font.render(text, True, text_color, bg_color)
-        self.screen.blit(render_text, (x, y))
+        # Finally blitting each line to the screen
+        for i, line_surface in enumerate(line_surfaces):
+            self.screen.blit(line_surface, (x, y + i * (line_surface.get_height())))
 
         return None
 
-    def display_scenario(self, scenario: Scenario) -> None: 
-        button1 = Button(scenario.cases["choice1"], BLACK, WHITE)
-        button2 = Button(scenario.cases["choice2"], BLACK, WHITE)
-
-        self.display_text(scenario.caption, BLACK, WHITE, 100, 100)
+    def display_scenario(self, scenario: Scenario) -> None:
+        # button1 = Button(scenario.cases["choice1"], (167, 66, 132), WHITE)
+        # button2 = Button(scenario.cases["choice2"], (167, 66, 132), WHITE)
+        # self.display_button(button1, 400, 300)
+        # self.display_button(button2, 400, 325)
+        self.create_button('s1_choice1', scenario.cases['choice1'])
+        self.create_button('s1_choice2', scenario.cases['choice2'])
+        self.screen.fill('white')
+        self.display_text(scenario.caption, BLACK, x=45, y=30, size=20)
         self.display_image(scenario.picture_path, 25, 137)
-        self.display_button(button1, 100, 125)
-        self.display_button(button2, 100, 135)
+        self.draw_button('s1_choice1', 186, 320)
+        self.draw_button('s1_choice2', 246, 320)
+
+        self.log_event(f'{scenario} displayed')
+        self.current_screen = f'{scenario}'
 
     def display_button(self, button: Button, x: int, y: int) -> None:
         button.text_rect.center = (x, y)
@@ -173,24 +189,25 @@ class Game:
         """
 
         # scenario one
-        scenario1 = Scenario("./waittrain_late_small.jpg")
+        scenario1 = Scenario(1, "Graphics/scenario1_leave_house.png")
         scenario1.set_cases(
 
-            "random_caption"
+            '''The Day Begins.
+            Let’s get you to work! 
+            Which door are you leaving your house through?''',
 
             # First
-            "wait for the train",
-            "you catched the train",
-            "the train was tirmminated",
-            ## Second
-            "skip the train and book an uber",
-            "you skipped the train and the uber is too expensive",
-            "the uber is cheaper",
-            "one extra"
+            "The Front Door",
+            "Yay! That stray cat that always gouges your eyes out is nowhere in sight!",
+            "OW! That damn cat again! You just got scratched ;(",
+            # Second
+            "The Back Door",
+            "Phew, narrowly escaped that nosy neighbour!",
+            "Oh no, you tripped over that bucket of water you left out last night!"
         )
 
         # scenario two
-        scenario2 = Scenario("./waittrain_late_small.jpg")
+        scenario2 = Scenario(2, "./waittrain_late_small.jpg")
         scenario2.set_cases(
             "random_caption",
             "wait for the train",
@@ -199,11 +216,10 @@ class Game:
             "skip the train and book an uber",
             "you skipped the train and the uber is too expensive",
             "the uber is cheaper",
-            "one extra"
         )
 
         # scenario three
-        scenario3 = Scenario("./waittrain_late_small.jpg")
+        scenario3 = Scenario(3, "./waittrain_late_small.jpg")
         scenario3.set_cases(
             "random_caption",
             "wait for the train",
@@ -212,11 +228,10 @@ class Game:
             "skip the train and book an uber",
             "you skipped the train and the uber is too expensive",
             "the uber is cheaper",
-            "one extra"
         )
 
         # scenario four
-        scenario4 = Scenario("./waittrain_late_small.jpg")
+        scenario4 = Scenario(4, "./waittrain_late_small.jpg")
         scenario4.set_cases(
             "random_caption",
             "wait for the train",
@@ -225,7 +240,6 @@ class Game:
             "skip the train and book an uber",
             "you skipped the train and the uber is too expensive",
             "the uber is cheaper",
-            "one extra"
         )
 
         self.scenarios_Linked_list = get_game_scenarios([scenario1, scenario2, scenario3, scenario4])
@@ -277,7 +291,12 @@ class Game:
 
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                     self.log_event('SPACEBAR BUTTON PRESSED')
-                    self.display_end_screen()
+                    if self.scenarios_Linked_list and self.scenarios_Linked_list.head:
+                        self.display_scenario(self.scenarios_Linked_list.head.value)
+
+            if self.current_screen == 'scenario1':
+                if self.buttons['s1_choice1'].is_clicked():
+                    print(choice([self.scenarios_Linked_list.head.value.cases['pos_outcome1'],self.scenarios_Linked_list.head.value.cases['pos_outcome2']]))
 
             if self.current_screen == 'end':
                 if self.buttons['play_again'].is_clicked():
@@ -325,9 +344,6 @@ class Game:
         self.screen.blit(screen, (0, 0))
         self.draw_button('menu', 10, 530)
 
-        # Get the screen width and height
-        screen_width, screen_height = self.screen.get_size()
-
         # Defining the instructions text
         instruction = '''
         The game starts at home, and the day begins. 
@@ -338,19 +354,8 @@ class Game:
         Your aim is to have the highest luck at the end of the game. 
         Good Luck!
         '''
-        # Then rendering each line of the paragraph separately using list comprehension
-        font = pygame.font.SysFont('comic sans' or None, 17) # None for default font if Comic Sans is not found in the system
-        lines = instruction.split('\n')
-        line_surfaces = [font.render(line, False, 'white') for line in lines]
 
-        # Calculating the x and y coordinates to center the instruction on the screen with padding
-        x = (screen_width - max(line_surface.get_width() for line_surface in line_surfaces)) / 2 + 9
-        y = (screen_height - sum(line_surface.get_height() for line_surface in line_surfaces)) / 2 - 25
-
-        # Finally blitting each line to the screen
-        for i, line_surface in enumerate(line_surfaces):
-            self.screen.blit(line_surface, (x, y + i * (line_surface.get_height()+10)))
-
+        self.display_text(instruction, WHITE, size=17)
         self.log_event('INSTRUCTIONS SCREEN DISPLAYED')
         self.current_screen = 'instruction'
 
