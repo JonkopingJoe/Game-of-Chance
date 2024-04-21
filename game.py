@@ -1,4 +1,5 @@
 import pygame
+import os
 from random import randint, choice
 from scenario import Scenario
 from button import Button
@@ -134,6 +135,7 @@ def get_game_scenarios(instances_list):
         print("List needed to be passed, please check input.", e)
 
 
+
 class Game:
     def __init__(self):
         pygame.init()
@@ -150,6 +152,8 @@ class Game:
         self.initialise_buttons()
         self.current_screen = ""
         self.log = open("luckometer.log", "w")  # Event Logging File
+        self.main_music = pygame.mixer.Sound(os.path.join("./audio", "intro.wav"))
+        self.end_music = pygame.mixer.Sound(os.path.join("./audio", "not-really-lost.wav"))
 
     # Displaying Section
     def display_text(
@@ -325,6 +329,9 @@ class Game:
                     if self.scenarios_Linked_list and self.scenarios_Linked_list.head:
                         self.current_state = self.scenarios_Linked_list.head
                         self.display_scenario(self.current_state.value)
+                        pygame.mixer.Sound.set_volume(self.main_music, 0.2)
+                        self.main_music.play(loops=5)
+                        self.log_event("Intro Music Playing")
 
             if self.current_screen == "scenario1":
                 if self.buttons["s1_choice1"].is_clicked():
@@ -371,11 +378,17 @@ class Game:
                     self.display_outcome(2)
                 if self.buttons["continue"].is_clicked():
                     self.log_event("CONTINUE CLICKED")
+                    self.main_music.stop()
+                    self.log_event("Intro Music Stopping")
+                    pygame.mixer.Sound.set_volume(self.end_music, 0.3)
+                    self.end_music.play()
+                    self.log_event("Outro Music Playing")
                     self.display_end_screen()
 
             if self.current_screen == "end":
                 if self.buttons["play_again"].is_clicked():
                     self.log_event("PLAY AGAIN BUTTON CLICKED")
+                    self.log_event("Outro Music Stopping")
                     self.luck_score = randint(-20, 20)
                     self.display_start_screen()
 
