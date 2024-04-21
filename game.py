@@ -132,6 +132,7 @@ class Game:
         self.font = pygame.font.SysFont("monospace", FONT_SIZE)
         self.luck_score = 100
         self.scenarios_Linked_list = None
+        self.current_state = None
         self.initialize_game_scenarios_list()
         self.buttons = {}
         self.initialise_buttons()
@@ -139,7 +140,15 @@ class Game:
         self.log = open('luckometer_log.txt', 'w')
 
     # Displaying Section
-    def display_text(self, text: str, text_color: tuple, bg_color=None, x='centre', y='centre', font='comic sans', size=FONT_SIZE) -> None:
+    def display_text(self,
+                     text: str,
+                     text_color: tuple,
+                     bg_color=None,
+                     x='centre',
+                     y='centre',
+                     font='comic sans',
+                     size=FONT_SIZE
+    ) -> None:
         font = pygame.font.SysFont(font, size)
         lines = text.split('\n')
         line_surfaces = [font.render(line, False, text_color, bg_color) for line in lines]
@@ -198,12 +207,12 @@ class Game:
 
             # First
             "The Front Door",
-            "Yay! That stray cat that always gouges your eyes out is nowhere in sight!",
-            "OW! That damn cat again! You just got scratched ;(",
+            "Yay! That stray cat that always gouges\nyour eyes out is nowhere in sight!\n\nLuck +5",
+            "OW! That cat is here today, you just got scratched ;(\n\nLuck -5",
             # Second
             "The Back Door",
-            "Phew, narrowly escaped that nosy neighbour!",
-            "Oh no, you tripped over that bucket of water you left out last night!"
+            "Phew, narrowly escaped that nosy neighbour!\n\nLuck +5",
+            "Oh no, you tripped over that bucket of\nwater you left out last night!\n\nLuck -5"
         )
 
         # scenario two
@@ -292,11 +301,17 @@ class Game:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                     self.log_event('SPACEBAR BUTTON PRESSED')
                     if self.scenarios_Linked_list and self.scenarios_Linked_list.head:
-                        self.display_scenario(self.scenarios_Linked_list.head.value)
+                        self.current_state = self.scenarios_Linked_list.head.value
+                        self.display_scenario(self.current_state)
 
             if self.current_screen == 'scenario1':
                 if self.buttons['s1_choice1'].is_clicked():
-                    print(choice([self.scenarios_Linked_list.head.value.cases['pos_outcome1'],self.scenarios_Linked_list.head.value.cases['pos_outcome2']]))
+                    self.display_outcome(1)
+                if self.buttons['s1_choice2'].is_clicked():
+                    self.display_outcome(2)
+                if self.buttons['continue'].is_clicked():
+                    self.current_state = self.scenarios_Linked_list.head.next.value
+                    self.display_scenario(self.current_state)
 
             if self.current_screen == 'end':
                 if self.buttons['play_again'].is_clicked():
@@ -328,6 +343,7 @@ class Game:
         self.create_button('quit', 'QUIT')
         self.create_button('play_again', 'PLAY AGAIN')
         self.create_button('menu', 'MENU', size=15)
+        self.create_button('continue', 'CONTINUE')
 
     def display_start_screen(self):
         screen = pygame.image.load('Graphics/title_screen.png').convert()
@@ -358,6 +374,14 @@ class Game:
         self.display_text(instruction, WHITE, size=17)
         self.log_event('INSTRUCTIONS SCREEN DISPLAYED')
         self.current_screen = 'instruction'
+
+    def display_outcome(self, choice_num):
+        outcomes = [self.scenarios_Linked_list.head.value.cases[f'pos_outcome{choice_num}'],
+                    self.scenarios_Linked_list.head.value.cases[f'neg_outcome{choice_num}']]
+        outcome = choice(outcomes)
+        self.screen.fill(WHITE)
+        self.display_text(outcome, BLACK, size=20)
+        self.draw_button('continue', 340, 448)
 
     def display_end_screen(self):
         screen = pygame.image.load('Graphics/end_screen.png').convert()
