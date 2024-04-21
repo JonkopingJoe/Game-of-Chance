@@ -3,26 +3,26 @@ from random import randint, choice
 import random
 from scenario import Scenario
 from button import Button
-from linked_list import LinkedList, ListNode, get_game_scenarios
 from sys import exit
 
 BLACK = (0, 0, 0) 
 WHITE = (255, 255, 255)
 FONT_SIZE = 12
 
+
 class ListNode:
     # Constructor to initialize the node object
     def __init__(self, value, next=None):
-        '''
+        """
         Assign data to a node. In our project it will be the game scenario
 
-        Args: 
+        Args:
         -value: The value of the node
         -next: The next node in the linked list
 
         Returns:
         None
-        '''
+        """
         try:
             self.value = value
             # Initialize next as null
@@ -32,16 +32,16 @@ class ListNode:
 
 class LinkedList:
     def __init__(self):
-        '''
+        """
         Initialize the head of the linked list
-        '''
+        """
         try:
             self.head = None
         except Exception as e:
             print("An error occured. No parameter needed!",e)
 
     def append(self, value):
-        '''
+        """
         Create a new node and append it at the end of the linked list
 
         Args:
@@ -49,7 +49,7 @@ class LinkedList:
 
         Returns:
         None
-        '''
+        """
         try:
             new_node = ListNode(value)
             if not self.head:
@@ -63,7 +63,7 @@ class LinkedList:
             print("An error occured while appending a node, please check the input values!", e)
 
     def to_list(self):
-        '''
+        """
         Convert the linked list to a list
 
         Args:
@@ -71,7 +71,7 @@ class LinkedList:
 
         Returns:
         -elements: A list of the elements in the linked list
-        '''
+        """
         try:
             elements = []
             current = self.head
@@ -83,7 +83,7 @@ class LinkedList:
             print("An error occured while converting the linked list to a list, please check the input values!", e)
 
 def get_game_scenarios(instances_list):
-    '''
+    """
     Create a linked list of the game scenarios
 
     Args:
@@ -91,7 +91,7 @@ def get_game_scenarios(instances_list):
 
     Returns:
     -linked_list: A linked list of the game scenarios
-    '''
+    """
     try:
         random.shuffle(instances_list)
         linked_list = LinkedList()
