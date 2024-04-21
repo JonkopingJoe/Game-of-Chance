@@ -224,42 +224,48 @@ class Game:
         # return the change in luck
         return randint(-10, 10)
 
+    def log_event(self, event):
+        """Logs events and the timestamp when they occur."""
+        timestamp = pygame.time.get_ticks()  # Gets the number of milliseconds since pygame.init() was called
+        log_message = f'{timestamp/1000} ms: {event}\n'
+        self.log.write(log_message)
+        print(log_message)
+
     def handle_events(self):
-        log_events = lambda x: self.log.write(f'{x}\n')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                log_events('QUIT CLICKED')
+                self.log_event('QUIT CLICKED')
                 pygame.quit()
                 self.log.close()
                 exit()
 
             if self.current_screen in ('start', 'end'):
                 if self.buttons['quit'].is_clicked():
-                    log_events('QUIT CLICKED')
+                    self.log_event('QUIT BUTTON CLICKED')
                     pygame.quit()
                     self.log.close()
                     exit()
 
             if self.current_screen == 'start':
                 if self.buttons['start'].is_clicked():
-                    log_events('START CLICKED')
+                    self.log_event('START BUTTON CLICKED')
                     self.display_instructions_screen()
 
                 if self.buttons['resume'].is_clicked():
-                    log_events('RESUME CLICKED')
+                    self.log_event('RESUME BUTTON CLICKED')
 
             if self.current_screen == 'instruction':
                 if self.buttons['menu'].is_clicked():
-                    log_events('MENU CLICKED')
+                    self.log_event('MENU BUTTON CLICKED')
                     self.display_start_screen()
 
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                    log_events('INSTRUCTIONS PASSED')
+                    self.log_event('SPACEBAR BUTTON PRESSED')
                     self.display_end_screen()
 
             if self.current_screen == 'end':
                 if self.buttons['play_again'].is_clicked():
-                    log_events('PLAY AGAIN CLICKED')
+                    self.log_event('PLAY AGAIN BUTTON CLICKED')
                     self.display_start_screen()
 
     def create_button(
@@ -289,17 +295,15 @@ class Game:
         self.create_button('menu', 'MENU', size=15)
 
     def display_start_screen(self):
-        print('start display')
-        self.current_screen = 'start'
         screen = pygame.image.load('Graphics/title_screen.png').convert()
         self.screen.blit(screen, (0, 0))
         self.draw_button('start', 176)
         self.draw_button('resume', 225)
         self.draw_button('quit', 274)
+        self.log_event('START SCREEN DISPLAYED')
+        self.current_screen = 'start'
 
     def display_instructions_screen(self):
-        self.current_screen = 'instruction'
-        print('instruction display')
         screen = pygame.image.load('Graphics/instructions.png').convert()
         self.screen.blit(screen, (0, 0))
         self.draw_button('menu', 10, 530)
@@ -330,14 +334,17 @@ class Game:
         for i, line_surface in enumerate(line_surfaces):
             self.screen.blit(line_surface, (x, y + i * (line_surface.get_height()+10)))
 
-    def display_end_screen(self):
+        self.log_event('INSTRUCTIONS SCREEN DISPLAYED')
+        self.current_screen = 'instruction'
 
-        self.current_screen = 'end'
+    def display_end_screen(self):
         screen = pygame.image.load('Graphics/end_screen.png').convert()
         self.screen.blit(screen, (0, 0))
         self.display_text(f'Your Final Luck Score is {self.luck_score}. What a day!', (0, 0, 0,), (255, 255, 255), 88, 100, font_size=20)
         self.draw_button('play_again', 176)
         self.draw_button('quit', 225)
+        self.log_event('END SCREEN DISPLAYED')
+        self.current_screen = 'end'
 
     def get_text_rect(self, text, x, y) -> tuple:
         rendered_text = self.font.render(text, True, (255, 255, 255))
