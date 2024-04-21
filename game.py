@@ -136,7 +136,7 @@ class Game:
         self.buttons = {}
         self.initialise_buttons()
         self.current_screen = ''
-        self.log = open('luckometer_log.txt', 'w')
+        self.log = open('luckometer.log', 'w') # Event Logging File
 
     # Displaying Section
     def display_text(self, text: str, text_color: tuple, bg_color=None, x='centre', y='centre', font='comic sans', size=FONT_SIZE) -> None:
