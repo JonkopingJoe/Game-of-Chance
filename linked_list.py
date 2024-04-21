@@ -1,7 +1,18 @@
 import random
 
-# !!!You could only read the function get_game_scenarios for efficiency
-# !!!Please import the classes ListNode and LinkedList and functions get_game_scenarios to use them
+"""
+This is the Game Scenarios Linked List Module
+This module implements a linked list data structure to store and manipulate game scenarios.
+The ListNode class represents a single node in the linked list, with attributes for the node's value and the next node in the list.
+The LinkedList class represents the linked list itself, with methods for appending nodes, converting the linked list data structure to a Python list data type, and a utility functions to get the final scenarios.
+The get_game_scenarios function takes a list of game scenarios, shuffles the list randomly, and returns a linked list of the scenarios.
+
+Example:
+print(get_game_scenarios(["scenario1", "scenario2", "scenario3", "scenario4"]).to_list())
+
+Note:
+This module is designed to handle errors and exceptions, and provides informative error messages to help with debugging.
+"""
 
 
 class ListNode:

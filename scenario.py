@@ -1,5 +1,28 @@
 from random import randint
 
+"""
+This class represents a scenario in the game. Scenario is basically an occurence in the "day" of this game.
+
+Each scenario has a unique number, an associated image for context, and a set of choices with possible outcomes.
+The luck difference attribute represents a random value that can affect the outcome of the scenario.
+
+The `set_cases()` method allows setting the caption, choices, and outcomes for the scenario.
+The `__str__()`  method returns a string representation of the scenario, including its number.
+
+Example:
+    scenario1 = Scenario(1, "path/to/image.jpg")
+    scenario1.set_cases(
+        "You are at a fork in the road.",
+        "Go left",
+        "You find a treasure!",
+        "You get lost.",
+        "Go right",
+        "You find a friend!",
+        "You get hurt.",
+    )
+    print(scenario1)  # Output: scenario1
+"""
+
 
 class Scenario:
     def __init__(self, scene_num, picture_path: str):

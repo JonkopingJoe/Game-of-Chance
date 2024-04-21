@@ -1,5 +1,27 @@
 import pygame
 
+"""
+    This is a clickable button class for Pygame.
+
+    Parameters:
+    text (str): The text to display on the button.
+    text_color (tuple): The color of the text.
+    bg_color (tuple): The background color of the button.
+    font (str, optional): The font to use. Defaults to "monospace".
+    size (int, optional): The font size. Defaults to 15.
+
+    Attributes:
+    width (int): The width of the button.
+    height (int): The height of the button.
+    image (pygame.Surface): The button's image.
+    rect (pygame.Rect): The button's rectangle.
+    text_rect (pygame.Rect): The text's rectangle.
+    clicked (bool): Whether the button is currently clicked.
+
+    Methods:
+    is_clicked() -> bool: Returns True if the button is clicked, False otherwise.
+"""
+
 
 class Button(pygame.sprite.Sprite):
     def __init__(
