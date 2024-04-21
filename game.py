@@ -233,7 +233,7 @@ class Game:
                 self.log.close()
                 exit()
 
-            if self.current_screen == 'start' or 'end':
+            if self.current_screen in ('start', 'end'):
                 if self.buttons['quit'].is_clicked():
                     log_events('QUIT CLICKED')
                     pygame.quit()
@@ -248,7 +248,7 @@ class Game:
                 if self.buttons['resume'].is_clicked():
                     log_events('RESUME CLICKED')
 
-            if self.current_screen == 'menu':
+            if self.current_screen == 'instruction':
                 if self.buttons['menu'].is_clicked():
                     log_events('MENU CLICKED')
                     self.display_start_screen()
@@ -262,8 +262,15 @@ class Game:
                     log_events('PLAY AGAIN CLICKED')
                     self.display_start_screen()
 
-
-    def create_button(self, name: str, text, text_color=(167, 66, 132), bg_color=(221, 229, 13), font='monospace', size=20):
+    def create_button(
+            self,
+            name: str,
+            text: str,
+            text_color=(167, 66, 132),
+            bg_color=(221, 229, 13),
+            font='monospace',
+            size=20
+    ):
         button = Button(text, text_color, bg_color, font, size)
         self.buttons[name] = button
 
@@ -291,8 +298,8 @@ class Game:
         self.draw_button('quit', 274)
 
     def display_instructions_screen(self):
-        self.current_screen = 'menu'
-        print('menu display')
+        self.current_screen = 'instruction'
+        print('instruction display')
         screen = pygame.image.load('Graphics/instructions.png').convert()
         self.screen.blit(screen, (0, 0))
         self.draw_button('menu', 10, 530)
