@@ -101,6 +101,7 @@ def get_game_scenarios(instances_list):
     except Exception as e:
         print("List needed to be passed, please check input.", e)
 
+
 class Game:
     def __init__(self):
         pygame.init()
@@ -116,13 +117,12 @@ class Game:
         self.current_screen = ''
         self.log = open('luckometer_log.txt', 'w')
 
-    # Displaying Seciton
+    # Displaying Section
     def display_text(self, text: str, text_color: tuple, bg_color: tuple, x: int, y: int, font_size=FONT_SIZE) -> None: 
         displaying_font = self.font
 
         if font_size != FONT_SIZE: 
             displaying_font = pygame.font.SysFont("monospace", font_size)
-
 
         render_text = displaying_font.render(text, True, text_color, bg_color)
         self.screen.blit(render_text, (x, y))
@@ -141,7 +141,6 @@ class Game:
     def display_button(self, button: Button, x: int, y: int) -> None:
         button.text_rect.center = (x, y)
         self.screen.blit(button.render_text, button.text_rect)
-
         return None
 
     def display_image(self, image_path: str, x: int, y: int) -> None:
@@ -150,11 +149,11 @@ class Game:
         return None
 
     def initialize_game_scenarios_list(self) -> LinkedList:
-        '''
+        """
         This method initializes the game scenarios linked list and returns it.
         Each scenario will be a node in a linked list.
         You can traverse the list by calling node.next.
-        '''
+        """
 
         # scenario one
         scenario1 = Scenario("./waittrain_late_small.jpg")
@@ -337,15 +336,12 @@ class Game:
         text_rect = rendered_text.get_rect(center=(x, y))
         return rendered_text, text_rect
 
-
-
     def run(self):
         self.screen.fill((0, 0, 0))
         self.current_screen = 'start'
         self.display_start_screen()
 
         while True:
-
             self.handle_events()
             pygame.display.flip()
             self.clock.tick(60)
