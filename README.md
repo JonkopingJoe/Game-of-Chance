@@ -1,64 +1,71 @@
-## LUCKOMETER
+# LUCKOMETER
 
-LUCKOMETER is a thrilling game of chance that measures the luck of choices you make as the name suggests. The game starts at home and the day begins. The player starts off with a randomised choices and random luck score. You make your choices through the game and each choice has an effect to the overall luck score. It is highly randomised so no matter how much sensible the choice the player makes seems, there might be a twist when it comes to the luck score it carries. The players bet is to get the highest luck score at the end of the game. 
+LUCKOMETER is a thrilling game of chance that measures the luck of choices you make as the name suggests. The game starts at home and the day begins. The player starts off with randomized choices and a random luck score. You make your choices throughout the game, and each choice has an effect on the overall luck score. It is highly randomized, so no matter how sensible the choice seems, there might be a twist when it comes to the luck score it carries. The player's goal is to get the highest luck score at the end of the game.
 
-- Base structure
-  1. 1 player game
-  2. Point system (luck points)
-  3. Random scenarios throughout game: some interactive, some not
-  4. Each event is consequential
+## Base Structure
 
-> No matter how sensible your choice sounds, there's always a twist
- Creators of Luckometer
+* 1 player game
+* Point system (luck points)
+* Random scenarios throughout the game: some interactive, some not
+* Each event is consequential
 
----
+> *No matter how sensible your choice sounds, there's always gonna be a twist*  
+> &mdash; Creators of Luckometer
 
-### Getting Started/ Requirements: 
-- Install Python on your computer from [Python's official website](https://www.python.org/downloads/)
-- Download the code from this repository by clicking [download](https://github.com/JonkopingJoe/Game-of-Chance.git)
-- Open the downloaded folder with all the code in your preferred Python IDE, e.g., VS Code or PyCharm
+## Getting Started
 
-### How to play the game on you computer: 
-- Check `requirements.txt` and ensure your computer has the Python version and Pygame version required to run the game.
-- Execute `game.py` to load the game. A screen will pop up, play away! 
-- To play, you will just need to read and decide what choice you want to make, you will do this by either clicking your mouse or pressing a key as on the screen. 
-You may modify the code to suit your specific needs (entirely optional)
-Nonetheless, enjoy the game and try your luck!
+### Requirements
 
-### Troubleshooting 
-#### Common Issues 
-- The game does not start: Check that your computer has all the requirements installed. Check that you are running the correct file. 
-- File not found: Check that you opened the entire folder in your python IDE as downloaded. 
+* Install Python on your computer from the [official website](https://www.python.org/downloads/)
+* Download the code from this repository by clicking [here](https://github.com/JonkopingJoe/Game-of-Chance.git)
+* Open the downloaded folder with all the code in your preferred Python IDE, e.g., VS Code or PyCharm
 
-#### Debugging Tips 
-- Check the `Luckometer.log` file, or check the error message in the Python terminal for error messages and warnings. These may help you identify the problem and and how to fix it.
+### How to Play
 
-### Contribution Statement 
-This code was collaboratively created by the following members named alphabetically: 
+* Check `requirements.txt` and ensure your computer has the required Python and Pygame versions
+* Execute `game.py` to load the game. A screen will pop up, play away!
+* To play, read and decide what choice you want to make, and click your mouse or press a key as indicated on the screen
+* You may modify the code to suit your specific needs (optional)
 
-- Ibrahim Almutairi
-- John Joe
-- Neen Rungsmaithong 
-- Reagan Pius 
+## Troubleshooting
 
-Each member contributed to the development and documentation of the Python Code and this user guide. 
+### Common Issues
 
+* Game does not start: Check that your computer has all the requirements installed and that you are running the correct file
+* File not found: Check that you opened the entire folder in your Python IDE as downloaded
 
-## Open Source Licence Declaration 
-LUCKOMETER is licensed under the GNU Lesser General Public License [LGPL]( https://www.gnu.org/licenses/lgpl-3.0.html). See `LICENSE.txt` file for details.
+### Debugging Tips
 
-This project uses [Pygame](https://github.com/pygame/), which is a set of Python modules designed for writing video games. Pygame is licensed under the GNU Lesser General Public License (LGPL).
+* Check the `Luckometer.log` file or the error message in the Python terminal for error messages and warnings
 
----
+## Contribution Statement
 
- #### Contributing 
- ##### Guidelines 
- - Fork this repository on GitHub. 
- - Create a new branch for your feature or fix. 
- - Write clear and conscise commit messages.
- - Submit a pull request to the main repository. 
+This code was collaboratively created by the following members:
 
- ##### Code Style 
- - Follow PEP 8 guidelines for Python code. 
- - Use consistent indentation and spacing following the zen of python. 
- - Write clear and concise comments. 
+* Ibrahim Almutairi[🫡.](https://github.com/IMKSD)
+* John Joe[🫡.](https://github.com/JonkopingJoe)
+* Neen Rungsmaithong[🫡.](https://github.com/iiicartoonn)
+* Reagan Pius[🫡.](https://github.com/reagan-pius)
+
+Each member contributed to the development and documentation of the Python code and this user guide.
+
+## Open Source License Declaration
+
+LUCKOMETER is licensed under the GNU Lesser General Public License (LGPL). See the `LICENSE.txt` file for details.
+
+This project uses [Pygame](https://github.com/pygame/), which is licensed under the GNU Lesser General Public License (LGPL).
+
+## Contributing
+
+### Guidelines
+
+* Fork this repository on GitHub
+* Create a new branch for your feature or fix
+* Write clear and concise commit messages
+* Submit a pull request to the main repository
+
+### Code Style
+
+* Follow PEP 8 guidelines for Python code
+* Use consistent indentation and spacing
+* Write clear and concise comments
