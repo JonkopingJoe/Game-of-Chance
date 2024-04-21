@@ -4,7 +4,7 @@ from scenario import Scenario
 from button import Button
 from sys import exit
 
-BLACK = (0, 0, 0) 
+BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 FONT_SIZE = 12
 screen_width = 600
@@ -137,7 +137,7 @@ class Game:
         self.buttons = {}
         self.initialise_buttons()
         self.current_screen = ''
-        self.logfile = open('luckometer.log', 'w') # Event Logging File
+        self.logfile = open('luckometer.log', 'w')  # Event Logging File
 
     # Displaying Section
     def display_text(self,
@@ -148,7 +148,7 @@ class Game:
                      y='centre',
                      font='comic sans',
                      size=FONT_SIZE
-    ) -> None:
+                     ) -> None:
         font = pygame.font.SysFont(font, size)
         lines = text.split('\n')
         line_surfaces = [font.render(line, True, text_color, bg_color) for line in lines]
@@ -266,7 +266,7 @@ class Game:
     def log_event(self, event):
         """Logs events and the timestamp when they occur."""
         timestamp = pygame.time.get_ticks()  # Gets the number of milliseconds since pygame.init() was called
-        log_message = f'{timestamp/1000}s: {event}\n'
+        log_message = f'{timestamp / 1000}s: {event}\n'
         self.logfile.write(log_message)
         print(log_message)
 
@@ -287,8 +287,17 @@ class Game:
 
             if self.current_screen == 'start':
                 if self.buttons['start'].is_clicked():
-                    self.log_event('START BUTTON CLICKED')
-                    self.display_instructions_screen()
+                    if not self.current_state:
+                        self.log_event('START BUTTON CLICKED')
+                        self.display_instructions_screen()
+                    else:
+                        self.display_text('You have already started the game.\npress SPACE and click resume.',
+                                          BLACK,
+                                          WHITE,
+                                          size=17)
+                        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                            self.log_event('SPACEBAR PRESSED')
+                            self.display_start_screen()
 
                 if self.buttons['resume'].is_clicked():
                     self.log_event('RESUME BUTTON CLICKED')
@@ -296,7 +305,8 @@ class Game:
                         self.display_scenario(self.current_state.value)
 
                     except AttributeError:
-                        self.display_text('You have not started the game.\npress SPACE and click start.', BLACK, WHITE, size=17)
+                        self.display_text('You have not started the game.\npress SPACE and click start.', BLACK, WHITE,
+                                          size=17)
                         self.log_event('Error message shown')
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                     self.log_event('SPACEBAR PRESSED')
@@ -382,7 +392,7 @@ class Game:
 
     def draw_button(self, name, y, x='centre'):
         if x == 'centre':
-            self.buttons[name].rect.topleft = ((600 - self.buttons[name].width)/2, y)
+            self.buttons[name].rect.topleft = ((600 - self.buttons[name].width) / 2, y)
         else:
             self.buttons[name].rect.topleft = (x, y)
         self.screen.blit(self.buttons[name].image, (self.buttons[name].rect.x, self.buttons[name].rect.y))
@@ -408,7 +418,6 @@ class Game:
     def display_instructions_screen(self):
         screen = pygame.image.load('Graphics/instructions.png').convert()
         self.screen.blit(screen, (0, 0))
-        self.draw_button('home', 10, 530)
 
         # Defining the instructions text
         instruction = '''
