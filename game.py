@@ -305,7 +305,9 @@ class Game:
                         self.display_scenario(self.current_state.value)
 
                     except AttributeError:
-                        self.display_text('You have not started the game.\npress SPACE and click start.', BLACK, WHITE,
+                        self.display_text('You have not started the game.\npress SPACE and click start.',
+                                          BLACK,
+                                          WHITE,
                                           size=17)
                         self.log_event('Error message shown')
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
