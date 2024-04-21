@@ -131,7 +131,6 @@ class Game:
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("monospace", FONT_SIZE)
         self.luck_score = randint(-20, 20)
-        self.luck_diff = 0
         self.scenarios_Linked_list = None
         self.current_state = None
         self.initialize_game_scenarios_list()
@@ -154,9 +153,10 @@ class Game:
         lines = text.split('\n')
         line_surfaces = [font.render(line, True, text_color, bg_color) for line in lines]
 
-        if x == 'centre' and y == 'centre':
+        if x == 'centre':
             # Calculating the x and y coordinates to center the instruction on the screen with padding
             x = (screen_width - max(line_surface.get_width() for line_surface in line_surfaces)) / 2
+        if y == 'centre':
             y = (screen_height - sum(line_surface.get_height() for line_surface in line_surfaces)) / 2
 
         # Finally blitting each line to the screen
@@ -209,12 +209,12 @@ class Game:
 
             # First
             "The Front Door",
-            f"Yay! That stray cat that always gouges\nyour eyes out is nowhere in sight!\n\nLuck +{self.luck_diff}",
-            f"OW! That cat is here today, you just got scratched ;(\n\nLuck -{self.luck_diff}",
+            f"Yay! That stray cat that always gouges\nyour eyes out is nowhere in sight!\n\nLuck +{scenario1.luck_diff}",
+            f"OW! That cat is here today, you just got scratched ;(\n\nLuck -{scenario1.luck_diff}",
             # Second
             "The Back Door",
-            f"Phew, narrowly escaped that nosy neighbour!\n\nLuck +{self.luck_diff}",
-            f"Oh no, you tripped over that bucket of\nwater you left out last night!\n\nLuck -{self.luck_diff}"
+            f"Phew, narrowly escaped that nosy neighbour!\n\nLuck +{scenario1.luck_diff}",
+            f"Oh no, you tripped over that bucket of\nwater you left out last night!\n\nLuck -{scenario1.luck_diff}"
         )
 
         # scenario two
@@ -223,11 +223,11 @@ class Game:
             '''While on your way to the train station,
             you see a big puddle on the road, what do you do?''',
             "Jump over it",
-            f"Way to go!\nThose long jumps during physical education coming in clutch!\n\nLuck +{self.luck_diff}",
-            f"Leg days? 404 not found.\nwhat made you think you could do it?\n\nluck -{self.luck_diff}",
+            f"Way to go!\nThose long jumps during physical education coming in clutch!\n\nLuck +{scenario2.luck_diff}",
+            f"Leg days? 404 not found.\nwhat made you think you could do it?\n\nluck -{scenario2.luck_diff}",
             "Walk gently",
-            f"Phew! You made it, slowly but surely.\n\nLuck +{self.luck_diff}",
-            f"Nuh uh those converse wont hold,\nyour feet are taking a bath.\n\nLuck -{self.luck_diff}"
+            f"Phew! You made it, slowly but surely.\n\nLuck +{scenario2.luck_diff}",
+            f"Nuh uh those converse wont hold,\nyour feet are taking a bath.\n\nLuck -{scenario2.luck_diff}"
         )
 
         # scenario three
@@ -235,11 +235,11 @@ class Game:
         scenario3.set_cases(
             "Ding! Would you like to buy the lottery?",
             "Yes!",
-            f"Oh my! You won some money!\n\nLuck +{self.luck_diff}",
-            f"Uh oh, that was a scam website :o\n\nLuck -{self.luck_diff}",
+            f"Oh my! You won some money!\n\nLuck +{scenario3.luck_diff}",
+            f"Uh oh, that was a scam website :o\n\nLuck -{scenario3.luck_diff}",
             "Nah",
-            f"Good job for not getting scammed, you won a prize!\n\nLuck +{self.luck_diff}",
-            f"You missed they giveaway they were doing\nfor everyone who bought lottery :(\n\nLuck -{self.luck_diff}"
+            f"Good job for not getting scammed, you won a prize!\n\nLuck +{scenario3.luck_diff}",
+            f"You missed they giveaway they were doing\nfor everyone who bought lottery :(\n\nLuck -{scenario3.luck_diff}"
         )
 
         # scenario four
@@ -248,11 +248,11 @@ class Game:
             '''At the train station,
             you just bought coffee, oh no! that train is here!''',
             "Wait for next train",
-            f"The next train came early!\nYou enjoyed your coffee and got to work on time.\n\nLuck +{self.luck_diff}",
-            f"the train was terminated :|\n\nLuck -{self.luck_diff}",
+            f"The next train came early!\nYou enjoyed your coffee and got to work on time.\n\nLuck +{scenario4.luck_diff}",
+            f"the train was terminated :|\n\nLuck -{scenario4.luck_diff}",
             "RUN!!",
-            f"You caught the train! Off to work we go!\n\nLuck +{self.luck_diff}",
-            f"You caught the train, but at what cost...\nYou are now drenched in coffee.\n\nLuck -{self.luck_diff}"
+            f"You caught the train! Off to work we go!\n\nLuck +{scenario4.luck_diff}",
+            f"You caught the train, but at what cost...\nYou are now drenched in coffee.\n\nLuck -{scenario4.luck_diff}"
         )
 
         self.scenarios_Linked_list = get_game_scenarios([scenario1, scenario2, scenario3, scenario4])
@@ -420,28 +420,38 @@ class Game:
                     return key
             return None
 
-        self.luck_diff = randint(10, 20)
-        print(self.luck_diff)
-
         outcomes = [self.current_state.value.cases[f'pos_outcome{choice_num}'],
                     self.current_state.value.cases[f'neg_outcome{choice_num}']]
         outcome = choice(outcomes)
 
         if 'pos' in get_key(outcome):
-            self.luck_score += self.luck_diff
+            self.luck_score += self.current_state.value.luck_diff
+            self.log_event('positive outcome displayed')
         if 'neg' in get_key(outcome):
-            self.luck_score -= self.luck_diff
+            self.luck_score -= self.current_state.value.luck_diff
+            self.log_event('negative outcome displayed')
 
         self.screen.fill(WHITE)
         self.display_text(f'Luck Score: {self.luck_score}', BLACK, x=10, y=10, size=12)
         self.display_text(outcome, BLACK, size=20)
         self.draw_button('continue', 340, 448)
-        self.log_event('outcome displayed')
 
     def display_end_screen(self):
         screen = pygame.image.load('Graphics/end_screen.png').convert()
         self.screen.blit(screen, (0, 0))
-        self.display_text(f'Your Final Luck Score is {self.luck_score}. What a day!', (0, 0, 0,), (255, 255, 255), 88, 100, size=20)
+
+        if self.luck_score > 50:
+            self.display_text(f'''Your Final Luck Score is {self.luck_score}. 
+It's your lucky day!''', (0, 0, 0,), (255, 255, 255), y=100, size=20)
+
+        if 20 < self.luck_score < 50:
+            self.display_text(f'''Your Final Luck Score is {self.luck_score}. 
+It's just like any other day.''', (0, 0, 0,), (255, 255, 255), y=100, size=20)
+
+        if self.luck_score < 20:
+            self.display_text(f'''Your Final Luck Score is {self.luck_score}.
+Uh oh, a black cat may be around the corner!''', (0, 0, 0,), (255, 255, 255), y=100, size=20)
+
         self.draw_button('play_again', 176)
         self.draw_button('quit', 225)
 
