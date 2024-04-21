@@ -1,99 +1,64 @@
-# Game-of-Chance
+## LUCKOMETER
 
-Game: LUCKOMETER (name for now)
-
-'no matter how sensible your choice sounds, there's always a twist'
-name idea: twist of fate? lol // Twistopia //
+LUCKOMETER is a thrilling game of chance that measures the luck of choices you make as the name suggests. The game starts at home and the day begins. The player starts off with a randomised choices and random luck score. You make your choices through the game and each choice has an effect to the overall luck score. It is highly randomised so no matter how much sensible the choice the player makes seems, there might be a twist when it comes to the luck score it carries. The players bet is to get the highest luck score at the end of the game. 
 
 - Base structure
   1. 1 player game
   2. Point system (luck points)
   3. Random scenarios throughout game: some interactive, some not
-  4. Each event can be consequential
+  4. Each event is consequential
 
-Game Initialisation: 
--
-- Display an introduction message explaining the game mechanics and rules.
-- Initialize the player's luck score to 0.
+> No matter how sensible your choice sounds, there's always a twist
+ Creators of Luckometer
 
-Gameplay:
--
-- Start the day by triggering events in a loop until the day ends
-- Each event should be randomly selected from a pool of possible scenarios
-- Display each event to the player and provide interactive choices if applicable
-- Based on the player's choices, update the luck score accordingly
-- Store the outcomes of each event for end-of-day reporting
+---
 
-Events:
--
-- How many per day
-- How many in the 'pool'
-- Description of the event
-- Whether it's interactive or not
-- Possible choices and their outcomes
-- Impact on the luck score.
+### Getting Started/ Requirements: 
+- Install Python on your computer from [Python's official website](https://www.python.org/downloads/)
+- Download the code from this repository by clicking [download](https://github.com/JonkopingJoe/Game-of-Chance.git)
+- Open the downloaded folder with all the code in your preferred Python IDE, e.g., VS Code or PyCharm
 
-Point System:
--
-- Display the player's luck score at all times during gameplay.
-- Determine thresholds for different luck score ranges and provide corresponding messages eg.:
-- Luck score > 50: "It's your lucky day!! Buy a lottery ticket asap!"
-- Luck score < 30: "Looks like it's not your day. Maybe stay indoors?"
-- 30 <= Luck score <= 50: "Not too shabby. Keep it up!"
+### How to play the game on you computer: 
+- Check `requirements.txt` and ensure your computer has the Python version and Pygame version required to run the game.
+- Execute `game.py` to load the game. A screen will pop up, play away! 
+- To play, you will just need to read and decide what choice you want to make, you will do this by either clicking your mouse or pressing a key as on the screen. 
+You may modify the code to suit your specific needs (entirely optional)
+Nonetheless, enjoy the game and try your luck!
 
-End of Day Report:
-<!-- Player ends the day, potentially. The player is presented an output "you have done all activities needed today, wanna end your day? -->
--
-Once the day ends, present a summary to the player:
-- Display the outcomes of each event encountered during the day.
-- Show the total luck score achieved.
-- Provide a message based on the luck score range.
+### Troubleshooting 
+#### Common Issues 
+- The game does not start: Check that your computer has all the requirements installed. Check that you are running the correct file. 
+- File not found: Check that you opened the entire folder in your python IDE as downloaded. 
 
-Additional Features to think about:
--
-- Luck boosters: might temporarily boost chance of positive outcome
-- add any ideas to make the game more interesting
+#### Debugging Tips 
+- Check the `Luckometer.log` file, or check the error message in the Python terminal for error messages and warnings. These may help you identify the problem and and how to fix it.
 
-More things to think about:
--
-- GUI
-- Error handling
+### Contribution Statement 
+This code was collaboratively created by the following members named alphabetically: 
 
-Game Example 
--
-**Day starts** (Game starts --> Luck score: 0) 
+- Ibrahim Almutairi
+- John Joe
+- Neen Rungsmaithong 
+- Reagan Pius 
 
-_Random event 1: You walk out the door and you see a slippery sidewalk! What do you do? [interactive, immediate outcome]_
-<!-- Player does not see the outcome of each choice while choosing, the outcome is a reward/ punishment and is random -->
-
-- Choice A: Just walk on lightly!
-  - Outcome 1: phew good thing you wore crocs today! (luck+5)
-  - Outcome 2: nah uh those converse wont hold, your feet are taking a bath (luck-5)
-
-- Choice B: Parkour! jump past it!
-  - Outcome 1: leg days? 404 not found what made you think you could do it? full frontal splash you are now drenched (luck-10)
-  - Outcome 2: way to go! those long jumps during physical education coming in clutch😎 (luck+10)
- 
-_Random event 2: Want to buy Stocks from Company A? [interactive, no immediate outcome]_
-
-- Choice A: Yes
-- Choice B: No
-
-_Random announcement: Stocks A went up/down!_ ((doesnt not have to come immediately after))
-- Outcome based on player's choice
+Each member contributed to the development and documentation of the Python Code and this user guide. 
 
 
-<!-- Since it is a game about a day, I am thinking of slotting a food session -->
+## Open Source Licence Declaration 
+LUCKOMETER is licensed under the GNU Lesser General Public License [LGPL]( https://www.gnu.org/licenses/lgpl-3.0.html). See `LICENSE.txt` file for details.
 
-_Random event 3: Yum Yum! You earned yourself a treat in Hotel Twistinolvenia. Choose a table, each table has a luck magic and great food?_
- <!-- Interactive, Immediate outcome: Every outcome is rewarded just because eating is good in this game -->
-- [A] Corner Table
-  - Outcome: Your treat is Ghoulash! Your luck magic is 5 (luck +5)
+This project uses [Pygame](https://github.com/pygame/), which is a set of Python modules designed for writing video games. Pygame is licensed under the GNU Lesser General Public License (LGPL).
 
-- [B] Round Table
-  - Outcome: Your treat is Eye Scream! Your luck magic is 1, please scream (luck +1)
+---
 
+ #### Contributing 
+ ##### Guidelines 
+ - Fork this repository on GitHub. 
+ - Create a new branch for your feature or fix. 
+ - Write clear and conscise commit messages.
+ - Submit a pull request to the main repository. 
 
-# Open Source Licence Declaration
-
-This project uses Pygame, which is a set of Python modules designed for writing video games. Pygame is licensed under the GNU Lesser General Public License (LGPL). For Pygame source, see: https://github.com/pygame/. For more details on the license, see: https://www.pygame.org/wiki/about and https://www.gnu.org/licenses/lgpl-3.0.html.
+ ##### Code Style 
+ - Follow PEP 8 guidelines for Python code. 
+ - Use consistent indentation and spacing following the zen of python. 
+ - Write clear and concise comments. 
