@@ -82,6 +82,7 @@ class LinkedList:
         except Exception as e:
             print("An error occured while converting the linked list to a list, please check the input values!", e)
 
+
 def get_game_scenarios(instances_list):
     """
     Create a linked list of the game scenarios
@@ -307,8 +308,15 @@ class Game:
         screen_width, screen_height = self.screen.get_size()
 
         # Defining the instructions text
-        instruction = 'The game starts at home, and the day begins. You start off with\na randomised luck score, and each decision you make will have an effect.\nRemember, this is a game of luck, so no matter how sound\nyour choice may seem, there is always a twist. Your aim is to have the\nhighest luck at the end of the game. Good Luck!'
-
+        instruction = '''
+        The game starts at home, and the day begins. 
+        You start off with a randomised luck score, 
+        and each decision you make will have an effect.
+        Remember, this is a game of luck, so no matter how sound
+        your choice may seem, there is always a twist. 
+        Your aim is to have the highest luck at the end of the game. 
+        Good Luck!
+        '''
         # Then rendering each line of the paragraph separately using list comprehension
         font = pygame.font.SysFont('comic sans' or None, 17) # None for default font if Comic Sans is not found in the system
         lines = instruction.split('\n')
@@ -316,7 +324,7 @@ class Game:
 
         # Calculating the x and y coordinates to center the instruction on the screen with padding
         x = (screen_width - max(line_surface.get_width() for line_surface in line_surfaces)) / 2 + 9
-        y = (screen_height - sum(line_surface.get_height() for line_surface in line_surfaces)) / 2 - 9
+        y = (screen_height - sum(line_surface.get_height() for line_surface in line_surfaces)) / 2 - 25
 
         # Finally blitting each line to the screen
         for i, line_surface in enumerate(line_surfaces):
