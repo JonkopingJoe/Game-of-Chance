@@ -137,7 +137,7 @@ class Game:
         self.buttons = {}
         self.initialise_buttons()
         self.current_screen = ''
-        self.log = open('luckometer_log.txt', 'w')
+        self.log = open('luckometer.log', 'w') # Event Logging File
 
     # Displaying Section
     def display_text(self,
