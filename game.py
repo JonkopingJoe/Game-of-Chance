@@ -172,18 +172,12 @@ class Game:
         line_surfaces = [
             font.render(line, True, text_color, bg_color) for line in lines
         ]
-
+        # Calculating the x and y coordinates to center the instruction on the screen
         if x == "centre":
-            # Calculating the x and y coordinates to center the instruction on the screen with padding
             x = (
-                screen_width
-                - max(line_surface.get_width() for line_surface in line_surfaces)
-            ) / 2
+                screen_width - max(line_surface.get_width() for line_surface in line_surfaces)) / 2
         if y == "centre":
-            y = (
-                screen_height
-                - sum(line_surface.get_height() for line_surface in line_surfaces)
-            ) / 2
+            y = (screen_height - sum(line_surface.get_height() for line_surface in line_surfaces)) / 2
 
         # Finally blitting each line to the screen
         for i, line_surface in enumerate(line_surfaces):
@@ -196,9 +190,9 @@ class Game:
         self.display_text(f"Luck Score: {self.luck_score}", BLACK, x=10, y=10, size=12)
         self.display_text(scenario.caption, BLACK, x=45, y=40, size=20)
         self.display_image(scenario.picture_path, 25, 137)
-        self.draw_button(f"s{scenario.scene_num}_choice1", 186, 320)
-        self.draw_button(f"s{scenario.scene_num}_choice2", 246, 320)
-        self.draw_button("home", 10, 530)
+        self.draw_button(f"s{scenario.scene_num}_choice1", 320, 186,)
+        self.draw_button(f"s{scenario.scene_num}_choice2", 320, 246)
+        self.draw_button("home", 530, 10)
 
         self.log_event(f"{scenario} displayed")
         self.current_screen = f"{scenario}"
@@ -280,8 +274,7 @@ class Game:
     def log_event(self, event):
         """Logs events and the timestamp when they occur."""
         timestamp = (
-            pygame.time.get_ticks()
-        )  # Gets the number of milliseconds since pygame.init() was called
+            pygame.time.get_ticks())  # Gets the number of milliseconds since pygame.init() was called
         log_message = f"{timestamp / 1000}s: {event}\n"
         self.logfile.write(log_message)
         print(log_message)
@@ -429,11 +422,13 @@ class Game:
         button = Button(text, text_color, bg_color, font, size)
         self.buttons[name] = button
 
-    def draw_button(self, name, y, x="centre"):
+    def draw_button(self, name, x="centre", y="centre"):
         if x == "centre":
-            self.buttons[name].rect.topleft = ((600 - self.buttons[name].width) / 2, y)
-        else:
-            self.buttons[name].rect.topleft = (x, y)
+            x = (screen_width - self.buttons[name].width) / 2
+        if y == "centre":
+            y = (screen_height - self.buttons[name].height) / 2
+
+        self.buttons[name].rect.topleft = (x, y)
         self.screen.blit(
             self.buttons[name].image,
             (self.buttons[name].rect.x, self.buttons[name].rect.y),
@@ -449,9 +444,9 @@ class Game:
 
     def display_start_screen(self):
         self.display_image("Graphics/title_screen.png", 0, 0)
-        self.draw_button("start", 176)
-        self.draw_button("resume", 225)
-        self.draw_button("quit", 274)
+        self.draw_button("start", y=176)
+        self.draw_button("resume", y=225)
+        self.draw_button("quit", y=274)
 
         self.log_event("START SCREEN DISPLAYED")
         self.current_screen = "start"
@@ -497,7 +492,7 @@ class Game:
         self.screen.fill(WHITE)
         self.display_text(f"Luck Score: {self.luck_score}", BLACK, x=10, y=10, size=12)
         self.display_text(outcome, BLACK, size=20)
-        self.draw_button("continue", 340, 448)
+        self.draw_button("continue", 448, 340)
 
     def display_end_screen(self):
         self.display_image("Graphics/end_screen.png", 0, 0)
@@ -531,8 +526,8 @@ class Game:
                 size=20,
             )
 
-        self.draw_button("play_again", 176)
-        self.draw_button("quit", 225)
+        self.draw_button("play_again", y=176)
+        self.draw_button("quit", y=225)
 
         self.log_event("END SCREEN DISPLAYED")
         self.current_screen = "end"
