@@ -325,8 +325,8 @@ scenario3.set_cases(
     f"Uh oh, that was a scam website :o\n\nLuck -{scenario3.luck_diff}",
     "Nah",
     f"Good job for not getting scammed, you won a prize!\n\nLuck +{scenario3.luck_diff}",
-    f"You missed they giveaway they were doing"
-    f"\nfor everyone who bought lottery :(\n\nLuck -{scenario3.luck_diff}",
+    f"You missed the giveaway they were doing"
+    f"\nfor everyone who bought the lottery :(\n\nLuck -{scenario3.luck_diff}",
 )
 
 # THIRD LAYER
@@ -370,7 +370,7 @@ scenario6.set_cases(
     # Second
     "Let him reschedule",
     f"Turns out he's a scammer! "
-    f"\nGood thing you didn't meet with him\n\nLuck +{scenario6.luck_diff}",
+    f"\nGood thing you didn't meet with him.\n\nLuck +{scenario6.luck_diff}",
     f"The man was a big shot and you missed it :o\n\nLuck -{scenario6.luck_diff}",
 )
 
@@ -682,6 +682,7 @@ class Game:
                             WHITE,
                             size=17,
                         )
+                        self.log_event("Error message shown")
                         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                             self.log_event("SPACEBAR PRESSED")
                             self.display_start_screen()
