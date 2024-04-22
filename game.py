@@ -710,7 +710,8 @@ class Game:
 
                     # Add Music Accompaniment
                     pygame.mixer.Sound.set_volume(self.main_music, 0.3)
-                    self.main_music.play(loops=6)
+                    play_music = lambda music: (lambda: music.play(loops=6))() if music else (lambda: self.log_event("Error playing music"))()
+                    play_music(self.main_music)
                     self.log_event("Intro Music Playing")
                     self.initialise_scenarios()
                     if self.scenarios_Linked_list and self.scenarios_Linked_list.head:
@@ -774,6 +775,8 @@ class Game:
                     # Second Music Accompaniment
                     self.main_music.stop()
                     self.log_event("Intro Music Stopping")
+                    end_music = lambda music: (lambda: music.play())() if music else (lambda: self.log_event("Error playing music"))()
+                    end_music(self.main_music)
                     pygame.mixer.Sound.set_volume(self.end_music, 0.3)
                     self.end_music.play()
                     self.log_event("End Music Playing")
