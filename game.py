@@ -946,6 +946,7 @@ class Game:
             pygame.display.flip()
             self.clock.tick(60)
 
+# checks that the program runs only as an executable and not as an import
 __name__ == '__main__'
 game = Game()
 game.run()
