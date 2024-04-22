@@ -391,9 +391,9 @@ class Game:
         self.initialise_buttons()
         self.current_screen = ""
         self.logfile = open("luckometer.log", "w")  # Event Logging File
-        self.main_music = pygame.mixer.Sound(os.path.join("./audio", "intro.wav"))
+        self.main_music = pygame.mixer.Sound(os.path.join("../audio", "intro.wav"))
         self.end_music = pygame.mixer.Sound(
-            os.path.join("./audio", "not-really-lost.wav")
+            os.path.join("../audio", "not-really-lost.wav")
         )
 
     # Displaying Section
