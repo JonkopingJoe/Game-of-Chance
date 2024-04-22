@@ -272,14 +272,14 @@ def get_path(root):
     if root.left is None and root.right is None:
         return path
     elif root.left is None:
-        return path + get_path(root.right)
+        return path + get_path(root.right.data)
     elif root.right is None:
-        return path + get_path(root.left)
+        return path + get_path(root.left.data)
     else:
         if choice([True, False]):
-            return path + get_path(root.left)
+            return path + get_path(root.left.data)
         else:
-            return path + get_path(root.right)
+            return path + get_path(root.right.data)
 
 
 class ListNode:
