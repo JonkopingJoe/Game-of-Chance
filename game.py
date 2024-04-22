@@ -25,7 +25,6 @@ scenario1.set_cases(
     """The Day Begins.
     Let's get you to work! 
     Which door are you leaving your house through?""",
-
     # First
     "Front Door",
     f"Yay! That stray cat that always "
@@ -35,8 +34,8 @@ scenario1.set_cases(
     "The Back Door",
     f"Phew, narrowly escaped that nosy neighbour!\n\nLuck +{scenario1.luck_diff}",
     f"Oh no, you tripped over that"
-    f"\nbucket of water you left out last night!\n\nLuck -{scenario1.luck_diff}"
-    )
+    f"\nbucket of water you left out last night!\n\nLuck -{scenario1.luck_diff}",
+)
 
 
 # SECOND LAYER
@@ -50,8 +49,8 @@ scenario2.set_cases(
     f"Leg days? 404 not found.\nwhat made you think you could do it?\n\nLuck -{scenario2.luck_diff}",
     "Walk gently",
     f"Phew! You made it, slowly but surely.\n\nLuck +{scenario2.luck_diff}",
-    f"Nuh uh those converse wont hold,\nyour feet are taking a bath.\n\nLuck -{scenario2.luck_diff}"
-    )
+    f"Nuh uh those converse wont hold,\nyour feet are taking a bath.\n\nLuck -{scenario2.luck_diff}",
+)
 
 scenario3 = Scenario(2, "Graphics/phone_notif.png")
 scenario3.set_cases(
@@ -61,15 +60,14 @@ scenario3.set_cases(
     f"Uh oh, that was a scam website :o\n\nLuck -{scenario3.luck_diff}",
     "Nah",
     f"Good job for not getting scammed, you won a prize!\n\nLuck +{scenario3.luck_diff}",
-    f"You missed they giveaway they were doing\n\nLuck -{scenario3.luck_diff}"
-    f"\nfor everyone who bought lottery :("
-    )
+    f"You missed they giveaway they were doing"
+    f"\nfor everyone who bought lottery :(\n\nLuck -{scenario3.luck_diff}",
+)
 
 # THIRD LAYER
 scenario4 = Scenario(3, "Graphics/wait_for_train.png")
 scenario4.set_cases(
-    "At the train station,"
-    "\nyou just bought coffee, oh no! that train is here!",
+    "At the train station," "\nyou just bought coffee, oh no! that train is here!",
     "Wait for next train",
     f"The next train came early!"
     f"\nYou enjoyed your coffee and got to work on time.\n\nLuck +{scenario4.luck_diff}",
@@ -77,8 +75,8 @@ scenario4.set_cases(
     "RUN!!",
     f"You caught the train! Off to work we go!\n\nLuck +{scenario4.luck_diff}",
     f"You caught the train, but at what cost..."
-    f"\nYou are now drenched in coffee.\n\nLuck -{scenario4.luck_diff}"
-    )
+    f"\nYou are now drenched in coffee.\n\nLuck -{scenario4.luck_diff}",
+)
 
 scenario5 = Scenario(3, "Graphics/unexpected_project.png")
 scenario5.set_cases(
@@ -92,7 +90,7 @@ scenario5.set_cases(
     "Decline the project",
     f"Phew! Dodged a bullet, that was never gonna work!\n\nLuck +{scenario5.luck_diff}",
     f"Opportunity of a lifetime, down the drain!"
-    f"\n Your boss gave it to your work nemesis instead!\n\nLuck -{scenario5.luck_diff}"
+    f"\n Your boss gave it to your work nemesis instead!\n\nLuck -{scenario5.luck_diff}",
 )
 
 scenario6 = Scenario(3, "Graphics/unexpected_client.png")
@@ -111,7 +109,7 @@ scenario6.set_cases(
     f"The man was a big shot and you missed it :o\n\nLuck -{scenario6.luck_diff}",
 )
 
-scenario7 = Scenario(3, 'Graphics/fire_drill.png')
+scenario7 = Scenario(3, "Graphics/fire_drill.png")
 scenario7.set_cases(
     "Your office conducts an unexpected fire safety drill."
     "\nDo you take it seriously?",
@@ -122,7 +120,7 @@ scenario7.set_cases(
     # Second
     "Chit-chat",
     f"Told the best joke ever. Everyone loves me.\n\nLuck +{scenario7.luck_diff}",
-    f"Shoot, your boss is super uptight\nand is shooting you dirty looks\n\nLuck -{scenario7.luck_diff}"
+    f"Shoot, your boss is super uptight\nand is shooting you dirty looks\n\nLuck -{scenario7.luck_diff}",
 )
 
 scenario8 = Scenario(4, "Graphics/networking_event.png")
@@ -135,7 +133,8 @@ scenario8.set_cases(
     f"\nand you regret not spending the evening relaxing.\n\nLuck -{scenario8.luck_diff}",
     "Decline and stay home",
     f"You enjoy a restful evening \nthat prepares you for tomorrow.\n\nLuck +{scenario8.luck_diff}",
-    f"You hear later about missed \nopportunities from the event.\n\nLuck -{scenario8.luck_diff}")
+    f"You hear later about missed \nopportunities from the event.\n\nLuck -{scenario8.luck_diff}",
+)
 
 # FORTH LAYER
 scenario9 = Scenario(4, "Graphics/meeting.png")
@@ -149,29 +148,30 @@ scenario9.set_cases(
     f"\nand you fall behind on your work :(\n\nLuck -{scenario9.luck_diff}",
     "Decline",
     f"You made significant progress on your projects by declining.\n\nLuck +{scenario9.luck_diff}",
-    f"You missed out on important information shared in the meeting!!\n\nLuck -{scenario9.luck_diff}")
+    f"You missed out on important information shared in the meeting!!\n\nLuck -{scenario9.luck_diff}",
+)
 
 scenario10 = Scenario(4, "Graphics/exercise.png")
 scenario10.set_cases(
     "Feeling energetic, you consider going for \nan evening jog. Do you hit the park or the gym treadmill?",
-    "Jog in the park.",
+    "Jog in the park",
     f"The fresh air invigorates you, boosting your mood.\n\nLuck +{scenario10.luck_diff}",
     f"It starts raining heavily, cutting your jog short.\n\nLuck -{scenario10.luck_diff}",
-    "Use the gym treadmill.",
+    "Gym treadmill",
     f"You have a productive workout session and feel great.\n\nLuck +{scenario10.luck_diff}",
     f"The gym is overcrowded,"
-    f"\nand you barely get any time on the treadmill.\n\nLuck -{scenario10.luck_diff}"
+    f"\nand you barely get any time on the treadmill.\n\nLuck -{scenario10.luck_diff}",
 )
 
 scenario11 = Scenario(4, "Graphics/grocery.png")
 scenario11.set_cases(
-    "You realize you need groceries. Do you stop\n by the store on your way home or order delivery?",
+    "You realize you need groceries. Do you stop\nby the store on your\nway home or order delivery?",
     "Visit the grocery store.",
     f"You find everything you need on sale.\n\nLuck +{scenario11.luck_diff}",
-    f"The store is crowded, and shopping takes longer than expected.\n\nLuck -{scenario11.luck_diff}",
+    f"The store is crowded, \nand shopping takes longer than expected.\n\nLuck -{scenario11.luck_diff}",
     "Order groceries for delivery.",
     f"The delivery is quick and saves you time.\n\nLuck +{scenario11.luck_diff}",
-    f"The delivery is late and missing items.\n\nLuck -{scenario11.luck_diff}"
+    f"The delivery is late and missing items.\n\nLuck -{scenario11.luck_diff}",
 )
 
 scenario12 = Scenario(4, "Graphics/dinner.png")
@@ -182,7 +182,7 @@ scenario12.set_cases(
     f"The order is wrong and arrives late.\n\nLuck -{scenario12.luck_diff}",
     "Go out to eat.",
     f"You enjoy a great meal out and feel content.\n\nLuck +{scenario12.luck_diff}",
-    f"The restaurant is full, and you end up waiting a long time.\n\nLuck -{scenario12.luck_diff}"
+    f"The restaurant is full, and you end up waiting a long time.\n\nLuck -{scenario12.luck_diff}",
 )
 
 scenario13 = Scenario(4, "Graphics/relax.png")
@@ -194,7 +194,7 @@ scenario13.set_cases(
     "Watch a movie.",
     f"You watch a fantastic movie\nthat you thoroughly enjoy.\n\nLuck +{scenario13.luck_diff}",
     f"The movie is disappointing,"
-    f"\nand you regret not choosing another activity.\n\nLuck +{scenario13.luck_diff}"
+    f"\nand you regret not choosing another activity.\n\nLuck +{scenario13.luck_diff}",
 )
 
 scenario14 = Scenario(4, "Graphics/online_class.png")
@@ -206,7 +206,7 @@ scenario14.set_cases(
     f"You’re too tired to absorb\nthe information, wasting your time.\n\nLuck -{scenario14.luck_diff}",
     "Postpone",
     f"You take the evening off,\nwhich proves to be the right choice.\n\nLuck +{scenario14.luck_diff}",
-    f"You fall behind and stress\nabout catching up later.\n\nLuck -{scenario14.luck_diff}"
+    f"You fall behind and stress\nabout catching up later.\n\nLuck -{scenario14.luck_diff}",
 )
 
 scenario15 = Scenario(4, "Graphics/local_class.png")
@@ -219,7 +219,7 @@ scenario15.set_cases(
     f"\nand you find it hard to relax in the crowded room.\n\nLuck +{scenario15.luck_diff}",
     "Attend cooking class.",
     f"You learn a new recipe \nthat becomes a new favorite at home.\n\nLuck +{scenario15.luck_diff}",
-    f"The class moves at a fast pace,\nand you struggle to keep up.\n\nLuck +{scenario15.luck_diff}"
+    f"The class moves at a fast pace,\nand you struggle to keep up.\n\nLuck +{scenario15.luck_diff}",
 )
 
 
@@ -291,7 +291,7 @@ def get_path(root):
 class ListNode:
     # Constructor to initialize the node object
     def __init__(self, value, next=None):
-        '''
+        """
         Assign data to a node. In our project it will be the game scenario
 
         Args:
@@ -300,25 +300,28 @@ class ListNode:
 
         Returns:
         None
-        '''
+        """
         try:
             self.value = value
             # Initialize next as null
             self.next = next
         except Exception as e:
-            print("An error occured while creating a node, please check the input values!", e)
+            print(
+                "An error occured while creating a node, please check the input values!",
+                e,
+            )
 
 
 class LinkedList:
     def __init__(self):
-        '''
+        """
         Initialize the head of the linked list
-        '''
+        """
         try:
             self.head = None
             self.last = None
         except Exception as e:
-            print("An error occured. No parameter needed!",e)
+            print("An error occured. No parameter needed!", e)
 
     def append(self, value):
         """
@@ -342,7 +345,10 @@ class LinkedList:
             return None
 
         except Exception as e:
-            print("An error occured while appending a node, please check the input values!", e)
+            print(
+                "An error occured while appending a node, please check the input values!",
+                e,
+            )
 
     def to_list(self):
         """
@@ -362,7 +368,10 @@ class LinkedList:
                 current = current.next
             return elements
         except Exception as e:
-            print("An error occured while converting the linked list to a list, please check the input values!", e)
+            print(
+                "An error occured while converting the linked list to a list, please check the input values!",
+                e,
+            )
 
 
 def get_game_scenarios(instances_list):
@@ -400,8 +409,7 @@ class Game:
         self.current_screen = ""
         self.logfile = open("luckometer.log", "w")  # Event Logging File
         self.main_music = pygame.mixer.Sound(os.path.join("audio/intro.wav"))
-        self.end_music = pygame.mixer.Sound(os.path.join("audio/not-really-lost.wav")
-        )
+        self.end_music = pygame.mixer.Sound(os.path.join("audio/not-really-lost.wav"))
 
     # Displaying Section
     def display_text(
@@ -422,9 +430,14 @@ class Game:
         # Calculating the x and y coordinates to center the instruction on the screen
         if x == "centre":
             x = (
-                screen_width - max(line_surface.get_width() for line_surface in line_surfaces)) / 2
+                screen_width
+                - max(line_surface.get_width() for line_surface in line_surfaces)
+            ) / 2
         if y == "centre":
-            y = (screen_height - sum(line_surface.get_height() for line_surface in line_surfaces)) / 2
+            y = (
+                screen_height
+                - sum(line_surface.get_height() for line_surface in line_surfaces)
+            ) / 2
 
         # Finally blitting each line to the screen
         for i, line_surface in enumerate(line_surfaces):
@@ -439,7 +452,11 @@ class Game:
         self.display_text(f"Luck Score: {self.luck_score}", BLACK, x=10, y=10, size=12)
         self.display_text(scenario.caption, BLACK, x=45, y=40, size=20)
         self.display_image(scenario.picture_path, 25, 137)
-        self.draw_button(f"s{scenario.scene_num}_choice1", 320, 186,)
+        self.draw_button(
+            f"s{scenario.scene_num}_choice1",
+            320,
+            186,
+        )
         self.draw_button(f"s{scenario.scene_num}_choice2", 320, 246)
         self.draw_button("home", 530, 10)
 
@@ -455,7 +472,8 @@ class Game:
     def log_event(self, event) -> None:
         """Logs events and the timestamp when they occur."""
         timestamp = (
-            pygame.time.get_ticks())  # Gets the number of milliseconds since pygame.init() was called
+            pygame.time.get_ticks()
+        )  # Gets the number of milliseconds since pygame.init() was called
         log_message = f"{timestamp / 1000}s: {event}\n"
         self.logfile.write(log_message)
         print(log_message)
@@ -619,7 +637,9 @@ class Game:
         :return: None
         """
         button = Button(text, text_color, bg_color, font, size)
-        self.buttons[name] = button  # button added to dictionary to be used in handle_events(self)
+        self.buttons[name] = (
+            button  # button added to dictionary to be used in handle_events(self)
+        )
 
         return None
 
@@ -640,7 +660,8 @@ class Game:
         self.buttons[name].rect.topleft = (x, y)
         self.screen.blit(
             self.buttons[name].image,
-            (self.buttons[name].rect.x, self.buttons[name].rect.y))
+            (self.buttons[name].rect.x, self.buttons[name].rect.y),
+        )
 
         return None
 
@@ -756,4 +777,3 @@ class Game:
 
 game = Game()
 game.run()
-
