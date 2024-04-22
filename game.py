@@ -350,7 +350,7 @@ class Game:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                     self.log_event("SPACEBAR PRESSED")
 
-                    # Add Music Accompanyment
+                    # Add Music Accompaniment
                     pygame.mixer.Sound.set_volume(self.main_music, 0.3)
                     self.main_music.play(loops=6)
                     self.log_event("Intro Music Playing")
@@ -564,11 +564,6 @@ Uh oh, a black cat may be around the corner!""",
 
         self.log_event("END SCREEN DISPLAYED")
         self.current_screen = "end"
-
-    def get_text_rect(self, text, x, y) -> tuple:
-        rendered_text = self.font.render(text, True, (255, 255, 255))
-        text_rect = rendered_text.get_rect(center=(x, y))
-        return rendered_text, text_rect
 
     def run(self):
         self.screen.fill((0, 0, 0))
