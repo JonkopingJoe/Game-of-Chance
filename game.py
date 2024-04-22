@@ -513,28 +513,20 @@ class Game:
 
         if 20 < self.luck_score < 50:
             self.display_text(
-                f"""Your Final Luck Score is {self.luck_score}. 
-It's just like any other day.""",
-                (
-                    0,
-                    0,
-                    0,
-                ),
-                (255, 255, 255),
+                f"Your Final Luck Score is {self.luck_score}."
+                f"\nIt's just like any other day.",
+                BLACK,
+                WHITE,
                 y=100,
                 size=20,
             )
 
         if self.luck_score < 20:
             self.display_text(
-                f"""Your Final Luck Score is {self.luck_score}.
-Uh oh, a black cat may be around the corner!""",
-                (
-                    0,
-                    0,
-                    0,
-                ),
-                (255, 255, 255),
+                f"Your Final Luck Score is {self.luck_score}."
+                f"\nUh oh, a black cat may be around the corner!",
+                BLACK,
+                WHITE,
                 y=100,
                 size=20,
             )
