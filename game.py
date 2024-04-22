@@ -10,6 +10,8 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 YELLOW = (255, 255, 0)
 FONT_SIZE = 12
+screen_width = 600
+screen_height = 400
 
 
 class Game:
@@ -18,34 +20,52 @@ class Game:
         # WINDOW AND BUTTONS SET UP
         pygame.init()
         pygame.display.set_caption("LUCKOMETER")
-        self.screen = pygame.display.set_mode((600, 400))
+        self.screen = pygame.display.set_mode((screen_width, screen_height))
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("monospace", FONT_SIZE)
         self.buttons = {}
         self.initialise_buttons()
         self.luck_score = 100
 
-
         self.state = "menu"
         self.events_log = open('luckometer_log.txt', 'w')
         self.scenarios_Linked_list = None
         self.current_screen = None
 
-    # BUTTONS SECTINO
+    # BUTTONS SECTION
 
     def create_button(self, name: str, text: str, text_color=(167, 66, 132), bg_color=(221, 229, 13), font='monospace', size=20):
         button = Button(text, text_color, bg_color, font, size)
         self.buttons[name] = button
 
-    def draw_button(self, name, y, x='centre'):
-        if x == 'centre':
-            self.buttons[name].rect.topleft = (
-                (600 - self.buttons[name].width)/2, y)
-        else:
-            self.buttons[name].rect.topleft = (x, y)
-        self.screen.blit(
-            self.buttons[name].image, (self.buttons[name].rect.x, self.buttons[name].rect.y))
+    def draw_button(self, name: str, x="centre", y="centre") -> None:
+        """
+        :param name: name of button to be drawn on screen
+        :param x: default set to align centre
+        :param y: default set to align centre
 
+        :return: None
+        """
+        # setting x and y coordinates
+        if x == "centre":
+            x = (screen_width - self.buttons[name].width) / 2
+        if y == "centre":
+            y = (screen_height - self.buttons[name].height) / 2
+
+        self.buttons[name].rect.topleft = (x, y)
+        self.screen.blit(
+            self.buttons[name].image,
+            (self.buttons[name].rect.x, self.buttons[name].rect.y))
+
+        return None
+
+    def initialise_buttons(self):
+        self.create_button("start", "START")
+        self.create_button("resume", "RESUME")
+        self.create_button("quit", "QUIT")
+        self.create_button("play_again", "PLAY AGAIN")
+        self.create_button("home", "HOME", size=15)
+        self.create_button("continue", "CONTINUE")
     # DISPLAYING SECTION
 
     def display_text(self, text: str, text_color: tuple, bg_color: tuple, x: int, y: int, font_size=FONT_SIZE) -> None:
@@ -65,8 +85,7 @@ class Game:
 
         self.display_text(scenario.caption, BLACK, WHITE, 100, 100)
         self.display_image(scenario.picture_path, 25, 137)
-        self.draw_button(scenario.cases["choice1"], 150)
-    
+        self.draw_button(scenario.cases["choice1"], y=150)
 
     def show_scenario(self): 
         pass
@@ -77,21 +96,15 @@ class Game:
         return None
 
     def display_start_screen(self):
-        print('start display')
-        self.display_image('Graphics/title_screen.png', 0, 0)
-        self.draw_button('start', 176)
-        self.draw_button('quit', 227)
+        self.display_image("Graphics/title_screen.png", 0, 0)
+        self.draw_button("start", y=176)
+        self.draw_button("resume", y=225)
+        self.draw_button("quit", y=274)
+
+        self.current_screen = "start"
 
     def display_instructions_screen(self):
-        self.current_screen = 'instruction'
-        print('instruction display')
-        instructions_bg = pygame.image.load(
-            'Graphics/instructions.png').convert()
-        self.screen.blit(instructions_bg, (0, 0))
-        self.draw_button('menu', 10, 530)
-
-        # Get the screen width and height
-        screen_width, screen_height = self.screen.get_size()
+        self.display_image('Graphics/instructions.png', 0, 0)
 
         # Defining the instructions text
         instruction = 'The game starts at home, and the day begins. You start off with' \
@@ -117,15 +130,17 @@ class Game:
             self.screen.blit(
                 line_surface, (x, y + i * (line_surface.get_height()+10)))
 
+        self.current_screen = 'instruction'
+
     def display_end_screen(self):
         screen = pygame.image.load('Graphics/end_screen.png').convert()
         self.screen.blit(screen, (0, 0))
         self.display_text(
             f'Your Final Luck Score is {self.luck_score}. What a day!', BLACK, YELLOW, 70, 100, font_size=20)
-        self.draw_button('play_again', 176)
-        self.draw_button('quit', 225)
+        self.draw_button('play_again', y=176)
+        self.draw_button('quit', y=225)
 
-    # HANDLING EVETNS
+    # HANDLING EVENTS
 
     def handle_events(self):
         log_events = lambda event: self.events_log.write(f"{event}\n")
@@ -137,14 +152,13 @@ class Game:
                 pygame.quit()
                 exit()
 
-            if self.buttons['menu'].is_clicked():
+            if self.buttons['home'].is_clicked():
                 self.current_screen = 'start'
                 self.display_start_screen()
-                log_events('MENU CLICKED')
+                log_events('HOME CLICKED')
 
             if self.current_screen == 'start':
                 if self.buttons['start'].is_clicked():
-                    self.current_screen = 'instruction'
                     self.display_instructions_screen()
                     log_events('START CLICKED')
 
@@ -154,17 +168,13 @@ class Game:
             if self.current_screen == 'instruction':
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                     self.display_scenarios()
-                    self.current_screen = 'end'
-                    self.display_end_screen()
                     log_events('INSTRUCTIONS PASSED')
-        
 
             if self.current_screen == 'end':
                 if self.buttons['play_again'].is_clicked():
                     self.current_screen = 'start'
                     self.display_start_screen()
                     log_events('PLAY AGAIN CLICKED')
-
 
     def run(self):
         self.screen.fill((0, 0, 0))
