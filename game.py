@@ -20,7 +20,7 @@ class TreeNode:
 
 
 # ROOT (FIRST LAYER)
-scenario1 = Scenario(1, "Game-of-Chance/Graphics/back_door_safe.png")
+scenario1 = Scenario(1, "Graphics/back_door_safe.png")
 scenario1.set_cases(
     """The Day Begins.
     Let's get you to work! 
@@ -39,7 +39,7 @@ scenario1.set_cases(
 
 
 # SECOND LAYER
-scenario2 = Scenario(2, "Game-of-Chance/Graphics/puddle_fail.png")
+scenario2 = Scenario(2, "Graphics/puddle_fail.png")
 scenario2.set_cases(
     "While on your way to the train station,"
     "y\nou see a big puddle on the road, what do you do?",
@@ -51,7 +51,7 @@ scenario2.set_cases(
     f"Nuh uh those converse wont hold,\nyour feet are taking a bath."
     )
 
-scenario3 = Scenario(2, "Game-of-Chance/Graphics/phone_notif.png")
+scenario3 = Scenario(2, "Graphics/phone_notif.png")
 scenario3.set_cases(
     "Ding! Would you like to buy the lottery?",
     "Yes!",
@@ -64,7 +64,7 @@ scenario3.set_cases(
     )
 
 # THIRD LAYER
-scenario4 = Scenario(3, "Game-of-Chance/Graphics/wait_for_train.png")
+scenario4 = Scenario(3, "Graphics/wait_for_train.png")
 scenario4.set_cases(
     "At the train station,"
     "\nyou just bought coffee, oh no! that train is here!",
@@ -78,7 +78,7 @@ scenario4.set_cases(
     f"\nYou are now drenched in coffee."
     )
 
-scenario5 = Scenario(3, "Game-of-Chance/Graphics/unexpected_project.png")
+scenario5 = Scenario(3, "Graphics/unexpected_project.png")
 scenario5.set_cases(
     "You're offered an unexpected project that is challenging "
     "\nbut could be a big career boost. What will you do?",
@@ -92,7 +92,7 @@ scenario5.set_cases(
     "You miss out on a potential career-defining opportunity."
 )
 
-scenario6 = Scenario(3, "Game-of-Chance/Graphics/unexpected_client.png")
+scenario6 = Scenario(3, "Graphics/unexpected_client.png")
 scenario6.set_cases(
     "A client decides to visit the office unexpectedly. What will you do?",
     # First
@@ -105,7 +105,7 @@ scenario6.set_cases(
     "The client needed information only you could provide, leading to a missed opportunity.",
 )
 
-scenario7 = Scenario(3, 'Game-of-Chance/Graphics/fire_drill.png')
+scenario7 = Scenario(3, 'Graphics/fire_drill.png')
 scenario7.set_cases(
     "Your office conducts an unexpected fire safety drill. "
     "\nDo you take it seriously or use it as a chance to catch up outside with colleagues?",
@@ -119,7 +119,7 @@ scenario7.set_cases(
     "You miss some critical safety instructions."
 )
 
-scenario8 = Scenario(4, "Game-of-Chance/Graphics/networking_event.png")
+scenario8 = Scenario(4, "Graphics/networking_event.png")
 scenario8.set_cases(
     "You receive a last-minute invitation to a networking event."
     "\nDo you attend or decline to have a quiet evening at home?",
@@ -131,7 +131,7 @@ scenario8.set_cases(
     "You hear later about missed opportunities from the event.")
 
 # FORTH LAYER
-scenario9 = Scenario(4, "Game-of-Chance/Graphics/meeting.png")
+scenario9 = Scenario(4, "Graphics/meeting.png")
 scenario9.set_cases(
     "You receive a last-minute request to join an additional meeting,"
     "\nbut you’re already swamped with work. Do you attend the meeting or decline?",
@@ -143,7 +143,7 @@ scenario9.set_cases(
     "You missed out on important information shared in the meeting!!")
 
 # Scenario 3: Evening Jog
-scenario10 = Scenario(4, "Game-of-Chance/Graphics/exercise.png")
+scenario10 = Scenario(4, "Graphics/exercise.png")
 scenario10.set_cases(
     "Feeling energetic, you consider going for an evening jog. Do you hit the park or the gym treadmill?",
     "Jog in the park.",
@@ -155,7 +155,7 @@ scenario10.set_cases(
 )
 
 # Scenario 5: Grocery Shopping
-scenario11 = Scenario(4, "Game-of-Chance/Graphics/grocery.png")
+scenario11 = Scenario(4, "Graphics/grocery.png")
 scenario11.set_cases(
     "You realize you need groceries. Do you stop by the store on your way home or order delivery?",
     "Visit the grocery store.",
@@ -167,7 +167,7 @@ scenario11.set_cases(
 )
 
 # Scenario 6: Dinner Options
-scenario12 = Scenario(4, "Game-of-Chance/Graphics/dinner.png")
+scenario12 = Scenario(4, "Graphics/dinner.png")
 scenario12.set_cases(
     "It's time for dinner, but you're not in the mood to cook. Do you order in or go out to eat?",
     "Order in.",
@@ -179,7 +179,7 @@ scenario12.set_cases(
 )
 
 # Scenario 7: Relaxing Activities
-scenario13 = Scenario(4, "Game-of-Chance/Graphics/relax.png")
+scenario13 = Scenario(4, "Graphics/relax.png")
 scenario13.set_cases(
     "You feel the need to unwind. Do you read a book or watch a movie?",
     "Read a book.",
@@ -191,7 +191,7 @@ scenario13.set_cases(
 )
 
 # Scenario 8: Online Coursework
-scenario14 = Scenario(4, "Game-of-Chance/Graphics/online_class.png")
+scenario14 = Scenario(4, "Graphics/online_class.png")
 scenario14.set_cases(
     "You remember you’ve signed up for an online course. Do you catch up on lessons tonight or decide to postpone?",
     "Catch up on the course.",
@@ -203,7 +203,7 @@ scenario14.set_cases(
 )
 
 # Scenario 9: Evening Class
-scenario15 = Scenario(4, "Game-of-Chance/Graphics/local_class.png")
+scenario15 = Scenario(4, "Graphics/local_class.png")
 scenario15.set_cases(
     "You have the option to attend a local evening class. Which will you choose?",
     "Attend yoga class.",
@@ -391,9 +391,8 @@ class Game:
         self.initialise_buttons()
         self.current_screen = ""
         self.logfile = open("luckometer.log", "w")  # Event Logging File
-        self.main_music = pygame.mixer.Sound(os.path.join("Game-of-Chance/audio", "intro.wav"))
-        self.end_music = pygame.mixer.Sound(
-            os.path.join("Game-of-Chance/audio", "not-really-lost.wav")
+        self.main_music = pygame.mixer.Sound(os.path.join("audio/intro.wav"))
+        self.end_music = pygame.mixer.Sound(os.path.join("audio/not-really-lost.wav")
         )
 
     # Displaying Section
@@ -646,7 +645,7 @@ class Game:
         self.create_button("continue", "CONTINUE")
 
     def display_start_screen(self):
-        self.display_image("Game-of-Chance/Graphics/title_screen.png", 0, 0)
+        self.display_image("Graphics/title_screen.png", 0, 0)
         self.draw_button("start", y=176)
         self.draw_button("resume", y=225)
         self.draw_button("quit", y=274)
@@ -655,7 +654,7 @@ class Game:
         self.current_screen = "start"
 
     def display_instructions_screen(self):
-        self.display_image("Game-of-Chance/Graphics/instructions.png", 0, 0)
+        self.display_image("Graphics/instructions.png", 0, 0)
 
         # Defining the instructions text
         instruction = """
@@ -698,7 +697,7 @@ class Game:
         self.draw_button("continue", 448, 340)
 
     def display_end_screen(self):
-        self.display_image("Game-of-Chance/Graphics/end_screen.png", 0, 0)
+        self.display_image("Graphics/end_screen.png", 0, 0)
 
         if self.luck_score > 50:
             self.display_text(
