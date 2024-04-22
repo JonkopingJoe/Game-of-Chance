@@ -189,18 +189,12 @@ class Game:
         for i, line_surface in enumerate(line_surfaces):
             self.screen.blit(line_surface, (x, y + i * (line_surface.get_height())))
 
-        return None
-
     def display_scenario(self, scenario: Scenario) -> None:
-        # button1 = Button(scenario.cases["choice1"], (167, 66, 132), WHITE)
-        # button2 = Button(scenario.cases["choice2"], (167, 66, 132), WHITE)
-        # self.display_button(button1, 400, 300)
-        # self.display_button(button2, 400, 325)
         self.create_button(f"s{scenario.scene_num}_choice1", scenario.cases["choice1"])
         self.create_button(f"s{scenario.scene_num}_choice2", scenario.cases["choice2"])
         self.screen.fill("white")
         self.display_text(f"Luck Score: {self.luck_score}", BLACK, x=10, y=10, size=12)
-        self.display_text(scenario.caption, BLACK, x=45, y=30, size=20)
+        self.display_text(scenario.caption, BLACK, x=45, y=40, size=20)
         self.display_image(scenario.picture_path, 25, 137)
         self.draw_button(f"s{scenario.scene_num}_choice1", 186, 320)
         self.draw_button(f"s{scenario.scene_num}_choice2", 246, 320)
@@ -208,11 +202,6 @@ class Game:
 
         self.log_event(f"{scenario} displayed")
         self.current_screen = f"{scenario}"
-
-    def display_button(self, button: Button, x: int, y: int) -> None:
-        button.text_rect.center = (x, y)
-        self.screen.blit(button.render_text, button.text_rect)
-        return None
 
     def display_image(self, image_path: str, x: int, y: int) -> None:
         img = pygame.image.load(image_path).convert()
@@ -234,7 +223,8 @@ class Game:
             Which door are you leaving your house through?""",
             # First
             "The Front Door",
-            f"Yay! That stray cat that always gouges\nyour eyes out is nowhere in sight!\n\nLuck +{scenario1.luck_diff}",
+            f"Yay! That stray cat that always gouges"
+            f"\nyour eyes out is nowhere in sight!\n\nLuck +{scenario1.luck_diff}",
             f"OW! That cat is here today, you just got scratched ;(\n\nLuck -{scenario1.luck_diff}",
             # Second
             "The Back Door",
@@ -264,8 +254,8 @@ class Game:
             f"Uh oh, that was a scam website :o\n\nLuck -{scenario3.luck_diff}",
             "Nah",
             f"Good job for not getting scammed, you won a prize!\n\nLuck +{scenario3.luck_diff}",
-            f"You missed they giveaway they were doing\nfor everyone who bought lottery :(\n\nLuck -{scenario3.luck_diff}",
-        )
+            f"You missed they giveaway they were doing"
+            f"\nfor everyone who bought lottery :(\n\nLuck -{scenario3.luck_diff}")
 
         # scenario four
         scenario4 = Scenario(4, "Graphics/wait_for_train.png")
@@ -273,21 +263,19 @@ class Game:
             """At the train station,
             you just bought coffee, oh no! that train is here!""",
             "Wait for next train",
-            f"The next train came early!\nYou enjoyed your coffee and got to work on time.\n\nLuck +{scenario4.luck_diff}",
+            f"The next train came early!"
+            f"\nYou enjoyed your coffee and got to work on time.\n\nLuck +{scenario4.luck_diff}",
             f"the train was terminated :|\n\nLuck -{scenario4.luck_diff}",
             "RUN!!",
             f"You caught the train! Off to work we go!\n\nLuck +{scenario4.luck_diff}",
-            f"You caught the train, but at what cost...\nYou are now drenched in coffee.\n\nLuck -{scenario4.luck_diff}",
+            f"You caught the train, but at what cost..."
+            f"\nYou are now drenched in coffee.\n\nLuck -{scenario4.luck_diff}",
         )
 
         self.scenarios_Linked_list = get_game_scenarios(
-            [scenario1, scenario2, scenario3, scenario4]
-        )
+            [scenario1, scenario2, scenario3, scenario4])
 
         return self.scenarios_Linked_list
-
-    def main_menu(self) -> None:
-        self.display_image("pictures/game_background.png")
 
     def log_event(self, event):
         """Logs events and the timestamp when they occur."""
@@ -350,7 +338,7 @@ class Game:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                     self.log_event("SPACEBAR PRESSED")
 
-                    # Add Music Accompanyment
+                    # Add Music Accompaniment
                     pygame.mixer.Sound.set_volume(self.main_music, 0.3)
                     self.main_music.play(loops=6)
                     self.log_event("Intro Music Playing")
@@ -412,7 +400,7 @@ class Game:
                 if self.buttons["continue"].is_clicked():
                     self.log_event("CONTINUE CLICKED")
 
-                    # Second Music Accompanyment
+                    # Second Music Accompaniment
                     self.main_music.stop()
                     self.log_event("Intro Music Stopping")
                     pygame.mixer.Sound.set_volume(self.end_music, 0.3)
@@ -460,8 +448,7 @@ class Game:
         self.create_button("continue", "CONTINUE")
 
     def display_start_screen(self):
-        screen = pygame.image.load("Graphics/title_screen.png").convert()
-        self.screen.blit(screen, (0, 0))
+        self.display_image("Graphics/title_screen.png", 0, 0)
         self.draw_button("start", 176)
         self.draw_button("resume", 225)
         self.draw_button("quit", 274)
@@ -470,8 +457,7 @@ class Game:
         self.current_screen = "start"
 
     def display_instructions_screen(self):
-        screen = pygame.image.load("Graphics/instructions.png").convert()
-        self.screen.blit(screen, (0, 0))
+        self.display_image("Graphics/instructions.png", 0, 0)
 
         # Defining the instructions text
         instruction = """
@@ -514,19 +500,13 @@ class Game:
         self.draw_button("continue", 340, 448)
 
     def display_end_screen(self):
-        screen = pygame.image.load("Graphics/end_screen.png").convert()
-        self.screen.blit(screen, (0, 0))
+        self.display_image("Graphics/end_screen.png", 0, 0)
 
         if self.luck_score > 50:
             self.display_text(
-                f"""Your Final Luck Score is {self.luck_score}. 
-It's your lucky day!""",
-                (
-                    0,
-                    0,
-                    0,
-                ),
-                (255, 255, 255),
+                f"Your Final Luck Score is {self.luck_score}.\nIt's your lucky day!",
+                BLACK,
+                WHITE,
                 y=100,
                 size=20,
             )
@@ -564,11 +544,6 @@ Uh oh, a black cat may be around the corner!""",
 
         self.log_event("END SCREEN DISPLAYED")
         self.current_screen = "end"
-
-    def get_text_rect(self, text, x, y) -> tuple:
-        rendered_text = self.font.render(text, True, (255, 255, 255))
-        text_rect = rendered_text.get_rect(center=(x, y))
-        return rendered_text, text_rect
 
     def run(self):
         self.screen.fill((0, 0, 0))
