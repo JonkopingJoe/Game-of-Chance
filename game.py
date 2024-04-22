@@ -1,8 +1,10 @@
 import pygame
-from random import randint, choice, shuffle
+from random import choice
 from scenario import Scenario
 from button import Button
-from linkedlist import LinkedList
+from scenarios_tree import get_game_scenarios
+# from linkedlist import LinkedList
+from linkedlist import Linkedlist
 from sys import exit
 
 
@@ -20,14 +22,14 @@ class Game:
         self.screen = pygame.display.set_mode((600, 400))
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("monospace", FONT_SIZE)
+        self.luck_score = 100
+        self.game_scenarios = get_game_scenarios() 
         self.buttons = {}
         self.initialise_buttons()
-        self.luck_score = 100
 
 
-        self.state = "menu"
+        self.state = "start"
         self.events_log = open('luckometer_log.txt', 'w')
-        self.scenarios_Linked_list = None
         self.current_screen = None
 
     # BUTTONS SECTINO
@@ -38,12 +40,30 @@ class Game:
 
     def draw_button(self, name, y, x='centre'):
         if x == 'centre':
-            self.buttons[name].rect.topleft = (
-                (600 - self.buttons[name].width)/2, y)
+            self.buttons[name].rect.topleft = ((600 - self.buttons[name].width)/2, y)
         else:
             self.buttons[name].rect.topleft = (x, y)
-        self.screen.blit(
-            self.buttons[name].image, (self.buttons[name].rect.x, self.buttons[name].rect.y))
+        self.screen.blit(self.buttons[name].image, (self.buttons[name].rect.x, self.buttons[name].rect.y))
+    
+    def initialise_buttons(self):
+        self.create_button("start", "START")
+        self.create_button("quit", "QUIT")
+        self.create_button("play_again", "PLAY AGAIN")
+
+
+        # All the scenarios buttons
+        game_scenarios_linkedlist = self.game_scenarios.copy() 
+        current_Linkedlist_node = game_scenarios_linkedlist.head
+
+        count = 1
+        while(current_Linkedlist_node):
+            current_scenarios = current_Linkedlist_node.data
+
+            self.create_button(f"scenario{count}_choice1", current_scenarios.cases["choice1"])
+            self.create_button(f"scenario{count}_choice2", current_scenarios.cases["choice2"])
+
+            current_Linkedlist_node = current_Linkedlist_node.next
+            count += 1
 
     # DISPLAYING SECTION
 
@@ -58,18 +78,22 @@ class Game:
 
         return None
 
-    def display_scenario(self, scenario: Scenario) -> None:
-        self.create_button(scenario.cases["choice1"], scenario.cases["choice1"], BLACK, WHITE)
-        self.create_button(scenario.cases["choice2"], scenario.cases["choice1"], BLACK, WHITE)
+    def display_scenario(self, scenario: Scenario, scenario_number: int) -> None:
+        self.screen.fill(WHITE)
+        self.display_text(scenario.caption, BLACK, WHITE, 10, 10)
+        try: 
+            self.display_image(scenario.picture_path, 25, 70)
+        except: 
+            self.display_image("Graphics/back_door_safe.png", 25, 50)
 
-
-        self.display_text(scenario.caption, BLACK, WHITE, 100, 100)
-        self.display_image(scenario.picture_path, 25, 137)
-        self.draw_button(scenario.cases["choice1"], 150)
+        self.draw_button(f"scenario{scenario_number}_choice1", 180, 300)
+        self.draw_button(f"scenario{scenario_number}_choice2", 220, 300)
     
 
-    def show_scenario(self): 
-        pass
+    def run_scenario(self, scenario: Scenario, scenario_number: int) -> bool:
+        if self.buttons[f"scenario{scenario_number}_choice1"].is_clicked(): 
+            pass 
+
 
     def display_image(self, image_path: str, x: int, y: int) -> None:
         img = pygame.image.load(image_path).convert()
@@ -88,7 +112,7 @@ class Game:
         instructions_bg = pygame.image.load(
             'Graphics/instructions.png').convert()
         self.screen.blit(instructions_bg, (0, 0))
-        self.draw_button('menu', 10, 530)
+        # self.draw_button('menu', 10, 530)
 
         # Get the screen width and height
         screen_width, screen_height = self.screen.get_size()
@@ -129,7 +153,6 @@ class Game:
 
     def handle_events(self):
         log_events = lambda event: self.events_log.write(f"{event}\n")
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (self.current_screen in ('start', 'end') and self.buttons['quit'].is_clicked()):
                 log_events('QUIT CLICKED')
@@ -137,10 +160,10 @@ class Game:
                 pygame.quit()
                 exit()
 
-            if self.buttons['menu'].is_clicked():
-                self.current_screen = 'start'
-                self.display_start_screen()
-                log_events('MENU CLICKED')
+            # if self.buttons['menu'].is_clicked():
+            #     self.current_screen = 'start'
+            #     self.display_start_screen()
+            #     log_events('MENU CLICKED')
 
             if self.current_screen == 'start':
                 if self.buttons['start'].is_clicked():
@@ -148,16 +171,33 @@ class Game:
                     self.display_instructions_screen()
                     log_events('START CLICKED')
 
-                # if self.buttons['resume'].is_clicked():
-
-                #     log_events('RESUME CLICKED')
-
             if self.current_screen == 'instruction':
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                    self.display_scenarios()
-                    self.current_screen = 'end'
-                    self.display_end_screen()
+                    # self.display_scenarios()
+                    # self.current_screen = 'end'
+                    # self.display_end_screen()
                     log_events('INSTRUCTIONS PASSED')
+                    self.current_screen = "scenario"
+
+            
+            if self.current_screen == "scenario": 
+
+                game_scenarios_linkedlist = self.game_scenarios.copy() 
+                current_Linkedlist_node = game_scenarios_linkedlist.head 
+                count = 1
+
+                self.display_scenario(current_Linkedlist_node.data, 1)
+
+                # while(current_Linkedlist_node):
+                #     current_scenario = current_Linkedlist_node.data
+
+                #     self.display_scenario(current_scenario, count)
+
+                #     current_Linkedlist_node = current_Linkedlist_node.next
+                #     count += 1
+
+                
+
         
 
             if self.current_screen == 'end':
