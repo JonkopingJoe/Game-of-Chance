@@ -1,8 +1,8 @@
 import pygame
+
+
 class Button(pygame.sprite.Sprite):
-    def __init__(
-        self, text: str, text_color: tuple, bg_color: tuple, font, size
-    ):
+    def __init__(self, text: str, text_color: tuple, bg_color: tuple, font, size):
         super().__init__()
 
         button_font = pygame.font.SysFont(font, size)
@@ -32,7 +32,8 @@ class Button(pygame.sprite.Sprite):
         action = False
         mouse_pos = pygame.mouse.get_pos()
 
-        if self.rect.collidepoint(mouse_pos):  # Check if the mouse cursor is over the button's rectangle (self.rect)
+        # Check if the mouse cursor is over the button's rectangle (self.rect)
+        if self.rect.collidepoint(mouse_pos):
 
             # check if the left mouse has been clicked that ensure that prolonged clicking will have no effect
             if pygame.mouse.get_pressed()[0] and not self.clicked:
@@ -42,4 +43,3 @@ class Button(pygame.sprite.Sprite):
             self.clicked = False
 
         return action
-
