@@ -28,13 +28,14 @@ scenario1.set_cases(
 
     # First
     "Front Door",
-    "Yay! That stray cat that always "
-    "\ngouges your eyes out is nowhere in sight!\n\nLuck +5",
-    "OW! That cat is here today, you just got scratched ;(",
+    f"Yay! That stray cat that always "
+    f"\ngouges your eyes out is nowhere in sight!\n\nLuck +{scenario1.luck_diff}",
+    f"OW! That cat is here today, you just got scratched ;(\n\nLuck -{scenario1.luck_diff}",
     # Second
     "The Back Door",
-    f"Phew, narrowly escaped that nosy neighbour!\n\nLuck +5",
-    f"Oh no, you tripped over that bucket of water you left out last night!"
+    f"Phew, narrowly escaped that nosy neighbour!\n\nLuck +{scenario1.luck_diff}",
+    f"Oh no, you tripped over that"
+    f"\nbucket of water you left out last night!\n\nLuck -{scenario1.luck_diff}"
     )
 
 
@@ -42,24 +43,25 @@ scenario1.set_cases(
 scenario2 = Scenario(2, "Graphics/puddle_fail.png")
 scenario2.set_cases(
     "While on your way to the train station,"
-    "y\nou see a big puddle on the road, what do you do?",
+    "\nyou see a big puddle on the road, what do you do?",
     "Jump over it",
-    f"Way to go!\nThose long jumps during physical education coming in clutch!\n\nLuck +5",
-    f"Leg days? 404 not found.\nwhat made you think you could do it?",
+    f"Way to go!"
+    f"\nThose long jumps during physical\neducation coming in clutch!\n\nLuck +{scenario2.luck_diff}",
+    f"Leg days? 404 not found.\nwhat made you think you could do it?\n\nLuck -{scenario2.luck_diff}",
     "Walk gently",
-    f"Phew! You made it, slowly but surely.\n\nLuck +5",
-    f"Nuh uh those converse wont hold,\nyour feet are taking a bath."
+    f"Phew! You made it, slowly but surely.\n\nLuck +{scenario2.luck_diff}",
+    f"Nuh uh those converse wont hold,\nyour feet are taking a bath.\n\nLuck -{scenario2.luck_diff}"
     )
 
 scenario3 = Scenario(2, "Graphics/phone_notif.png")
 scenario3.set_cases(
     "Ding! Would you like to buy the lottery?",
     "Yes!",
-    f"Oh my! You won some money!\n\nLuck +5",
-    f"Uh oh, that was a scam website :o",
+    f"Oh my! You won some money!\n\nLuck +{scenario3.luck_diff}",
+    f"Uh oh, that was a scam website :o\n\nLuck -{scenario3.luck_diff}",
     "Nah",
-    f"Good job for not getting scammed, you won a prize!\n\nLuck +5",
-    f"You missed they giveaway they were doing"
+    f"Good job for not getting scammed, you won a prize!\n\nLuck +{scenario3.luck_diff}",
+    f"You missed they giveaway they were doing\n\nLuck -{scenario3.luck_diff}"
     f"\nfor everyone who bought lottery :("
     )
 
@@ -70,148 +72,154 @@ scenario4.set_cases(
     "\nyou just bought coffee, oh no! that train is here!",
     "Wait for next train",
     f"The next train came early!"
-    f"\nYou enjoyed your coffee and got to work on time.",
-    f"the train was terminated :|",
+    f"\nYou enjoyed your coffee and got to work on time.\n\nLuck +{scenario4.luck_diff}",
+    f"the train was terminated :|\n\nLuck -{scenario4.luck_diff}",
     "RUN!!",
-    f"You caught the train! Off to work we go!\n\nLuck +5",
+    f"You caught the train! Off to work we go!\n\nLuck +{scenario4.luck_diff}",
     f"You caught the train, but at what cost..."
-    f"\nYou are now drenched in coffee."
+    f"\nYou are now drenched in coffee.\n\nLuck -{scenario4.luck_diff}"
     )
 
 scenario5 = Scenario(3, "Graphics/unexpected_project.png")
 scenario5.set_cases(
-    "You're offered an unexpected project that is challenging "
-    "\nbut could be a big career boost. What will you do?",
+    "Your boss just offered you a challenging project"
+    "\nthat could make or break you! What will you do?",
     # First
-    "Accept the project.",
-    "The project leads to significant professional growth and recognition.",
-    "The project overwhelms you, impacting your performance on other tasks.",
+    "Accept the project",
+    f"The project made you all right! Way to go!\n\nLuck +{scenario5.luck_diff}",
+    f"Th project broke you :/\n\nLuck -{scenario5.luck_diff}",
     # Second
-    "Decline the project.",
-    "You maintain a manageable workload, ensuring all tasks are done well.",
-    "You miss out on a potential career-defining opportunity."
+    "Decline the project",
+    f"Phew! Dodged a bullet, that was never gonna work!\n\nLuck +{scenario5.luck_diff}",
+    f"Opportunity of a lifetime, down the drain!"
+    f"\n Your boss gave it to your work nemesis instead!\n\nLuck -{scenario5.luck_diff}"
 )
 
 scenario6 = Scenario(3, "Graphics/unexpected_client.png")
 scenario6.set_cases(
-    "A client decides to visit the office unexpectedly. What will you do?",
+    "A client decides to visit the office unexpectedly.\nWhat will you do?",
     # First
-    "Greet the client.",
-    "The client is impressed with your initiative and professionalism.",
-    "You get caught up with the client longer than expected, disrupting your schedule.",
+    "Greet the client",
+    f"Oh my! turns out he's a big shot,"
+    f"\nand you've got his name under yours!\n\nLuck +{scenario6.luck_diff}",
+    f"'Uh- is this not the toilet? Sorry.'"
+    f"\n-The man who is decidedly not a client.\n\nLuck -{scenario6.luck_diff}",
     # Second
-    "Let colleagues handle it.",
-    "Your colleagues handle the situation well, and you focus on your tasks.",
-    "The client needed information only you could provide, leading to a missed opportunity.",
+    "Let him reschedule",
+    f"Turns out he's a scammer! "
+    f"\nGood thing you didn't meet with him\n\nLuck +{scenario6.luck_diff}",
+    f"The man was a big shot and you missed it :o\n\nLuck -{scenario6.luck_diff}",
 )
 
 scenario7 = Scenario(3, 'Graphics/fire_drill.png')
 scenario7.set_cases(
-    "Your office conducts an unexpected fire safety drill. "
-    "\nDo you take it seriously or use it as a chance to catch up outside with colleagues?",
+    "Your office conducts an unexpected fire safety drill."
+    "\nDo you take it seriously?",
     # First
-    "Take it seriously.",
-    "You learn valuable safety information.",
-    "The drill is longer than expected, eating into your work time.",
+    "Take it seriously",
+    f"Whoa, thought that was real.\n\nLuck +{scenario7.luck_diff}",
+    f"You missed out on the chance to talk to your crush!\n\nLuck -{scenario7.luck_diff}",
     # Second
-    "Casual catch-up.",
-    "You strengthen bonds with your colleagues, improving teamwork.",
-    "You miss some critical safety instructions."
+    "Chit-chat",
+    f"Told the best joke ever. Everyone loves me.\n\nLuck +{scenario7.luck_diff}",
+    f"Shoot, your boss is super uptight\nand is shooting you dirty looks\n\nLuck -{scenario7.luck_diff}"
 )
 
 scenario8 = Scenario(4, "Graphics/networking_event.png")
 scenario8.set_cases(
-    "You receive a last-minute invitation to a networking event."
+    "You receive a last-minute invitation\n to a networking event."
     "\nDo you attend or decline to have a quiet evening at home?",
-    "Attend the event.",
-    "You make valuable contacts that could benefit your career.",
-    "The event is dull, and you regret not spending the evening relaxing.",
-    "Decline and stay home.",
-    "You enjoy a restful evening that prepares you for tomorrow.",
-    "You hear later about missed opportunities from the event.")
+    "Attend the event",
+    f"You make valuable contacts \nthat could benefit your career!\n\nLuck +{scenario8.luck_diff}",
+    f"The event is dull,"
+    f"\nand you regret not spending the evening relaxing.\n\nLuck -{scenario8.luck_diff}",
+    "Decline and stay home",
+    f"You enjoy a restful evening \nthat prepares you for tomorrow.\n\nLuck +{scenario8.luck_diff}",
+    f"You hear later about missed \nopportunities from the event.\n\nLuck -{scenario8.luck_diff}")
 
 # FORTH LAYER
 scenario9 = Scenario(4, "Graphics/meeting.png")
 scenario9.set_cases(
-    "You receive a last-minute request to join an additional meeting,"
-    "\nbut you’re already swamped with work. Do you attend the meeting or decline?",
+    "You receive a last-minute request \nto join an additional meeting,"
+    "\nDo you attend the meeting or decline?",
     "Attend",
-    "The meeting turns out to be crucial, and your input is highly valued.",
-    "The meeting is unproductive, and you fall behind on your work :(",
+    f"The meeting turns out to be crucial,"
+    f"\nand your input is highly valued.\n\nLuck +{scenario9.luck_diff}",
+    f"The meeting is unproductive,"
+    f"\nand you fall behind on your work :(\n\nLuck -{scenario9.luck_diff}",
     "Decline",
-    "You made significant progress on your projects by declining. ",
-    "You missed out on important information shared in the meeting!!")
+    f"You made significant progress on your projects by declining.\n\nLuck +{scenario9.luck_diff}",
+    f"You missed out on important information shared in the meeting!!\n\nLuck -{scenario9.luck_diff}")
 
-# Scenario 3: Evening Jog
 scenario10 = Scenario(4, "Graphics/exercise.png")
 scenario10.set_cases(
-    "Feeling energetic, you consider going for an evening jog. Do you hit the park or the gym treadmill?",
+    "Feeling energetic, you consider going for \nan evening jog. Do you hit the park or the gym treadmill?",
     "Jog in the park.",
-    "The fresh air invigorates you, boosting your mood.",
-    "It starts raining heavily, cutting your jog short.",
+    f"The fresh air invigorates you, boosting your mood.\n\nLuck +{scenario10.luck_diff}",
+    f"It starts raining heavily, cutting your jog short.\n\nLuck -{scenario10.luck_diff}",
     "Use the gym treadmill.",
-    "You have a productive workout session and feel great.",
-    "The gym is overcrowded, and you barely get any time on the treadmill."
+    f"You have a productive workout session and feel great.\n\nLuck +{scenario10.luck_diff}",
+    f"The gym is overcrowded,"
+    f"\nand you barely get any time on the treadmill.\n\nLuck -{scenario10.luck_diff}"
 )
 
-# Scenario 5: Grocery Shopping
 scenario11 = Scenario(4, "Graphics/grocery.png")
 scenario11.set_cases(
-    "You realize you need groceries. Do you stop by the store on your way home or order delivery?",
+    "You realize you need groceries. Do you stop\n by the store on your way home or order delivery?",
     "Visit the grocery store.",
-    "You find everything you need on sale.",
-    "The store is crowded, and shopping takes longer than expected.",
+    f"You find everything you need on sale.\n\nLuck +{scenario11.luck_diff}",
+    f"The store is crowded, and shopping takes longer than expected.\n\nLuck -{scenario11.luck_diff}",
     "Order groceries for delivery.",
-    "The delivery is quick and saves you time.",
-    "The delivery is late and missing items."
+    f"The delivery is quick and saves you time.\n\nLuck +{scenario11.luck_diff}",
+    f"The delivery is late and missing items.\n\nLuck -{scenario11.luck_diff}"
 )
 
-# Scenario 6: Dinner Options
 scenario12 = Scenario(4, "Graphics/dinner.png")
 scenario12.set_cases(
-    "It's time for dinner, but you're not in the mood to cook. Do you order in or go out to eat?",
+    "It's time for dinner, but you're not in\nthe mood to cook. Do you order in or go out to eat?",
     "Order in.",
-    "The food arrives quickly and tastes delicious.",
-    "The order is wrong and arrives late.",
+    f"The food arrives quickly and tastes delicious.\n\nLuck +{scenario12.luck_diff}",
+    f"The order is wrong and arrives late.\n\nLuck -{scenario12.luck_diff}",
     "Go out to eat.",
-    "You enjoy a great meal out and feel content.",
-    "The restaurant is full, and you end up waiting a long time."
+    f"You enjoy a great meal out and feel content.\n\nLuck +{scenario12.luck_diff}",
+    f"The restaurant is full, and you end up waiting a long time.\n\nLuck -{scenario12.luck_diff}"
 )
 
-# Scenario 7: Relaxing Activities
 scenario13 = Scenario(4, "Graphics/relax.png")
 scenario13.set_cases(
-    "You feel the need to unwind. Do you read a book or watch a movie?",
+    "You feel the need to unwind.\nDo you read a book or watch a movie?",
     "Read a book.",
-    "You get completely absorbed in an amazing story.",
-    "You find it hard to focus and don’t enjoy the book.",
+    f"You get completely absorbed\nin an amazing story.\n\nLuck +{scenario13.luck_diff}",
+    f"You find it hard to focus\nand don’t enjoy the book.\n\nLuck +{scenario13.luck_diff}",
     "Watch a movie.",
-    "You watch a fantastic movie that you thoroughly enjoy.",
-    "The movie is disappointing, and you regret not choosing another activity."
+    f"You watch a fantastic movie\nthat you thoroughly enjoy.\n\nLuck +{scenario13.luck_diff}",
+    f"The movie is disappointing,"
+    f"\nand you regret not choosing another activity.\n\nLuck +{scenario13.luck_diff}"
 )
 
-# Scenario 8: Online Coursework
 scenario14 = Scenario(4, "Graphics/online_class.png")
 scenario14.set_cases(
-    "You remember you’ve signed up for an online course. Do you catch up on lessons tonight or decide to postpone?",
-    "Catch up on the course.",
-    "The coursework is engaging, and you feel productive.",
-    "You’re too tired to absorb the information, wasting your time.",
-    "Postpone to another day.",
-    "You take the evening off, which proves to be the right choice.",
-    "You fall behind and stress about catching up later."
+    "You remember you’ve signed up\nfor an online course. "
+    "\nDo you catch up on lessons tonight or decide to postpone?",
+    "Catch up",
+    f"The coursework is engaging,\nand you feel productive.\n\nLuck +{scenario14.luck_diff}",
+    f"You’re too tired to absorb\nthe information, wasting your time.\n\nLuck -{scenario14.luck_diff}",
+    "Postpone",
+    f"You take the evening off,\nwhich proves to be the right choice.\n\nLuck +{scenario14.luck_diff}",
+    f"You fall behind and stress\nabout catching up later.\n\nLuck -{scenario14.luck_diff}"
 )
 
-# Scenario 9: Evening Class
 scenario15 = Scenario(4, "Graphics/local_class.png")
 scenario15.set_cases(
-    "You have the option to attend a local evening class. Which will you choose?",
+    "You have the option to attend a \nlocal evening class. Which will you choose?",
     "Attend yoga class.",
-    "The yoga session is rejuvenating, and you leave feeling refreshed and centered.",
-    "The class is overbooked, and you find it hard to relax in the crowded room.",
+    f"The yoga session is rejuvenating,"
+    f"\nand you leave feeling refreshed and centered.\n\nLuck +{scenario15.luck_diff}",
+    f"The class is overbooked,"
+    f"\nand you find it hard to relax in the crowded room.\n\nLuck +{scenario15.luck_diff}",
     "Attend cooking class.",
-    "You learn a new recipe that becomes a new favorite at home.",
-    "The class moves at a fast pace, and you struggle to keep up."
+    f"You learn a new recipe \nthat becomes a new favorite at home.\n\nLuck +{scenario15.luck_diff}",
+    f"The class moves at a fast pace,\nand you struggle to keep up.\n\nLuck +{scenario15.luck_diff}"
 )
 
 
@@ -384,7 +392,7 @@ class Game:
         self.screen = pygame.display.set_mode((600, 400))
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("monospace", FONT_SIZE)
-        self.luck_score = randint(0, 20)
+        self.luck_score = randint(5, 20)
         self.scenarios_Linked_list = None
         self.current_state = None
         self.buttons = {}
