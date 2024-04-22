@@ -10,14 +10,17 @@ WHITE = (255, 255, 255)
 FONT_SIZE = 12
 screen_width = 600
 screen_height = 400
+
+
 class TreeNode:
     def __init__(self, data):
         self.data = data
         self.left = None
         self.right = None
 
+
 # ROOT (FIRST LAYER)
-scenario1 = Scenario("Graphics/back_door_safe.png")
+scenario1 = Scenario(1, "Graphics/back_door_safe.png")
 scenario1.set_cases(
     """The Day Begins.
     Let's get you to work! 
@@ -35,7 +38,7 @@ scenario1.set_cases(
 
 
 # SECOND LAYER
-scenario2 = Scenario("Graphics/puddle_fail.png")
+scenario2 = Scenario(2, "Graphics/puddle_fail.png")
 scenario2.set_cases(
     "While on your way to the train station,"
     "y\nou see a big puddle on the road, what do you do?",
@@ -47,7 +50,7 @@ scenario2.set_cases(
     f"Nuh uh those converse wont hold,\nyour feet are taking a bath."
     )
 
-scenario3 = Scenario("Graphics/phone_notif.png")
+scenario3 = Scenario(2, "Graphics/phone_notif.png")
 scenario3.set_cases(
     "Ding! Would you like to buy the lottery?",
     "Yes!",
@@ -60,7 +63,7 @@ scenario3.set_cases(
     )
 
 # THIRD LAYER
-scenario4 = Scenario("Graphics/wait_for_train.png")
+scenario4 = Scenario(3, "Graphics/wait_for_train.png")
 scenario4.set_cases(
     "At the train station,"
     "\nyou just bought coffee, oh no! that train is here!",
@@ -74,7 +77,7 @@ scenario4.set_cases(
     f"\nYou are now drenched in coffee."
     )
 
-scenario5 = Scenario("Graphics/unexpected_project.png")
+scenario5 = Scenario(3, "Graphics/unexpected_project.png")
 scenario5.set_cases(
     "You're offered an unexpected project that is challenging "
     "\nbut could be a big career boost. What will you do?",
@@ -88,7 +91,7 @@ scenario5.set_cases(
     "You miss out on a potential career-defining opportunity."
 )
 
-scenario6 = Scenario("Graphics/unexpected_client.png")
+scenario6 = Scenario(3, "Graphics/unexpected_client.png")
 scenario6.set_cases(
     "A client decides to visit the office unexpectedly. What will you do?",
     # First
@@ -101,7 +104,7 @@ scenario6.set_cases(
     "The client needed information only you could provide, leading to a missed opportunity.",
 )
 
-scenario7 = Scenario('Graphics/fire_drill.png')
+scenario7 = Scenario(3, 'Graphics/fire_drill.png')
 scenario7.set_cases(
     "Your office conducts an unexpected fire safety drill. "
     "\nDo you take it seriously or use it as a chance to catch up outside with colleagues?",
@@ -115,7 +118,7 @@ scenario7.set_cases(
     "You miss some critical safety instructions."
 )
 
-scenario8 = Scenario("Graphics/networking_event.png")
+scenario8 = Scenario(4, "Graphics/networking_event.png")
 scenario8.set_cases(
     "You receive a last-minute invitation to a networking event."
     "\nDo you attend or decline to have a quiet evening at home?",
@@ -127,7 +130,7 @@ scenario8.set_cases(
     "You hear later about missed opportunities from the event.")
 
 # FORTH LAYER
-scenario9 = Scenario("Graphics/meeting.png")
+scenario9 = Scenario(4, "Graphics/meeting.png")
 scenario9.set_cases(
     "You receive a last-minute request to join an additional meeting,"
     "\nbut you’re already swamped with work. Do you attend the meeting or decline?",
@@ -139,7 +142,7 @@ scenario9.set_cases(
     "You missed out on important information shared in the meeting!!")
 
 # Scenario 3: Evening Jog
-scenario10 = Scenario("Graphics/exercise.png")
+scenario10 = Scenario(4, "Graphics/exercise.png")
 scenario10.set_cases(
     "Feeling energetic, you consider going for an evening jog. Do you hit the park or the gym treadmill?",
     "Jog in the park.",
@@ -151,7 +154,7 @@ scenario10.set_cases(
 )
 
 # Scenario 5: Grocery Shopping
-scenario11 = Scenario("Graphics/grocery.png")
+scenario11 = Scenario(4, "Graphics/grocery.png")
 scenario11.set_cases(
     "You realize you need groceries. Do you stop by the store on your way home or order delivery?",
     "Visit the grocery store.",
@@ -163,7 +166,7 @@ scenario11.set_cases(
 )
 
 # Scenario 6: Dinner Options
-scenario12 = Scenario("Graphics/dinner.png")
+scenario12 = Scenario(4, "Graphics/dinner.png")
 scenario12.set_cases(
     "It's time for dinner, but you're not in the mood to cook. Do you order in or go out to eat?",
     "Order in.",
@@ -175,7 +178,7 @@ scenario12.set_cases(
 )
 
 # Scenario 7: Relaxing Activities
-scenario13 = Scenario("Graphics/relax.png")
+scenario13 = Scenario(4, "Graphics/relax.png")
 scenario13.set_cases(
     "You feel the need to unwind. Do you read a book or watch a movie?",
     "Read a book.",
@@ -187,7 +190,7 @@ scenario13.set_cases(
 )
 
 # Scenario 8: Online Coursework
-scenario14 = Scenario("Graphics/online_class.png")
+scenario14 = Scenario(4, "Graphics/online_class.png")
 scenario14.set_cases(
     "You remember you’ve signed up for an online course. Do you catch up on lessons tonight or decide to postpone?",
     "Catch up on the course.",
@@ -199,7 +202,7 @@ scenario14.set_cases(
 )
 
 # Scenario 9: Evening Class
-scenario15 = Scenario("Graphics/local_class.png")
+scenario15 = Scenario(4, "Graphics/local_class.png")
 scenario15.set_cases(
     "You have the option to attend a local evening class. Which will you choose?",
     "Attend yoga class.",
@@ -210,64 +213,73 @@ scenario15.set_cases(
     "The class moves at a fast pace, and you struggle to keep up."
 )
 
-# Scenario 11: Social Media Detox
-scenario16 = Scenario("Graphics/social_detox.png")
-scenario16.set_cases(
-    "You consider taking a break from social media for the evening."
-    "\nDo you follow through with a detox, or end up scrolling through feeds?",
-    "Complete the detox.",
-    "The break from screens improves your sleep and mental clarity.",
-    "You feel out of the loop and a bit isolated.",
-    "Scroll through social media.",
-    "You catch up on news and engage with friends, feeling connected.",
-    "You spend too much time online and go to bed late, feeling drained."
-)
 
 # Scenarios Tree
-root = TreeNode(scenario1)
-
-# Second Level 
-second_left_branch = TreeNode(scenario2)
-second_right_branch = TreeNode(scenario3)
+Node1 = TreeNode(scenario1)
+# Second Level
+Node2 = TreeNode(scenario2)
+Node3 = TreeNode(scenario3)
 
 # Third Level 
-third_left_branch_left = TreeNode(scenario4)
-third_left_branch_right = TreeNode(scenario5)
+Node4 = TreeNode(scenario4)
+Node5 = TreeNode(scenario5)
 
-third_rigth_branch_left = TreeNode(scenario6)
-third_right_branch_right = TreeNode(scenario7)
+Node6 = TreeNode(scenario6)
+Node7 = TreeNode(scenario7)
 
 # Fourth Level 
-third_left_branch_left.left = TreeNode(scenario8)
-third_left_branch_left.right= TreeNode(scenario9)
+Node8 = TreeNode(scenario8)
+Node9 = TreeNode(scenario9)
 
-third_left_branch_right.left = TreeNode(scenario9)
-third_left_branch_right.right = TreeNode(scenario10)
+Node10 = TreeNode(scenario10)
+Node11 = TreeNode(scenario11)
 
-third_rigth_branch_left.left = TreeNode(scenario11)
-third_rigth_branch_left.right = TreeNode(scenario12)
+Node12 = TreeNode(scenario12)
+Node13 = TreeNode(scenario13)
 
-third_right_branch_right.left = TreeNode(scenario13)
-third_right_branch_right.left= TreeNode(scenario14)
+Node14 = TreeNode(scenario14)
+Node15 = TreeNode(scenario15)
 
-# TREE SECTION
-second_left_branch.left = TreeNode(third_left_branch_left)
-second_left_branch.right = TreeNode(third_left_branch_right)
+# building the tree
+root = TreeNode(scenario1)
+# 2ND LEVEL
+root.left = Node2
+root.right = Node3
+# 3RD LEVEL
+Node2.left = Node4
+Node2.right = Node5
 
-second_right_branch.left = TreeNode(third_rigth_branch_left)
-second_right_branch.right = TreeNode(third_right_branch_right)
+Node3.left = Node6
+Node3.right = Node7
+#4TH LEVEL
+Node4.left = Node8
+Node4.right = Node9
 
-# # Main Tree
-root.left = (second_left_branch)
-root.right = (second_right_branch)
+Node5.left = Node10
+Node5.right = Node11
 
-def get_path(current):
-    scenarios = []
-    if current is not None:
-        scenarios.append(choice[current.left, current.right])
-        scenarios.extend(get_path(current.left))
-        scenarios.extend(get_path(current.right))
-    return scenarios
+Node6.left = Node12
+Node6.right = Node13
+
+Node7.left = Node14
+Node7.right = Node15
+
+
+def get_path(root):
+    if root is None:
+        return []
+    path = [root.data]
+    if root.left is None and root.right is None:
+        return path
+    elif root.left is None:
+        return path + get_path(root.right)
+    elif root.right is None:
+        return path + get_path(root.left)
+    else:
+        if choice([True, False]):
+            return path + get_path(root.left)
+        else:
+            return path + get_path(root.right)
 
 
 class ListNode:
@@ -290,6 +302,7 @@ class ListNode:
         except Exception as e:
             print("An error occured while creating a node, please check the input values!", e)
 
+
 class LinkedList:
     def __init__(self):
         '''
@@ -301,7 +314,7 @@ class LinkedList:
             print("An error occured. No parameter needed!",e)
 
     def append(self, value):
-        '''
+        """
         Create a new node and append it at the end of the linked list
 
         Args:
@@ -309,7 +322,7 @@ class LinkedList:
 
         Returns:
         None
-        '''
+        """
         try:
             new_node = ListNode(value)
             if not self.head:
@@ -323,7 +336,7 @@ class LinkedList:
             print("An error occured while appending a node, please check the input values!", e)
 
     def to_list(self):
-        '''
+        """
         Convert the linked list to a list
 
         Args:
@@ -331,7 +344,7 @@ class LinkedList:
 
         Returns:
         -elements: A list of the elements in the linked list
-        '''
+        """
         try:
             elements = []
             current = self.head
@@ -341,6 +354,7 @@ class LinkedList:
             return elements
         except Exception as e:
             print("An error occured while converting the linked list to a list, please check the input values!", e)
+
 
 def get_game_scenarios(instances_list):
     '''
@@ -361,6 +375,7 @@ def get_game_scenarios(instances_list):
     except Exception as e:
         print("List needed to be passed, please check input.", e)
 
+
 class Game:
     def __init__(self):
         pygame.init()
@@ -372,7 +387,6 @@ class Game:
         self.luck_score = randint(0, 20)
         self.scenarios_Linked_list = None
         self.current_state = None
-        self.initialize_game_scenarios_list()
         self.buttons = {}
         self.initialise_buttons()
         self.current_screen = ""
@@ -431,75 +445,6 @@ class Game:
         self.screen.blit(img, (x, y))
         return None
 
-    def initialize_game_scenarios_list(self) -> LinkedList:
-        """
-        This method initializes the game scenarios linked list and returns it.
-        Each scenario will be a node in a linked list.
-        You can traverse the list by calling node.next.
-        """
-
-        # scenario one
-        scenario1 = Scenario(1, "Graphics/scenario1_leave_house.png")
-        scenario1.set_cases(
-            """The Day Begins.
-            Let’s get you to work! 
-            Which door are you leaving your house through?""",
-            # First
-            "The Front Door",
-            f"Yay! That stray cat that always gouges"
-            f"\nyour eyes out is nowhere in sight!\n\nLuck +{scenario1.luck_diff}",
-            f"OW! That cat is here today, you just got scratched ;(\n\nLuck -{scenario1.luck_diff}",
-            # Second
-            "The Back Door",
-            f"Phew, narrowly escaped that nosy neighbour!\n\nLuck +{scenario1.luck_diff}",
-            f"Oh no, you tripped over that bucket of\nwater you left out last night!\n\nLuck -{scenario1.luck_diff}",
-        )
-
-        # scenario two
-        scenario2 = Scenario(2, "Graphics/puddle_fail.png")
-        scenario2.set_cases(
-            """While on your way to the train station,
-            you see a big puddle on the road, what do you do?""",
-            "Jump over it",
-            f"Way to go!\nThose long jumps during physical education coming in clutch!\n\nLuck +{scenario2.luck_diff}",
-            f"Leg days? 404 not found.\nwhat made you think you could do it?\n\nluck -{scenario2.luck_diff}",
-            "Walk gently",
-            f"Phew! You made it, slowly but surely.\n\nLuck +{scenario2.luck_diff}",
-            f"Nuh uh those converse wont hold,\nyour feet are taking a bath.\n\nLuck -{scenario2.luck_diff}",
-        )
-
-        # scenario three
-        scenario3 = Scenario(3, "Graphics/phone_notif.png")
-        scenario3.set_cases(
-            "Ding! Would you like to buy the lottery?",
-            "Yes!",
-            f"Oh my! You won some money!\n\nLuck +{scenario3.luck_diff}",
-            f"Uh oh, that was a scam website :o\n\nLuck -{scenario3.luck_diff}",
-            "Nah",
-            f"Good job for not getting scammed, you won a prize!\n\nLuck +{scenario3.luck_diff}",
-            f"You missed they giveaway they were doing"
-            f"\nfor everyone who bought lottery :(\n\nLuck -{scenario3.luck_diff}")
-
-        # scenario four
-        scenario4 = Scenario(4, "Graphics/wait_for_train.png")
-        scenario4.set_cases(
-            """At the train station,
-            you just bought coffee, oh no! that train is here!""",
-            "Wait for next train",
-            f"The next train came early!"
-            f"\nYou enjoyed your coffee and got to work on time.\n\nLuck +{scenario4.luck_diff}",
-            f"the train was terminated :|\n\nLuck -{scenario4.luck_diff}",
-            "RUN!!",
-            f"You caught the train! Off to work we go!\n\nLuck +{scenario4.luck_diff}",
-            f"You caught the train, but at what cost..."
-            f"\nYou are now drenched in coffee.\n\nLuck -{scenario4.luck_diff}",
-        )
-
-        self.scenarios_Linked_list = get_game_scenarios(
-            [scenario1, scenario2, scenario3, scenario4])
-
-        return self.scenarios_Linked_list
-
     def log_event(self, event) -> None:
         """Logs events and the timestamp when they occur."""
         timestamp = (
@@ -507,6 +452,10 @@ class Game:
         log_message = f"{timestamp / 1000}s: {event}\n"
         self.logfile.write(log_message)
         print(log_message)
+        return None
+
+    def initialise_scenarios(self):
+        self.scenarios_Linked_list = get_game_scenarios(get_path(Node1))
         return None
 
     def handle_events(self) -> None:
@@ -560,6 +509,7 @@ class Game:
             if self.current_screen == "instruction":
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                     self.log_event("SPACEBAR PRESSED")
+                    self.initialise_scenarios()
 
                     # Add Music Accompaniment
                     pygame.mixer.Sound.set_volume(self.main_music, 0.3)
