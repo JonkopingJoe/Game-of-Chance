@@ -140,6 +140,8 @@ class Game:
         self.draw_button('play_again', y=176)
         self.draw_button('quit', y=225)
 
+        self.current_screen = 'end'
+
     # HANDLING EVENTS
 
     def handle_events(self):
@@ -153,14 +155,13 @@ class Game:
                 exit()
 
             if self.buttons['home'].is_clicked():
-                self.current_screen = 'start'
-                self.display_start_screen()
                 log_events('HOME CLICKED')
+                self.display_start_screen()
 
             if self.current_screen == 'start':
                 if self.buttons['start'].is_clicked():
-                    self.display_instructions_screen()
                     log_events('START CLICKED')
+                    self.display_instructions_screen()
 
                 if self.buttons['resume'].is_clicked():
                     log_events('RESUME CLICKED')
