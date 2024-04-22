@@ -430,11 +430,11 @@ scenario10.set_cases(
 
 scenario11 = Scenario(4, "Graphics/grocery.png")
 scenario11.set_cases(
-    "You realize you need groceries. Do you stop\nby the store on your\nway home or order delivery?",
-    "Visit the grocery store.",
+    "You realize you need groceries. Do you stop\nby the store on your way home or order delivery?",
+    "Grocery Store",
     f"You find everything you need on sale.\n\nLuck +{scenario11.luck_diff}",
     f"The store is crowded, \nand shopping takes longer than expected.\n\nLuck -{scenario11.luck_diff}",
-    "Order groceries for delivery.",
+    "Delivery.",
     f"The delivery is quick and saves you time.\n\nLuck +{scenario11.luck_diff}",
     f"The delivery is late and missing items.\n\nLuck -{scenario11.luck_diff}",
 )
@@ -516,9 +516,11 @@ Node15 = TreeNode(scenario15)
 
 # building the tree
 root = Node1
+
 # 2ND LEVEL
 root.left = Node2
 root.right = Node3
+
 # 3RD LEVEL
 Node2.left = Node4
 Node2.right = Node5
@@ -921,7 +923,7 @@ class Game:
                 size=20,
             )
 
-        if 20 < self.luck_score < 50:
+        if 20 <= self.luck_score <= 50:
             self.display_text(
                 f"Your Final Luck Score is {self.luck_score}."
                 f"\nIt's just like any other day.",
