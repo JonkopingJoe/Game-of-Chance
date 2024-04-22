@@ -350,7 +350,7 @@ scenario5.set_cases(
     # First
     "Accept the project",
     f"The project made you all right! Way to go!\n\nLuck +{scenario5.luck_diff}",
-    f"Th project broke you :/\n\nLuck -{scenario5.luck_diff}",
+    f"The project broke you :/\n\nLuck -{scenario5.luck_diff}",
     # Second
     "Decline the project",
     f"Phew! Dodged a bullet, that was never gonna work!\n\nLuck +{scenario5.luck_diff}",
