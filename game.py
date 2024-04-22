@@ -11,6 +11,7 @@ WHITE = (255, 255, 255)
 YELLOW = (255, 255, 0)
 FONT_SIZE = 12
 
+
 class Game:
     def __init__(self):
 
@@ -61,7 +62,6 @@ class Game:
     def display_scenario(self, scenario: Scenario) -> None:
         self.create_button(scenario.cases["choice1"], scenario.cases["choice1"], BLACK, WHITE)
         self.create_button(scenario.cases["choice2"], scenario.cases["choice1"], BLACK, WHITE)
-
 
         self.display_text(scenario.caption, BLACK, WHITE, 100, 100)
         self.display_image(scenario.picture_path, 25, 137)
@@ -148,9 +148,8 @@ class Game:
                     self.display_instructions_screen()
                     log_events('START CLICKED')
 
-                # if self.buttons['resume'].is_clicked():
-
-                #     log_events('RESUME CLICKED')
+                if self.buttons['resume'].is_clicked():
+                    log_events('RESUME CLICKED')
 
             if self.current_screen == 'instruction':
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
