@@ -56,8 +56,8 @@ scenario1.set_cases(
 
     # First
     "Front Door", 
-    f"Yay! That stray cat that always gouges your eyes out is nowhere in sight!",
-    f"OW! That cat is here today, you just got scratched ;(",
+    "Yay! That stray cat that always gouges your eyes out is nowhere in sight!",
+    "OW! That cat is here today, you just got scratched ;(",
     # Second
     "The Back Door",
     f"Phew, narrowly escaped that nosy neighbour!",
@@ -71,12 +71,12 @@ scenario2.set_cases(
     "As you approach the bus stop, you see your bus is already there, about to leave. What do you do?",
     # First
     "Run to catch the bus",
-    f"You run and catch the bus just in time. The driver smiles and nods as you hop on, finding a surprisingly good seat. ",
-    f"You sprint, but just as you reach the door, the bus pulls away. Now you're sweaty and still need to wait for the next one.",
+    "You run and catch the bus just in time. The driver smiles and nods as you hop on, finding a surprisingly good seat. ",
+    "You sprint, but just as you reach the door, the bus pulls away. Now you're sweaty and still need to wait for the next one.",
     # Second
     "Wait for the next bus",
-    f"The next bus arrives quickly, and it's much less crowded than usual. You get a whole seat to yourself.",
-    f"The next bus is delayed, and you're late for work, adding stress to your morning.",
+    "The next bus arrives quickly, and it's much less crowded than usual. You get a whole seat to yourself.",
+    "The next bus is delayed, and you're late for work, adding stress to your morning.",
 )
 
 
@@ -169,7 +169,162 @@ scenario8.set_cases(
 # FORTH LAYER
 
 
+# Scenario 2: Networking Event Invitation
+scenario9 = Scenario("path/to/picture.jpg")
+scenario9.set_cases(
+    "You receive a last-minute invitation to a networking event. Do you attend or decline to have a quiet evening at home?",
+    "Attend the event.",
+    "You make valuable contacts that could benefit your career.",
+    "The event is dull, and you regret not spending the evening relaxing.",
+    "Decline and stay home.",
+    "You enjoy a restful evening that prepares you for tomorrow.",
+    "You hear later about missed opportunities from the event."
+)
 
+# Scenario 3: Evening Jog
+scenario10 = Scenario("path/to/picture.jpg")
+scenario10.set_cases(
+    "Feeling energetic, you consider going for an evening jog. Do you hit the park or the gym treadmill?",
+    "Jog in the park.",
+    "The fresh air invigorates you, boosting your mood.",
+    "It starts raining heavily, cutting your jog short.",
+    "Use the gym treadmill.",
+    "You have a productive workout session and feel great.",
+    "The gym is overcrowded, and you barely get any time on the treadmill."
+)
+
+# Scenario 5: Grocery Shopping
+scenario11 = Scenario("path/to/picture.jpg")
+scenario11.set_cases(
+    "You realize you need groceries. Do you stop by the store on your way home or order delivery?",
+    "Visit the grocery store.",
+    "You find everything you need on sale.",
+    "The store is crowded, and shopping takes longer than expected.",
+    "Order groceries for delivery.",
+    "The delivery is quick and saves you time.",
+    "The delivery is late and missing items."
+)
+
+# Scenario 6: Dinner Options
+scenario12 = Scenario("path/to/picture.jpg")
+scenario12.set_cases(
+    "It's time for dinner, but you're not in the mood to cook. Do you order in or go out to eat?",
+    "Order in.",
+    "The food arrives quickly and tastes delicious.",
+    "The order is wrong and arrives late.",
+    "Go out to eat.",
+    "You enjoy a great meal out and feel content.",
+    "The restaurant is full, and you end up waiting a long time."
+)
+
+# Scenario 7: Relaxing Activities
+scenario13 = Scenario("path/to/picture.jpg")
+scenario13.set_cases(
+    "You feel the need to unwind. Do you read a book or watch a movie?",
+    "Read a book.",
+    "You get completely absorbed in an amazing story.",
+    "You find it hard to focus and don’t enjoy the book.",
+    "Watch a movie.",
+    "You watch a fantastic movie that you thoroughly enjoy.",
+    "The movie is disappointing, and you regret not choosing another activity."
+)
+
+# Scenario 8: Online Coursework
+scenario14 = Scenario("path/to/picture.jpg")
+scenario14.set_cases(
+    "You remember you’ve signed up for an online course. Do you catch up on lessons tonight or decide to postpone?",
+    "Catch up on the course.",
+    "The coursework is engaging, and you feel productive.",
+    "You’re too tired to absorb the information, wasting your time.",
+    "Postpone to another day.",
+    "You take the evening off, which proves to be the right choice.",
+    "You fall behind and stress about catching up later."
+)
+
+# Scenario 9: Evening Class
+scenario15 = Scenario("path/to/picture.jpg")
+scenario15.set_cases(
+    "You have the option to attend a local evening class. Do you go for a yoga class to relax or a cooking class to improve your culinary skills?",
+    "Attend yoga class.",
+    "The yoga session is rejuvenating, and you leave feeling refreshed and centered.",
+    "The class is overbooked, and you find it hard to relax in the crowded room.",
+    "Attend cooking class.",
+    "You learn a new recipe that becomes a new favorite at home.",
+    "The class moves at a fast pace, and you struggle to keep up."
+)
+
+# Scenario 11: Social Media Detox
+scenario16 = Scenario("path/to/picture.jpg")
+scenario16.set_cases(
+    "You consider taking a break from social media for the evening. Do you follow through with a detox, or end up scrolling through feeds?",
+    "Complete the detox.",
+    "The break from screens improves your sleep and mental clarity.",
+    "You feel out of the loop and a bit isolated.",
+    "Scroll through social media.",
+    "You catch up on news and engage with friends, feeling connected.",
+    "You spend too much time online and go to bed late, feeling drained."
+)
+
+
+
+
+# Scenarios Tree
+root = TreeNode(scenario1)
+
+# Second Level 
+second_left_branch = TreeNode(scenario2)
+second_right_branch = TreeNode(scenario3)  
+
+# Third Level 
+third_left_branch_left = TreeNode(scenario4)
+third_left_branch_right = TreeNode(scenario5)
+
+third_rigth_branch_left = TreeNode(scenario6)
+third_right_branch_right = TreeNode(scenario7)
+
+# Fourth Level 
+third_left_branch_left.left = scenario8
+third_left_branch_left.right= scenario9
+
+third_left_branch_right.left = (scenario9)
+third_left_branch_right.right = (scenario10)
+
+
+
+third_rigth_branch_left.left = (scenario11)
+third_rigth_branch_left.right = (scenario12)
+
+
+third_right_branch_right.left = (scenario13)
+third_right_branch_right.left= (scenario14)
+
+
+# TREE SECTION
+second_left_branch.left = (third_left_branch_left)
+second_left_branch.right = (third_left_branch_right)
+
+
+second_right_branch.left = (third_rigth_branch_left)
+second_right_branch.right = (third_right_branch_right)
+
+
+# # Main Tree
+root.left = (second_left_branch)
+root.right = (second_right_branch)
+
+
+
+def my_inorder(root_node): 
+    current = root_node 
+    if type(current) == None: 
+        return 
+    my_inorder(current.left)
+    print(current.data)
+    my_inorder(current.right)
+
+
+
+my_inorder(root)
 
 
 
