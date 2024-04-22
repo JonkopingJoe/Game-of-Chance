@@ -5,7 +5,7 @@ from random import randint, choice
 from sys import exit
 
 """
-    This is a clickable button class for Pygame.
+    Below is a clickable button class for Pygame.
 
     Parameters:
     text (str): The text to display on the button.
@@ -201,7 +201,7 @@ print(
 
 
 """
-This class represents a scenario in the game. Scenario is basically an occurence in the "day" of this game.
+The following class represents a scenario in the game. Scenario is basically an occurence in the "day" of this game.
 
 Each scenario has a unique number, an associated image for context, and a set of choices with possible outcomes.
 The luck difference attribute represents a random value that can affect the outcome of the scenario.
@@ -270,6 +270,11 @@ WHITE = (255, 255, 255)
 FONT_SIZE = 12
 screen_width = 600
 screen_height = 400
+
+"""
+The tree and encapsulates every scenario that exists in the game.
+The get_path() method will randomise scenarios to be put in the list to be used in the game
+"""
 
 
 class TreeNode:
@@ -548,92 +553,6 @@ def get_path(root):
             return path + get_path(root.right)
 
 
-class ListNode:
-    # Constructor to initialize the node object
-    def __init__(self, value, next=None):
-        """
-        Assign data to a node. In our project it will be the game scenario
-
-        Args:
-        -value: The value of the node
-        -next: The next node in the linked list
-
-        Returns:
-        None
-        """
-        try:
-            self.value = value
-            # Initialize next as null
-            self.next = next
-        except Exception as e:
-            print(
-                "An error occured while creating a node, please check the input values!",
-                e,
-            )
-
-
-class LinkedList:
-    def __init__(self):
-        """
-        Initialize the head of the linked list
-        """
-        try:
-            self.head = None
-            self.last = None
-        except Exception as e:
-            print("An error occured. No parameter needed!", e)
-
-    def append(self, value):
-        """
-        Create a new node and append it at the end of the linked list
-
-        Args:
-        -value: The value of the node to be appended, here it will be the game scenario
-
-        Returns:
-        None
-        """
-        try:
-            new_node = ListNode(value)
-            if not self.head:
-                self.head = new_node
-                self.last = new_node
-            else:
-                self.last.next = new_node
-                self.last = new_node
-
-            return None
-
-        except Exception as e:
-            print(
-                "An error occured while appending a node, please check the input values!",
-                e,
-            )
-
-    def to_list(self):
-        """
-        Convert the linked list to a list
-
-        Args:
-        None
-
-        Returns:
-        -elements: A list of the elements in the linked list
-        """
-        try:
-            elements = []
-            current = self.head
-            while current:
-                elements.append(current.value)
-                current = current.next
-            return elements
-        except Exception as e:
-            print(
-                "An error occured while converting the linked list to a list, please check the input values!",
-                e,
-            )
-
-
 def get_game_scenarios(instances_list):
     """
     Create a linked list of the game scenarios
@@ -651,6 +570,11 @@ def get_game_scenarios(instances_list):
         return linked_list
     except Exception as e:
         print("List needed to be passed, please check input.", e)
+
+
+"""
+This is the main game logic with event handlers and methods to display the screen on which the events are occuring.
+"""
 
 
 class Game:
