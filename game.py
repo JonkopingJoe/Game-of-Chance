@@ -183,6 +183,8 @@ class Game:
         for i, line_surface in enumerate(line_surfaces):
             self.screen.blit(line_surface, (x, y + i * (line_surface.get_height())))
 
+        return None
+
     def display_scenario(self, scenario: Scenario) -> None:
         self.create_button(f"s{scenario.scene_num}_choice1", scenario.cases["choice1"])
         self.create_button(f"s{scenario.scene_num}_choice2", scenario.cases["choice2"])
@@ -196,6 +198,7 @@ class Game:
 
         self.log_event(f"{scenario} displayed")
         self.current_screen = f"{scenario}"
+        return None
 
     def display_image(self, image_path: str, x: int, y: int) -> None:
         img = pygame.image.load(image_path).convert()
@@ -271,15 +274,16 @@ class Game:
 
         return self.scenarios_Linked_list
 
-    def log_event(self, event):
+    def log_event(self, event) -> None:
         """Logs events and the timestamp when they occur."""
         timestamp = (
             pygame.time.get_ticks())  # Gets the number of milliseconds since pygame.init() was called
         log_message = f"{timestamp / 1000}s: {event}\n"
         self.logfile.write(log_message)
         print(log_message)
+        return None
 
-    def handle_events(self):
+    def handle_events(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.log_event("QUIT CLICKED")
@@ -409,6 +413,7 @@ class Game:
                     self.luck_score = randint(-20, 20)
                     self.current_state = None
                     self.display_start_screen()
+        return None
 
     def create_button(
         self,
@@ -418,11 +423,31 @@ class Game:
         bg_color=(221, 229, 13),
         font="monospace",
         size=20,
-    ):
-        button = Button(text, text_color, bg_color, font, size)
-        self.buttons[name] = button
+    ) -> None:
+        """
+        :param name: name of button
+        :param text: text to be put as button
+        :param text_color: default color set to (167,66,132) (dark purple)
+        :param bg_color: default bg color set to (221,229,13) (neon yellow)
+        :param font: default font set to monospace
+        :param size: default font size set to 20
 
-    def draw_button(self, name, x="centre", y="centre"):
+        :return: None
+        """
+        button = Button(text, text_color, bg_color, font, size)
+        self.buttons[name] = button  # button added to dictionary to be used in handle_events(self)
+
+        return None
+
+    def draw_button(self, name: str, x="centre", y="centre") -> None:
+        """
+        :param name: name of button to be drawn on screen
+        :param x: default set to align centre
+        :param y: default set to align centre
+
+        :return: None
+        """
+        # setting x and y coordinates
         if x == "centre":
             x = (screen_width - self.buttons[name].width) / 2
         if y == "centre":
@@ -431,8 +456,9 @@ class Game:
         self.buttons[name].rect.topleft = (x, y)
         self.screen.blit(
             self.buttons[name].image,
-            (self.buttons[name].rect.x, self.buttons[name].rect.y),
-        )
+            (self.buttons[name].rect.x, self.buttons[name].rect.y))
+
+        return None
 
     def initialise_buttons(self):
         self.create_button("start", "START")
