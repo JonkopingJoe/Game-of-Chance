@@ -516,29 +516,15 @@ Node15 = TreeNode(scenario15)
 
 # building the tree
 root = Node1
+
 # 2ND LEVEL
-root.left = Node2
-root.right = Node3
-# 3RD LEVEL
-Node2.left = Node4
-Node2.right = Node5
+root.left, root.right = Node2, Node3
 
-Node3.left = Node6
-Node3.right = Node7
+# 3RD & 4TH LEVELS
+nodes = [Node2, Node3, Node4, Node5, Node6, Node7]
+children = [Node4, Node5, Node6, Node7, Node8, Node9, Node10, Node11, Node12, Node13, Node14, Node15]
 
-# 4TH LEVEL
-Node4.left = Node8
-Node4.right = Node9
-
-Node5.left = Node10
-Node5.right = Node11
-
-Node6.left = Node12
-Node6.right = Node13
-
-Node7.left = Node14
-Node7.right = Node15
-
+list(map(lambda x, y: setattr(x, 'left', y[0]) or setattr(x, 'right', y[1]), nodes, zip(*[children[i::2] for i in range(2)])))
 
 def get_path(root):
     if root is None:
@@ -958,6 +944,6 @@ class Game:
             pygame.display.flip()
             self.clock.tick(60)
 
-
+__name__ == '__main__'
 game = Game()
 game.run()
