@@ -385,8 +385,7 @@ scenario8.set_cases(
 
 scenario9 = Scenario(4, "Graphics/meeting.png")
 scenario9.set_cases(
-    "You receive a last-minute request \nto join an additional meeting,"
-    "\nDo you attend the meeting or decline?",
+    "You receive a last-minute request \nto join an additional meeting. Do you attend?",
     "Attend",
     f"Finally got your chance to really\ndazzle in the meeting room today!\n\nLuck +{scenario9.luck_diff}",
     f"The meeting is unproductive,"

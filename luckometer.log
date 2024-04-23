@@ -1,55 +1,19 @@
-0.73s: START SCREEN DISPLAYED
-1.294s: START BUTTON CLICKED
-1.32s: INSTRUCTIONS SCREEN DISPLAYED
-1.658s: SPACEBAR PRESSED
-1.658s: Intro Music Playing
-1.673s: scenario1 displayed
-2.148s: s1_choice1 CLICKED
-2.148s: positive outcome displayed
-3.006s: CONTINUE CLICKED
-3.025s: scenario2 displayed
-3.809s: s2_choice1 CLICKED
-3.809s: positive outcome displayed
-4.935s: CONTINUE CLICKED
-4.953s: scenario3 displayed
-7.002s: s3_choice2 CLICKED
-7.003s: negative outcome displayed
-8.486s: CONTINUE CLICKED
-8.504s: scenario4 displayed
-11.529s: s4_choice1 CLICKED
-11.53s: positive outcome displayed
-12.933s: CONTINUE CLICKED
-12.933s: Intro Music Stopping
-12.933s: End Music Playing
-12.95s: END SCREEN DISPLAYED
-13.885s: PLAY AGAIN BUTTON CLICKED
-13.885s: End Music Stopping
-13.902s: START SCREEN DISPLAYED
-15.322s: RESUME BUTTON CLICKED
-15.328s: Error message shown
-15.849s: SPACEBAR PRESSED
-15.857s: START SCREEN DISPLAYED
-16.386s: START BUTTON CLICKED
-16.405s: INSTRUCTIONS SCREEN DISPLAYED
-17.083s: SPACEBAR PRESSED
-17.083s: Intro Music Playing
-17.103s: scenario1 displayed
-17.667s: s1_choice2 CLICKED
-17.667s: negative outcome displayed
-18.798s: CONTINUE CLICKED
-18.812s: scenario2 displayed
-20.031s: s2_choice2 CLICKED
-20.031s: positive outcome displayed
-23.07s: CONTINUE CLICKED
-23.09s: scenario3 displayed
-24.512s: s3_choice1 CLICKED
-24.512s: negative outcome displayed
-28.939s: CONTINUE CLICKED
-28.955s: scenario4 displayed
-32.182s: s4_choice2 CLICKED
-32.182s: positive outcome displayed
-37.045s: CONTINUE CLICKED
-37.045s: Intro Music Stopping
-37.045s: End Music Playing
-37.068s: END SCREEN DISPLAYED
-38.156s: QUIT BUTTON CLICKED
+1.395s: START SCREEN DISPLAYED
+3.333s: START BUTTON CLICKED
+3.358s: INSTRUCTIONS SCREEN DISPLAYED
+6.867s: SPACEBAR PRESSED
+6.867s: Intro Music Playing
+6.877s: scenario1 displayed
+8.02s: s1_choice2 CLICKED
+8.02s: positive outcome displayed
+10.266s: CONTINUE CLICKED
+10.284s: scenario2 displayed
+12.409s: s2_choice1 CLICKED
+12.409s: negative outcome displayed
+13.928s: CONTINUE CLICKED
+13.947s: scenario3 displayed
+19.98s: s3_choice1 CLICKED
+19.98s: positive outcome displayed
+24.017s: CONTINUE CLICKED
+24.035s: scenario4 displayed
+36.971s: QUIT CLICKED
