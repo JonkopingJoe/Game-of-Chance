@@ -40,15 +40,15 @@ class Button(pygame.sprite.Sprite):
         text_width, text_height = self.render_text.get_size()
 
         # Adjust dimensions based on text size and padding
-        self.width = text_width + 20  # Add padding horizontally
-        self.height = text_height + 20  # Add padding vertically
+        self.width = text_width + 20
+        self.height = text_height + 20
 
         # Create the button image (background)
         self.image = pygame.Surface((self.width, self.height))
         self.image.fill(bg_color)
         self.rect = self.image.get_rect()  # This defines the button's rectangle
 
-        # Calculate text position to center it on the rectangle
+        # center text on the rectangle
         self.text_rect = self.render_text.get_rect(center=self.rect.center)
 
         # Blit the text onto the button's image
@@ -698,7 +698,7 @@ class Game:
                     try:
                         self.display_scenario(self.current_state.value)
 
-                    except AttributeError:  # handle error when self.current_state = None
+                    except AttributeError:  # handle error when self.current_state is None
                         self.display_text(
                             "You have not started the game.\npress SPACE and click start.",
                             BLACK,
@@ -795,7 +795,7 @@ class Game:
                     self.log_event("PLAY AGAIN BUTTON CLICKED")
                     self.end_music.stop()
                     self.log_event("End Music Stopping")
-                    self.luck_score = randint(5, 20)  # reset initial luck score
+                    self.luck_score = randint(5, 20)  # recalibrate initial luck score
                     self.current_state = None  # reset scenarios
                     self.display_start_screen()
         return None
@@ -959,6 +959,6 @@ class Game:
 
 
 # checks that the program runs only as an executable and not as an import
-__name__ == "__main__"
-game = Game()
-game.run()
+if __name__ == "__main__":
+    game = Game()
+    game.run()
