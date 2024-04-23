@@ -176,32 +176,6 @@ class LinkedList:
             )
 
 
-def get_game_scenarios(instances_list):
-    """
-    Create a linked list of the game scenarios
-
-    Args:
-    -instances: A list of the game scenarios
-
-    Returns:
-    -linked_list: A linked list of the game scenarios
-    """
-    try:
-        random.shuffle(instances_list)
-        linked_list = LinkedList()
-        for instance in instances_list:
-            linked_list.append(instance)
-        return linked_list
-    except Exception as e:
-        print("List needed to be passed, please check input.", e)
-
-
-# Test
-# print(
-#     get_game_scenarios(["scenario1", "scenario2", "scenario3", "scenario4"]).to_list()
-# )
-
-
 """
 The following class represents a scenario in the game. Scenario is basically an occurence in the "day" of this game.
 
@@ -469,7 +443,7 @@ scenario13.set_cases(
 
 scenario14 = Scenario(4, "Graphics/online_class.png")
 scenario14.set_cases(
-    "You remember you’ve signed up\nfor an online course. "
+    "You remember you’ve signed up for an online course. "
     "\nDo you catch up on lessons tonight or decide to postpone?",
     "Catch up",
     f"The coursework is engaging,\nand you feel productive.\n\nLuck +{scenario14.luck_diff}",
