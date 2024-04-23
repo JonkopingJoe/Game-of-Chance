@@ -881,8 +881,10 @@ class Game:
         self.log_event("INSTRUCTIONS SCREEN DISPLAYED")
         self.current_screen = "instruction"
 
-    # 2287039 NEEN, 2253127 JOE
+    # 2287039 NEEN
     def display_outcome(self, choice_num):
+
+        # nested function in order to retrieve the key(eg. 'pos_outcome1') given the outcome(eg. 'Won the lottery')
         def get_key(search_value):
             for key, value in self.current_state.value.cases.items():
                 if value == search_value:
