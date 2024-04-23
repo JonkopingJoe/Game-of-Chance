@@ -551,11 +551,11 @@ list(
         lambda x, y: setattr(x, "left", y[0]) or setattr(x, "right", y[1]),
         nodes,
         zip(*[children[i::2] for i in range(2)]),
-        """This is a list comprehension that creates two lists from the children list.
-        The first list contains every other element from the children list, starting from the first element (children[0::2]), 
-        and the second list contains every other element, starting from the second element (children[1::2]""",
     )
 )
+"""This is a list comprehension that creates two lists from the children list.
+        The first list contains every other element from the children list, starting from the first element (children[0::2]), 
+        and the second list contains every other element, starting from the second element (children[1::2]"""
 
 
 def get_path(root):
@@ -590,13 +590,12 @@ def get_game_scenarios(instances_list):
         print("List needed to be passed, please check input.", e)
 
 
-"""
-This is the main game logic with event handlers and methods to display the screen on which the events are occuring.
-"""
-
-
 # 2253127 JOE, 2287039 NEEN,5532173 REAGAN, 5553946 IBRAHIM
 class Game:
+    """
+    This is the main game logic with event handlers and methods to display the screen on which the events are occuring.
+    """
+
     def __init__(self):
         pygame.init()
         pygame.display.set_caption("LUCKOMETER")
