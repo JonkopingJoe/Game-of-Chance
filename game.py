@@ -868,6 +868,9 @@ class Game:
 
         # Defining the instructions text
         instruction = """
+        There is only one rule, your luck is determined
+        randomly, but you will try to beat that not to 
+        ruin your day.
         The game starts at home, and the day begins. 
         You start off with a randomised luck score, 
         and each decision you make will have an effect.
