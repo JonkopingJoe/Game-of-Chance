@@ -4,6 +4,7 @@ import os
 from random import randint, choice
 from sys import exit
 
+# 2287039 NEEN RUNGSMAITHONG
 """
     Below is a clickable button class for Pygame.
 
@@ -76,6 +77,7 @@ class Button(pygame.sprite.Sprite):
         return action
 
 
+# 2253127 JOHN JOE
 """
 This is the Game Scenarios Linked List Module
 This module implements a linked list data structure to store and manipulate game scenarios.
@@ -224,6 +226,7 @@ Example:
 """
 
 
+# 5553946 IBRAHIM ALMUTAIRI
 class Scenario:
     def __init__(self, scene_num, picture_path: str):
         self.picture_path = picture_path
@@ -277,6 +280,7 @@ The get_path() method will randomise scenarios to be put in the list to be used 
 """
 
 
+# 5553946 IBRAHIM ALMUTAIRI
 class TreeNode:
     def __init__(self, data):
         self.data = data
@@ -401,6 +405,7 @@ scenario8.set_cases(
     f"You hear later about missed \nopportunities from the event.\n\nLuck -{scenario8.luck_diff}",
 )
 
+# 2287039 NEEN + 2253127 JOE fitted the tree logic to match the scenarios and gameplay
 # FORTH LAYER
 scenario9 = Scenario(4, "Graphics/meeting.png")
 scenario9.set_cases(
@@ -514,7 +519,9 @@ Node13 = TreeNode(scenario13)
 Node14 = TreeNode(scenario14)
 Node15 = TreeNode(scenario15)
 
-# building the tree
+
+# 5532173 REAGAN PIUS : Refactored Tree to build with Lambda
+
 # building the tree
 root = Node1
 
@@ -523,9 +530,33 @@ root.left, root.right = Node2, Node3
 
 # 3RD & 4TH LEVELS
 nodes = [Node2, Node3, Node4, Node5, Node6, Node7]
-children = [Node4, Node5, Node6, Node7, Node8, Node9, Node10, Node11, Node12, Node13, Node14, Node15]
+children = [
+    Node4,
+    Node5,
+    Node6,
+    Node7,
+    Node8,
+    Node9,
+    Node10,
+    Node11,
+    Node12,
+    Node13,
+    Node14,
+    Node15,
+]
 
-list(map(lambda x, y: setattr(x, 'left', y[0]) or setattr(x, 'right', y[1]), nodes, zip(*[children[i::2] for i in range(2)])))
+"""This list function converts the iterator produced by map into a list to force map to apply the lambda function to all the elements."""
+list(
+    map(
+        lambda x, y: setattr(x, "left", y[0]) or setattr(x, "right", y[1]),
+        nodes,
+        zip(*[children[i::2] for i in range(2)]),
+    )
+)
+"""This is a list comprehension that creates two lists from the children list.
+        The first list contains every other element from the children list, starting from the first element (children[0::2]), 
+        and the second list contains every other element, starting from the second element (children[1::2]"""
+
 
 def get_path(root):
     if root is None:
@@ -559,12 +590,12 @@ def get_game_scenarios(instances_list):
         print("List needed to be passed, please check input.", e)
 
 
-"""
-This is the main game logic with event handlers and methods to display the screen on which the events are occuring.
-"""
-
-
+# 2253127 JOE, 2287039 NEEN,5532173 REAGAN, 5553946 IBRAHIM
 class Game:
+    """
+    This is the main game logic with event handlers and methods to display the screen on which the events are occuring.
+    """
+
     def __init__(self):
         pygame.init()
         pygame.display.set_caption("LUCKOMETER")
@@ -582,7 +613,7 @@ class Game:
         self.main_music = pygame.mixer.Sound(os.path.join("audio/intro.wav"))
         self.end_music = pygame.mixer.Sound(os.path.join("audio/not-really-lost.wav"))
 
-    # Displaying Section
+    # 5532173 REAGAN PIUS Displaying Section
     def display_text(
         self,
         text: str,
@@ -616,6 +647,7 @@ class Game:
 
         return None
 
+    # 5553946 IBRAHIM ALMUTAIRI
     def display_scenario(self, scenario: Scenario) -> None:
         self.create_button(f"s{scenario.scene_num}_choice1", scenario.cases["choice1"])
         self.create_button(f"s{scenario.scene_num}_choice2", scenario.cases["choice2"])
@@ -635,11 +667,13 @@ class Game:
         self.current_screen = f"{scenario}"
         return None
 
+    # 5553946 IBRAHIM
     def display_image(self, image_path: str, x: int, y: int) -> None:
         img = pygame.image.load(image_path).convert()
         self.screen.blit(img, (x, y))
         return None
 
+    # 2287039 NEEN RUNGSMAITHONG
     def log_event(self, event) -> None:
         """Logs events and the timestamp when they occur."""
         timestamp = (
@@ -709,9 +743,13 @@ class Game:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                     self.log_event("SPACEBAR PRESSED")
 
-                    # Add Music Accompaniment
+                    # 5532173 REAGAN PIUS Add Music Accompaniment and Handle Errors w/lambda
                     pygame.mixer.Sound.set_volume(self.main_music, 0.3)
-                    play_music = lambda music: (lambda: music.play(loops=6))() if music else (lambda: self.log_event("Error playing music"))()
+                    play_music = lambda music: (
+                        (lambda: music.play(loops=6))()
+                        if music
+                        else (lambda: self.log_event("Error playing music"))()
+                    )
                     play_music(self.main_music)
                     self.log_event("Intro Music Playing")
                     self.initialise_scenarios()
@@ -771,10 +809,14 @@ class Game:
                 if self.buttons["continue"].is_clicked():
                     self.log_event("CONTINUE CLICKED")
 
-                    # Second Music Accompaniment
+                    # 5532173 REAGAN PIUS Second Music Accompaniment and Handle Errors w/lambda
                     self.main_music.stop()
                     self.log_event("Intro Music Stopping")
-                    end_music = lambda music: (lambda: music.play())() if music else (lambda: self.log_event("Error playing music"))()
+                    end_music = lambda music: (
+                        (lambda: music.play())()
+                        if music
+                        else (lambda: self.log_event("Error playing music"))()
+                    )
                     end_music(self.main_music)
                     pygame.mixer.Sound.set_volume(self.end_music, 0.3)
                     self.end_music.play()
@@ -791,6 +833,7 @@ class Game:
                     self.display_start_screen()
         return None
 
+    # NEEN 2287039
     def create_button(
         self,
         name: str,
@@ -847,6 +890,7 @@ class Game:
         self.create_button("home", "HOME", size=15)
         self.create_button("continue", "CONTINUE")
 
+    # 2287039 NEEN
     def display_start_screen(self):
         self.display_image("Graphics/title_screen.png", 0, 0)
         self.draw_button("start", y=176)
@@ -856,6 +900,7 @@ class Game:
         self.log_event("START SCREEN DISPLAYED")
         self.current_screen = "start"
 
+    # 5532173 REAGAN PIUS
     def display_instructions_screen(self):
         self.display_image("Graphics/instructions.png", 0, 0)
 
@@ -874,6 +919,7 @@ class Game:
         self.log_event("INSTRUCTIONS SCREEN DISPLAYED")
         self.current_screen = "instruction"
 
+    # 2287039 NEEN, 2253127 JOE
     def display_outcome(self, choice_num):
         def get_key(search_value):
             for key, value in self.current_state.value.cases.items():
@@ -899,6 +945,7 @@ class Game:
         self.display_text(outcome, BLACK, size=20)
         self.draw_button("continue", 448, 340)
 
+    # 5532173 REAGAN PIUS
     def display_end_screen(self):
         self.display_image("Graphics/end_screen.png", 0, 0)
 
@@ -948,7 +995,8 @@ class Game:
             pygame.display.flip()
             self.clock.tick(60)
 
+
 # checks that the program runs only as an executable and not as an import
-__name__ == '__main__'
+__name__ == "__main__"
 game = Game()
 game.run()
