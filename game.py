@@ -396,7 +396,7 @@ scenario8.set_cases(
     f"You make valuable contacts \nthat could benefit your career!\n\nLuck +{scenario8.luck_diff}",
     f"The event is dull,"
     f"\nand you regret not spending the evening relaxing.\n\nLuck -{scenario8.luck_diff}",
-    "Decline and stay home",
+    "Stay home",
     f"You enjoy a restful evening \nthat prepares you for tomorrow.\n\nLuck +{scenario8.luck_diff}",
     f"You hear later about missed \nopportunities from the event.\n\nLuck -{scenario8.luck_diff}",
 )
@@ -442,10 +442,10 @@ scenario11.set_cases(
 scenario12 = Scenario(4, "Graphics/dinner.png")
 scenario12.set_cases(
     "It's time for dinner, but you're not in\nthe mood to cook. Do you order in or go out to eat?",
-    "Order in.",
+    "Order in",
     f"The food arrives quickly and tastes delicious.\n\nLuck +{scenario12.luck_diff}",
     f"The order is wrong and arrives late.\n\nLuck -{scenario12.luck_diff}",
-    "Go out to eat.",
+    "Eat out",
     f"You enjoy a great meal out and feel content.\n\nLuck +{scenario12.luck_diff}",
     f"The restaurant is full, and you end up waiting a long time.\n\nLuck -{scenario12.luck_diff}",
 )
@@ -453,10 +453,10 @@ scenario12.set_cases(
 scenario13 = Scenario(4, "Graphics/relax.png")
 scenario13.set_cases(
     "You feel the need to unwind.\nDo you read a book or watch a movie?",
-    "Read a book.",
+    "Read a book",
     f"You get completely absorbed\nin an amazing story.\n\nLuck +{scenario13.luck_diff}",
     f"You find it hard to focus\nand don’t enjoy the book.\n\nLuck +{scenario13.luck_diff}",
-    "Watch a movie.",
+    "Watch a movie",
     f"You watch a fantastic movie\nthat you thoroughly enjoy.\n\nLuck +{scenario13.luck_diff}",
     f"The movie is disappointing,"
     f"\nand you regret not choosing another activity.\n\nLuck +{scenario13.luck_diff}",
@@ -477,12 +477,12 @@ scenario14.set_cases(
 scenario15 = Scenario(4, "Graphics/local_class.png")
 scenario15.set_cases(
     "You have the option to attend a \nlocal evening class. Which will you choose?",
-    "Attend yoga class.",
+    "Yoga",
     f"The yoga session is rejuvenating,"
     f"\nand you leave feeling refreshed and centered.\n\nLuck +{scenario15.luck_diff}",
     f"The class is overbooked,"
     f"\nand you find it hard to relax in the crowded room.\n\nLuck +{scenario15.luck_diff}",
-    "Attend cooking class.",
+    "Cooking",
     f"You learn a new recipe \nthat becomes a new favorite at home.\n\nLuck +{scenario15.luck_diff}",
     f"The class moves at a fast pace,\nand you struggle to keep up.\n\nLuck +{scenario15.luck_diff}",
 )
@@ -650,10 +650,12 @@ class Game:
         print(log_message)
         return None
 
-    def initialise_scenarios(self) -> LinkedList:
+    def initialise_scenarios(self) -> None:
         scenario_list = get_path(Node1)
         self.scenarios_Linked_list = get_game_scenarios(scenario_list)
-        return self.scenarios_Linked_list
+        if self.scenarios_Linked_list and self.scenarios_Linked_list.head:
+            self.current_state = self.scenarios_Linked_list.head
+        return None
 
     def handle_events(self) -> None:
         for event in pygame.event.get():
@@ -672,7 +674,7 @@ class Game:
 
             if self.current_screen == "start":
                 if self.buttons["start"].is_clicked():
-                    if not self.current_state:
+                    if not self.current_state:  # only execute 'start' if scenarios have yet to be initialised
                         self.log_event("START BUTTON CLICKED")
                         self.display_instructions_screen()
                     else:
@@ -680,7 +682,7 @@ class Game:
                             "You have already started the game.\npress SPACE and click resume.",
                             BLACK,
                             WHITE,
-                            size=17,
+                            size=17
                         )
                         self.log_event("Error message shown")
                         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
@@ -697,8 +699,7 @@ class Game:
                             "You have not started the game.\npress SPACE and click start.",
                             BLACK,
                             WHITE,
-                            size=17,
-                        )
+                            size=17)
                         self.log_event("Error message shown")
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                     self.log_event("SPACEBAR PRESSED")
@@ -714,9 +715,7 @@ class Game:
                     play_music(self.main_music)
                     self.log_event("Intro Music Playing")
                     self.initialise_scenarios()
-                    if self.scenarios_Linked_list and self.scenarios_Linked_list.head:
-                        self.current_state = self.scenarios_Linked_list.head
-                        self.display_scenario(self.current_state.value)
+                    self.display_scenario(self.current_state.value)
 
             if (
                 "scenario" in self.current_screen
