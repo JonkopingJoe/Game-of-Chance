@@ -751,10 +751,7 @@ class Game:
                     self.initialise_scenarios()
                     self.display_scenario(self.current_state.value)
 
-            if (
-                "scenario" in self.current_screen
-                or self.current_screen == "instruction"
-            ):
+            if "scenario" in self.current_screen:
                 if self.buttons["home"].is_clicked():
                     self.log_event("HOME BUTTON CLICKED")
                     self.display_start_screen()
@@ -824,8 +821,8 @@ class Game:
                     self.log_event("PLAY AGAIN BUTTON CLICKED")
                     self.end_music.stop()
                     self.log_event("End Music Stopping")
-                    self.luck_score = randint(-20, 20)
-                    self.current_state = None
+                    self.luck_score = randint(5, 20)  # reset initial luck score
+                    self.current_state = None  # reset scenarios
                     self.display_start_screen()
         return None
 
@@ -842,17 +839,15 @@ class Game:
         """
         :param name: name of button
         :param text: text to be put as button
-        :param text_color: default color set to (167,66,132) (dark purple)
-        :param bg_color: default bg color set to (221,229,13) (neon yellow)
+        :param text_color: default color set to (167,66,132)->(dark purple)
+        :param bg_color: default bg color set to (221,229,13)->(neon yellow)
         :param font: default font set to monospace
         :param size: default font size set to 20
 
         :return: None
         """
         button = Button(text, text_color, bg_color, font, size)
-        self.buttons[name] = (
-            button  # button added to dictionary to be used in handle_events(self)
-        )
+        self.buttons[name] = button  # each button added to dictionary to be used in handle_events()
 
         return None
 
@@ -871,10 +866,7 @@ class Game:
             y = (screen_height - self.buttons[name].height) / 2
 
         self.buttons[name].rect.topleft = (x, y)
-        self.screen.blit(
-            self.buttons[name].image,
-            (self.buttons[name].rect.x, self.buttons[name].rect.y),
-        )
+        self.screen.blit(self.buttons[name].image, (self.buttons[name].rect.x, self.buttons[name].rect.y))
 
         return None
 
