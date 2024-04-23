@@ -197,9 +197,9 @@ def get_game_scenarios(instances_list):
 
 
 # Test
-print(
-    get_game_scenarios(["scenario1", "scenario2", "scenario3", "scenario4"]).to_list()
-)
+# print(
+#     get_game_scenarios(["scenario1", "scenario2", "scenario3", "scenario4"]).to_list()
+# )
 
 
 """
