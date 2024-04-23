@@ -716,19 +716,15 @@ class Game:
                             "You have already started the game.\npress SPACE and click resume.",
                             BLACK,
                             WHITE,
-                            size=17
-                        )
+                            size=17)
                         self.log_event("Error message shown")
-                        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                            self.log_event("SPACEBAR PRESSED")
-                            self.display_start_screen()
 
                 if self.buttons["resume"].is_clicked():
                     self.log_event("RESUME BUTTON CLICKED")
                     try:
                         self.display_scenario(self.current_state.value)
 
-                    except AttributeError:
+                    except AttributeError:  # handle error when self.current_state = None
                         self.display_text(
                             "You have not started the game.\npress SPACE and click start.",
                             BLACK,
