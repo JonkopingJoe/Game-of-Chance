@@ -27,7 +27,7 @@ from sys import exit
     is_clicked() -> bool: Returns True if the button is clicked, False otherwise.
 """
 
-
+# 5554936 IBRAHIM AND 2287039 NEEN RUNGSMAITHONG
 class Button(pygame.sprite.Sprite):
     def __init__(
         self, text: str, text_color: tuple, bg_color: tuple, font="monospace", size=15
@@ -200,7 +200,7 @@ Example:
 """
 
 
-# 5553946 IBRAHIM ALMUTAIRI
+# 5554936 IBRAHIM ALMUTAIRI
 class Scenario:
     def __init__(self, scene_num, picture_path: str):
         self.picture_path = picture_path
@@ -254,7 +254,7 @@ The get_path() method will randomise scenarios to be put in the list to be used 
 """
 
 
-# 5553946 IBRAHIM ALMUTAIRI
+# 5554936 IBRAHIM ALMUTAIRI
 class TreeNode:
     def __init__(self, data):
         self.data = data
@@ -531,7 +531,7 @@ list(
         The first list contains every other element from the children list, starting from the first element (children[0::2]), 
         and the second list contains every other element, starting from the second element (children[1::2]"""
 
-
+# 5554936 IBRAHIM
 def get_path(root):
     if root is None:
         return []
@@ -564,7 +564,7 @@ def get_game_scenarios(instances_list):
         print("List needed to be passed, please check input.", e)
 
 
-# 2253127 JOE, 2287039 NEEN,5532173 REAGAN, 5553946 IBRAHIM
+# 2253127 JOE, 2287039 NEEN,5532173 REAGAN, 5554936 IBRAHIM
 class Game:
     """
     This is the main game logic with event handlers and methods to display the screen on which the events are occuring.
@@ -621,7 +621,7 @@ class Game:
 
         return None
 
-    # 5553946 IBRAHIM ALMUTAIRI
+    # 5554936 IBRAHIM ALMUTAIRI
     def display_scenario(self, scenario: Scenario) -> None:
         self.create_button(f"s{scenario.scene_num}_choice1", scenario.cases["choice1"])
         self.create_button(f"s{scenario.scene_num}_choice2", scenario.cases["choice2"])
@@ -641,7 +641,7 @@ class Game:
         self.current_screen = f"{scenario}"
         return None
 
-    # 5553946 IBRAHIM
+    # 5554936 IBRAHIM
     def display_image(self, image_path: str, x: int, y: int) -> None:
         img = pygame.image.load(image_path).convert()
         self.screen.blit(img, (x, y))
